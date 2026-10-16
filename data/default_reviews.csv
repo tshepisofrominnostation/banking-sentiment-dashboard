@@ -1,0 +1,42 @@
+Review_ID,Date,Channel,Review_Text,Customer_Segment
+R001,2026-09-02,Banking App,The app updated and now it keeps crashing every time I try to send money. So frustrating.,Young Professional
+R002,2026-09-03,Banking App,"Love the new app design, paying my friends is quick and easy. Great work.",Student
+R003,2026-09-04,Instant EFT,"Instant EFT reflected immediately, my supplier payment cleared in seconds. Excellent.",Small Business
+R004,2026-09-05,Branch,Queued for 45 minutes at month end just to draw my pension. Terrible experience.,Pensioner
+R005,2026-09-06,Card/ATM,My card was cloned at an ATM and money disappeared from my account. I am so angry about this.,Family
+R006,2026-09-07,Banking App,Biometric login works flawlessly and the notifications are instant. Very impressed.,Family
+R007,2026-09-08,Instant EFT,My instant EFT sat pending overnight and no one could tell me why. Really annoying.,Young Professional
+R008,2026-09-09,Branch,"The consultant helped me open a savings account for my daughter, warm and professional service.",Family
+R009,2026-09-10,Card/ATM,"Withdrew cash at the campus ATM, transaction took a few seconds. It was okay.",Student
+R010,2026-09-11,Banking App,"App down again during load shedding, third outage this month. Terrible for my business.",Small Business
+R011,2026-09-12,Banking App,"I struggle to read the small text in the app, and the update made it worse for older people like me.",Pensioner
+R012,2026-09-13,Instant EFT,"Instant EFT is seamless, my allowance lands the second my parents send it. Love it.",Student
+R013,2026-09-14,Card/ATM,"ATM was out of cash the whole weekend, had to drive to three machines. Terrible inconvenience.",Young Professional
+R014,2026-09-15,Branch,Month-end queue outside the door again. Staff are friendly but there are never enough tellers.,Small Business
+R015,2026-09-16,Banking App,The app logged me out four times while I was trying to pay for data. Terrible and disappointing.,Student
+R016,2026-09-17,Instant EFT,Payment I sent on Friday only cleared Monday. The delay messed up my debit orders. Not happy.,Family
+R017,2026-09-18,Card/ATM,Cardless cash withdrawal worked first time at the ATM. Wonderful.,Pensioner
+R018,2026-09-19,Branch,"Went in to unblock my card, was in and out in ten minutes. Efficient staff, thank you.",Student
+R019,2026-09-20,Banking App,Monthly fees increased again without any warning. This feels dishonest and I am disappointed.,Family
+R020,2026-09-21,Instant EFT,"All batch payments cleared same day with no hiccups. Excellent, reliable service.",Small Business
+R021,2026-09-22,Card/ATM,The ATM kept my card on payday and I had to order a replacement. Disgusted with the bank.,Young Professional
+R022,2026-09-23,Branch,"The branch closes at 3pm now which is difficult, but the staff who helped me were kind and patient.",Pensioner
+R023,2026-09-24,Banking App,"Dashboard shows my sales in real time, best banking app I have used in years.",Small Business
+R024,2026-09-25,Instant EFT,"I do not trust sending money on my phone, I prefer the branch. This EFT thing is confusing to me.",Pensioner
+R025,2026-09-26,Card/ATM,"Used the ATM at the garage, R500 out, no issues to report.",Student
+R026,2026-09-27,Banking App,App froze halfway through a transfer and I panicked. Money eventually went through but scary stuff.,Family
+R027,2026-09-28,Branch,"Needed a bank letter, requested it online and collected same day. Smooth and simple.",Young Professional
+R028,2026-09-29,Instant EFT,"EFT limit too low for my rent payment, had to split transfers across two days. Inconvenient.",Young Professional
+R029,2026-09-30,Card/ATM,"Contactless tap on the card machine at the shops stopped working, had to insert and pin. Mildly annoying.",Family
+R030,2026-10-01,Banking App,Whoever designed the latest app update should be ashamed. I cannot find my statements anymore. Frustrating.,Pensioner
+R031,2026-10-02,Branch,"Opened a business account in one visit, the consultant knew his products inside out. Impressive.",Small Business
+R032,2026-10-03,Instant EFT,Transferred school fees instantly at 11pm and it reflected before I closed the app. Fantastic.,Family
+R033,2026-10-04,Card/ATM,Weekly cash deposits at the ATM are quick and the slips are clear. No complaints.,Small Business
+R034,2026-10-05,Banking App,The app crashed twice during load shedding while I was paying my exam fees. Terrible and unacceptable.,Student
+R035,2026-10-06,Branch,The branch moved to the other side of town without telling customers. Inconvenient for us who walk.,Family
+R036,2026-10-07,Instant EFT,"Sent my friend money for the braai, it arrived instantly. Fantastic and lekker.",Student
+R037,2026-10-08,Card/ATM,The ATM rejected my card and I could not draw my pension. I left upset and angry.,Pensioner
+R038,2026-10-09,Banking App,Customer service replied on WhatsApp within a minute when my OTP did not arrive. Helpful people.,Young Professional
+R039,2026-10-10,Branch,The security guard was rude when I asked for directions to the deposits counter. Disappointed.,Student
+R040,2026-10-11,Instant EFT,"The instant payment fee quietly increased, I only noticed on my statement. Sneaky and disappointing.",Small Business
+R041,2026-10-12,Banking App,The app balance never matches my records and the call centre kept me waiting 20 minutes. So frustrating and exhausting.,Family
