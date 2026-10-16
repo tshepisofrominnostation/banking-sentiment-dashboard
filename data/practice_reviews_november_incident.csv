@@ -1,0 +1,41 @@
+Review_ID,Date,Channel,Review_Text,Customer_Segment
+N001,2026-11-02,Banking App,"The app has been down since Sunday. So frustrating, I cannot pay anyone.",Young Professional
+N002,2026-11-02,Instant EFT,My payroll batch failed in the outage. Terrible day for my business.,Small Business
+N003,2026-11-03,Banking App,Cannot check my balance before the outage notice even appeared. Angry.,Student
+N004,2026-11-03,Contact Centre,Contact centre queue was 40 minutes during the outage. Disgusting.,Family
+N005,2026-11-04,Branch,The branch was packed with angry customers during the app outage.,Pensioner
+N006,2026-11-04,Banking App,"Day three of the app not loading. The worst week, absolutely terrible.",Young Professional
+N007,2026-11-05,Branch,Consultants set up paper withdrawals for everyone. Great recovery effort.,Young Professional
+N008,2026-11-05,Contact Centre,A supervisor called me back to fix my merchant payments. Impressed.,Small Business
+N009,2026-11-06,Banking App,App is back and my transfers went through. Excellent recovery.,Family
+N010,2026-11-06,Instant EFT,Backlog of payments cleared overnight. Great work by the bank.,Family
+N011,2026-11-09,Banking App,Got a phishing SMS pretending to be the bank. Scary and sneaky.,Student
+N012,2026-11-10,Instant EFT,Nearly fell for a fake bank WhatsApp. These scammers are terrible.,Pensioner
+N013,2026-11-11,Banking App,The in-app fraud warnings are clear and helpful. Love that.,Young Professional
+N014,2026-11-12,Card/ATM,"Skimming device found at our local ATM. I am so angry, feel completely unsafe there.",Family
+N015,2026-11-13,Contact Centre,"The bank froze my card after a suspicious R8,000 charge. Great security, so happy.",Small Business
+N016,2026-11-16,Banking App,Someone tried to log in as me and the app blocked them. Great security.,Student
+N017,2026-11-17,WhatsApp Banking,"Reported a scam number through WhatsApp banking. Quick response, impressed.",Pensioner
+N018,2026-11-18,Instant EFT,Black Friday payment failed twice. Very annoying at midnight.,Young Professional
+N019,2026-11-19,Banking App,Black Friday checkout through the app was seamless. Excellent.,Family
+N020,2026-11-20,Instant EFT,My supplier payment was delayed on the busiest weekend. Disappointed.,Small Business
+N021,2026-11-21,Branch,Branch was calm and quick after the online rush. Friendly tellers.,Student
+N022,2026-11-23,Card/ATM,ATM limits dropped my cash withdrawal on payday. Terrible timing.,Young Professional
+N023,2026-11-24,Banking App,Stokvel payout day and the app struggled all morning. Frustrating.,Small Business
+N024,2026-11-25,Contact Centre,Waited 20 minutes to dispute a Black Friday double charge. Annoying.,Family
+N025,2026-11-26,Instant EFT,Refund from an online store reflected the same day. Great.,Student
+N026,2026-11-27,Banking App,Black Friday sale purchase went through instantly at midnight. Brilliant.,Young Professional
+N027,2026-11-27,Instant EFT,My transfer to family for December took two days. Not happy.,Family
+N028,2026-11-28,Branch,"Consultant helped me set up account alerts. Friendly, patient and excellent.",Pensioner
+N029,2026-11-29,Card/ATM,Cash deposit for the shop counted wrong by R50. Disappointed.,Small Business
+N030,2026-11-30,Banking App,The app kept me informed through the whole outage week. Impressed.,Pensioner
+N031,2026-11-08,WhatsApp Banking,WhatsApp banking never skipped a beat during the outage. Fantastic.,Young Professional
+N032,2026-11-13,Branch,Business banking desk sorted my POS machine issue same day. Excellent.,Small Business
+N033,2026-11-14,Card/ATM,Used the campus ATM for my allowance withdrawal. No problems.,Student
+N034,2026-11-15,Instant EFT,My grandchild's transfer took three days during the backlog. Frustrating.,Pensioner
+N035,2026-11-18,Contact Centre,The call centre agent was rude about my phishing report. Disgusted.,Pensioner
+N036,2026-11-20,Banking App,App stability since the outage has been perfect. Great to see.,Family
+N037,2026-11-22,Branch,Opened a December savings plan with good advice. Helpful consultant.,Young Professional
+N038,2026-11-25,Card/ATM,Drew December grocery money at the mall ATM.,Family
+N039,2026-11-28,Instant EFT,Client payments all landed on time this week. Smooth sailing.,Small Business
+N040,2026-11-21,WhatsApp Banking,Checked my shop balance on WhatsApp during the outage week.,Small Business

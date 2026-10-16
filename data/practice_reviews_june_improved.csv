@@ -1,0 +1,41 @@
+Review_ID,Date,Channel,Review_Text,Customer_Segment
+J001,2026-06-01,Banking App,The app update fixed all the crashing. Excellent and rock solid during load shedding now.,Young Professional
+J002,2026-06-02,Instant EFT,Instant EFT cleared in seconds again. Excellent as always.,Student
+J003,2026-06-03,Branch,New queue system at the branch meant ten minutes max. Impressed.,Pensioner
+J004,2026-06-04,Card/ATM,Cardless withdrawal with my phone worked first time. Love it.,Family
+J005,2026-06-05,Banking App,Still getting charged for notice deposits. Fees are disappointing.,Small Business
+J006,2026-06-08,Instant EFT,Payroll EFT batch processed same day. Smooth and reliable.,Small Business
+J007,2026-06-09,Card/ATM,ATM was out of service for maintenance on payday. Very annoying.,Young Professional
+J008,2026-06-10,Branch,Teller helped reverse a double debit order with a smile. Great service.,Family
+J009,2026-06-11,Banking App,The app now lets me freeze my card instantly. Fantastic feature.,Student
+J010,2026-06-12,Instant EFT,My transfer was delayed overnight. Still not happy about that.,Young Professional
+J011,2026-06-15,WhatsApp Banking,WhatsApp banking handled my beneficiary payment end to end. Brilliant.,Young Professional
+J012,2026-06-16,Branch,Youth Day crowd was big but staff kept the queue moving. Impressive.,Pensioner
+J013,2026-06-17,Card/ATM,Withdrew R300 for the long weekend at the campus ATM.,Student
+J014,2026-06-18,Banking App,App performance on old phones is still slow. Frustrating for my mother.,Family
+J015,2026-06-19,Contact Centre,Merchant support call resolved in eight minutes. Excellent.,Small Business
+J016,2026-06-22,Instant EFT,School fee payment cleared instantly. Quick and easy.,Family
+J017,2026-06-23,Banking App,The larger font option in settings is so helpful and easy. Great improvement.,Pensioner
+J018,2026-06-24,Branch,Business account statements were wrong for a week. Disappointed.,Small Business
+J019,2026-06-25,Card/ATM,Cash deposit machine rejected four of my notes. Very annoying.,Family
+J020,2026-06-26,WhatsApp Banking,Chatbot answered my campus card query perfectly. Love the speed.,Student
+J021,2026-06-29,Banking App,Load shedding hit for four hours and the app never went down. Great work.,Young Professional
+J022,2026-06-30,Branch,Grant day queue was managed so well this month. Excellent.,Pensioner
+J023,2026-06-05,Contact Centre,Called about a suspicious debit and got help immediately. Impressed.,Family
+J024,2026-06-08,Instant EFT,My shared flat electricity payment bounced twice. Terrible.,Student
+J025,2026-06-11,Card/ATM,The ATM gave me R100 short but the branch fixed it same day. Happy with the fix.,Young Professional
+J026,2026-06-14,Banking App,Invoice upload finally works on the app. Great improvement for business.,Small Business
+J027,2026-06-16,WhatsApp Banking,"The WhatsApp prompts are simpler now. Easy to follow, thank you.",Pensioner
+J028,2026-06-18,Branch,Consultant explained the new savings product clearly. Helpful.,Young Professional
+J029,2026-06-20,Card/ATM,Night deposit for my shop at the branch deposit slot before closing.,Small Business
+J030,2026-06-22,Banking App,My card was blocked by fraud systems wrongly. Very frustrating experience.,Family
+J031,2026-06-25,Instant EFT,Same-day settlement on the new EFT rails is fantastic.,Small Business
+J032,2026-06-27,Contact Centre,Waited 15 minutes on hold about my statement. Annoying.,Pensioner
+J033,2026-06-02,Contact Centre,Agent reset my online banking in minutes. Great support.,Student
+J034,2026-06-09,WhatsApp Banking,Loaded beneficiaries on WhatsApp without any problems. Easy.,Family
+J035,2026-06-13,Branch,Branch ATM deposit window closed early. Disappointed.,Student
+J036,2026-06-17,Banking App,I still struggle with the app menus. Confusing for pensioners.,Pensioner
+J037,2026-06-21,Instant EFT,Split the bill with three friends instantly. Love this.,Young Professional
+J038,2026-06-26,Card/ATM,Drew cash for the school cake sale at the branch ATM.,Family
+J039,2026-06-30,Banking App,Month-end recon on the app took half the time. Excellent update.,Small Business
+J040,2026-06-29,Card/ATM,Withdrew my grant money at the post office ATM. Transaction completed.,Pensioner

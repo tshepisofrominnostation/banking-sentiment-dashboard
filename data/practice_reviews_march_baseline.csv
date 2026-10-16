@@ -1,0 +1,41 @@
+Review_ID,Date,Channel,Review_Text,Customer_Segment
+M001,2026-03-02,Banking App,The app keeps crashing whenever load shedding hits. So frustrating.,Young Professional
+M002,2026-03-03,Instant EFT,Sent money to my flatmate and it reflected instantly. Excellent.,Student
+M003,2026-03-05,Branch,The consultant helped me order a new bank card in ten minutes. Great service.,Pensioner
+M004,2026-03-06,Card/ATM,The ATM at the mall kept my card on payday. Absolutely disgusting.,Family
+M005,2026-03-09,Banking App,Monthly fees went up with no warning at all. I am so disappointed.,Small Business
+M006,2026-03-10,Instant EFT,My EFT to a supplier sat pending for two days. Terrible for my business.,Young Professional
+M007,2026-03-12,Branch,Month-end queue was out the door but the tellers were friendly and fast.,Family
+M008,2026-03-13,Card/ATM,Withdrew R200 for the week. The machine was out of R10 notes.,Student
+M009,2026-03-16,Banking App,Biometric login works every time now. Smooth and quick.,Young Professional
+M010,2026-03-17,Instant EFT,Instant EFT limit is too low for my payroll. Very annoying.,Small Business
+M011,2026-03-19,Branch,I waited 40 minutes just to withdraw my pension. Terrible experience.,Pensioner
+M012,2026-03-20,Card/ATM,Cardless cash withdrawal at the ATM worked perfectly. Love this feature.,Family
+M013,2026-03-23,Banking App,The app logged me out twice while paying for data. Frustrating.,Student
+M014,2026-03-24,Instant EFT,"Paid the school fees online, cleared same day. Easy and painless.",Family
+M015,2026-03-26,Branch,Opened my business account in one visit. The consultant was brilliant.,Small Business
+M016,2026-03-27,Card/ATM,"ATM was out of cash the whole weekend. Had to drive to three machines, terrible.",Young Professional
+M017,2026-03-30,Banking App,"App down again during stage 4 load shedding. Third time this month, awful.",Family
+M018,2026-03-31,Branch,"Queue on grant day was long but the security guard helped us, very kind.",Pensioner
+M019,2026-03-03,Instant EFT,Payment to my car dealer reflected in seconds. Fantastic.,Young Professional
+M020,2026-03-07,Banking App,Cannot upload invoices on the app. Useless for business banking.,Small Business
+M021,2026-03-11,Card/ATM,My card was cloned at a sketchy ATM. I am so angry about this.,Student
+M022,2026-03-14,Branch,"The branch closed early without notice. Wasted trip, very annoying.",Family
+M023,2026-03-18,Instant EFT,Batch payments cleared overnight without any issues. Great work.,Small Business
+M024,2026-03-21,Banking App,The font on the app is too small for me. Struggled to read my balance.,Pensioner
+M025,2026-03-25,Card/ATM,"Withdrew cash for the weekend braai, no issues at all.",Family
+M026,2026-03-28,Banking App,Notifications for every swipe are so helpful for budgeting. Love it.,Student
+M027,2026-03-31,Branch,Tellers could not process my deposit slip properly. Disappointed with the service.,Small Business
+M028,2026-03-05,Contact Centre,Called the contact centre and the agent sorted my dispute in one call. Excellent.,Young Professional
+M029,2026-03-08,Contact Centre,Held for 25 minutes on the phone then got cut off. Disgusting.,Family
+M030,2026-03-15,Contact Centre,"The lady on the phone was patient, kind and brilliant with my reversal. Excellent service.",Pensioner
+M031,2026-03-22,Contact Centre,Nobody at the contact centre understands merchant codes. Useless.,Small Business
+M032,2026-03-04,WhatsApp Banking,WhatsApp banking answered my balance query in seconds. Impressive.,Young Professional
+M033,2026-03-10,WhatsApp Banking,The WhatsApp chatbot kept looping the same menu. So frustrating.,Student
+M034,2026-03-19,WhatsApp Banking,Blocked my lost card through WhatsApp in two minutes. Brilliant.,Family
+M035,2026-03-26,WhatsApp Banking,I do not understand the WhatsApp banking prompts. Confusing for me.,Pensioner
+M036,2026-03-12,Card/ATM,Deposited my weekend takings at the ATM. Receipt printed and done.,Small Business
+M037,2026-03-17,Instant EFT,My transfer to myself took two days to clear. Annoying.,Student
+M038,2026-03-24,Banking App,The new statements view is clean and easy to read. Great improvement.,Family
+M039,2026-03-29,Branch,Branch consultant opened my tax-free savings account quickly. Happy with the service.,Young Professional
+M040,2026-03-16,Instant EFT,Moved R500 from my current account to my savings at the teller.,Pensioner
