@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Retail Banking Sentiment Analysis — Business Insights Report</title>
+<style>
+  @page {
+    size: A4; margin: 0 0 12mm 0;
+    @bottom-left { content: "Retail Banking Sentiment Analysis — Business Insights Report"; font-size: 6.8pt; color: #7e8ea6; }
+    @bottom-right { content: "Page " counter(page) " of " counter(pages); font-size: 6.8pt; color: #7e8ea6; }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --navy:#0a1628; --panel:#0f2038; --line:#22395c;
+    --text:#c9d6e8; --muted:#7e8ea6; --cyan:#22d3ee; --orange:#fb923c;
+    --pos:#22c55e; --neg:#ef4444; --neu:#64748b;
+  }
+  html { font-size: 9.2pt; }
+  body { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; background: var(--navy); color: var(--text); line-height: 1.45; }
+  .page { page-break-before: always; padding: 12mm 14mm 0; }
+  .page.first { page-break-before: auto; }
+  .page:last-child { page-break-after: auto; }
+
+  h1 { color: #fff; font-size: 19pt; letter-spacing: -0.3px; line-height: 1.15; }
+  h1 .accent { color: var(--cyan); }
+  h2 { color: #fff; font-size: 12.5pt; margin-bottom: 4mm; padding-bottom: 2mm; border-bottom: 1px solid var(--line); }
+  h2 .num { color: var(--orange); font-family: 'Courier New', monospace; margin-right: 3mm; }
+  h3 { color: var(--cyan); font-size: 10pt; margin: 4mm 0 2mm; }
+  p { margin-bottom: 2.5mm; }
+  .kicker { color: var(--cyan); font-size: 7.2pt; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; }
+  .muted { color: var(--muted); }
+  .small { font-size: 8pt; }
+
+  .meta { border: 1px solid var(--line); background: var(--panel); border-radius: 3mm; padding: 4mm 5mm; margin: 5mm 0; }
+  .meta td { padding: 1mm 3mm; font-size: 8.2pt; vertical-align: top; }
+  .meta .lab { color: var(--muted); white-space: nowrap; width: 34mm; }
+
+  .kpi-row { display: flex; gap: 3mm; margin: 4mm 0 5mm; }
+  .kpi { flex: 1; background: var(--panel); border: 1px solid var(--line); border-radius: 3mm; padding: 3.5mm 4mm; text-align: center; }
+  .kpi .v { font-size: 14.5pt; font-weight: 700; color: #fff; }
+  .kpi .l { font-size: 6.8pt; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted); margin-top: 1mm; }
+  .kpi.pos .v { color: var(--pos); } .kpi.neg .v { color: var(--neg); } .kpi.cy .v { color: var(--cyan); }
+
+  figure { margin: 2.5mm 0; text-align: center; }
+  figure img { max-width: 100%; border: 1px solid var(--line); border-radius: 3mm; }
+  figcaption { font-size: 7.2pt; color: var(--muted); margin-top: 1.2mm; }
+
+  table { width: 100%; border-collapse: collapse; margin: 2.5mm 0; font-size: 8pt; }
+  th { background: var(--panel); color: #fff; text-align: left; padding: 2mm 3mm; font-size: 7.4pt; text-transform: uppercase; letter-spacing: 0.6px; border-bottom: 1px solid var(--line); }
+  td { padding: 1.5mm 3mm; border-bottom: 1px solid var(--line); }
+  td.r, th.r { text-align: right; }
+  tr.hl td { background: rgba(239,68,68,0.10); }
+  tr.best td { background: rgba(34,197,94,0.08); }
+
+  .badge { display: inline-block; border-radius: 2mm; padding: 0.4mm 2mm; font-size: 7pt; font-weight: 700; }
+  .badge.neg { background: rgba(239,68,68,0.18); color: #fca5a5; }
+  .badge.pos { background: rgba(34,197,94,0.18); color: #86efac; }
+  .badge.neu { background: rgba(100,116,139,0.30); color: #cbd5e1; }
+
+  blockquote { border-left: 2.5px solid var(--orange); background: var(--panel); border-radius: 0 2mm 2mm 0; padding: 2mm 3mm; margin: 2mm 0; font-size: 7.9pt; }
+  blockquote .who { color: var(--muted); font-size: 7.2pt; }
+
+  .finding { background: var(--panel); border: 1px solid var(--line); border-left: 2.5px solid var(--cyan); border-radius: 0 2mm 2mm 0; padding: 3mm 4mm; margin: 3mm 0; }
+  .finding b { color: #fff; }
+  .rec { border: 1px solid var(--line); border-radius: 3mm; background: var(--panel); padding: 2.8mm 4mm; margin: 2.4mm 0; page-break-inside: avoid; }
+  .rec .no { display: inline-block; background: var(--cyan); color: #06202b; font-weight: 800; border-radius: 50%; width: 6.5mm; height: 6.5mm; text-align: center; line-height: 6.5mm; font-size: 8pt; margin-right: 2.5mm; }
+  .rec .act { color: #fff; font-weight: 600; }
+  .rec .metric { color: var(--orange); font-size: 7.4pt; margin-top: 0.8mm; }
+  .cols { display: flex; gap: 4mm; }
+  .cols > div { flex: 1; }
+  
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ PAGE 1 ═══════════════ -->
+<div class="page first">
+  <p class="kicker">Business Insights Report · Retail Banking</p>
+  <h1>Sentiment Analysis of Retail Banking Customer Feedback<br><span class="accent">Channel, Driver and Segment Comparisons</span></h1>
+
+  <table class="meta">
+    <tr><td class="lab">Prepared by</td><td>Junior Information Specialist (with Freddy Thosago, tool author)</td></tr>
+    <tr><td class="lab">Source tool</td><td>Retail Banking Sentiment Analysis Dashboard — Streamlit + TextBlob (github.com/tshepisofrominnostation/banking-sentiment-dashboard)</td></tr>
+    <tr><td class="lab">Dataset</td><td>41 customer reviews, Sep–Oct 2026, four channels: Banking App, Instant EFT, Branch, Card/ATM</td></tr>
+    <tr><td class="lab">Method</td><td>TextBlob polarity scoring, thresholds: Positive &gt; +0.1, Negative &lt; −0.1, else Neutral</td></tr>
+    <tr><td class="lab">Date</td><td>16 October 2026</td></tr>
+  </table>
+
+  <h2><span class="num">1</span>Executive Summary</h2>
+  <p>This report converts 41 raw customer reviews from the bank's four retail channels into measurable sentiment findings using the sentiment dashboard tool. Every number below is computed by the tool, not estimated.</p>
+  <p>Overall the customer base leans <b style="color:#fca5a5">negative: 51.2% of reviews score negative</b> against 34.1% positive (average polarity −0.108). The three most important findings:</p>
+  <div class="finding"><b>Finding 1 — The app is the weakest channel.</b> Banking App reviews are 61.5% negative, the worst rate of any channel, and app-stability complaints (crashes tied to load shedding windows) are the single largest driver of negative sentiment bank-wide (6 of 21 negative reviews, 28.6%).</div>
+  <div class="finding"><b>Finding 2 — Card/ATM has the most severe sentiment.</b> Although the App has the highest negative share, Card/ATM has the lowest average polarity (−0.218), driven by card retention incidents and cash-out outages on paydays.</div>
+  <div class="finding"><b>Finding 3 — Digital-heavy segments are the unhappiest.</b> Young Professionals (71.4% negative) and Families (70.0%) are far more dissatisfied than Small Business clients (25.0%, average polarity +0.301) — the dissatisfaction is concentrated where the bank is most digital.</div>
+
+  <div class="kpi-row">
+    <div class="kpi"><div class="v">41</div><div class="l">Total Reviews</div></div>
+    <div class="kpi pos"><div class="v">34.1%</div><div class="l">Positive</div></div>
+    <div class="kpi neg"><div class="v">51.2%</div><div class="l">Negative</div></div>
+    <div class="kpi"><div class="v">−0.108</div><div class="l">Avg Polarity</div></div>
+  </div>
+
+  <h2><span class="num">2</span>Sentiment Breakdown</h2>
+  <figure>
+    <img src="fig_sentiment_donut.png" style="width:116mm">
+    <figcaption>Figure 1 — Overall sentiment distribution across all 41 reviews (TextBlob polarity, ±0.1 thresholds).</figcaption>
+  </figure>
+  <p class="small muted">The negative majority (21 of 41 reviews) is not evenly spread — the next section compares channels to show where it concentrates. Only 6 reviews are genuinely neutral (factual statements with no sentiment-bearing language); the bank is generating strong reactions, both good and bad, from most customers.</p>
+</div>
+
+<!-- ═══════════════ PAGE 2 ═══════════════ -->
+<div class="page">
+  <h2><span class="num">3</span>Channel Comparison — Where the Pain Sits</h2>
+  <table>
+    <tr><th>Channel</th><th class="r">Reviews</th><th class="r">Positive</th><th class="r">Neutral</th><th class="r">Negative</th><th class="r">% Negative</th><th class="r">% Positive</th><th class="r">Avg Polarity</th></tr>
+    <tr class="hl"><td><b>Banking App</b></td><td class="r">13</td><td class="r">3</td><td class="r">2</td><td class="r">8</td><td class="r">61.5%</td><td class="r">23.1%</td><td class="r">−0.186</td></tr>
+    <tr><td>Card/ATM</td><td class="r">9</td><td class="r">3</td><td class="r">1</td><td class="r">5</td><td class="r">55.6%</td><td class="r">33.3%</td><td class="r"><b>−0.218</b></td></tr>
+    <tr><td>Instant EFT</td><td class="r">10</td><td class="r">4</td><td class="r">1</td><td class="r">5</td><td class="r">50.0%</td><td class="r">40.0%</td><td class="r">+0.030</td></tr>
+    <tr class="best"><td><b>Branch</b></td><td class="r">9</td><td class="r">4</td><td class="r">2</td><td class="r">3</td><td class="r">33.3%</td><td class="r">44.4%</td><td class="r">−0.038</td></tr>
+  </table>
+  <p class="small muted">Shaded rows: red = weakest channel by negative share; green = strongest channel. Avg polarity: mean TextBlob compound score per channel.</p>
+
+  <div class="cols">
+    <figure style="flex:1.1">
+      <img src="fig_channel_mix.png" style="width:100%">
+      <figcaption>Figure 2 — Review volume and sentiment mix by channel.</figcaption>
+    </figure>
+    <figure style="flex:1.35">
+      <img src="fig_channel_compare.png" style="width:100%">
+      <figcaption>Figure 3 — Side-by-side comparison: negative share vs average polarity.</figcaption>
+    </figure>
+  </div>
+
+  <h3>Reading the comparison</h3>
+  <p><b>Banking App vs Branch is the starkest contrast:</b> the App is 61.5% negative while the Branch is 44.4% positive — a 28-percentage-point gap in negative share between the bank's most digital and most human channels. The App also receives the highest review volume (13 of 41, 32% of all feedback), so its problems dominate the overall numbers.</p>
+  <p><b>Card/ATM: low volume, high severity.</b> Its negative share (55.6%) is second, but its average polarity (−0.218) is the lowest of all channels — when ATM customers complain, they complain severely (retained cards, cash-out outages on payday). This matters for a low-volume channel: each incident hits a customer at a critical moment (payday, pension draw).</p>
+  <p><b>Instant EFT is the quiet middle.</b> 50% negative but positive-leaning average polarity (+0.030): the half that works, works well ("money arrived instantly"); the complaints are concentrated in overnight settlement delays and low limits.</p>
+
+  <h3>Positive counterweights</h3>
+  <p class="small">The 14 positive reviews cluster around three strengths the bank should protect: <b>branch staff quality</b> ("Opened a business account in one visit, the consultant knew his products inside out" — R031, polarity +1.0), <b>app reliability when it works</b> ("Biometric login works flawlessly and the notifications are instant" — R006, +0.67), and <b>innovative self-service</b> ("Cardless cash withdrawal worked first time at the ATM. Wonderful." — R017, +0.62).</p>
+</div>
+
+<!-- ═══════════════ PAGE 3 ═══════════════ -->
+<div class="page">
+  <h2><span class="num">4</span>Root Cause Analysis — What Drives the Negativity</h2>
+  <figure>
+    <img src="fig_drivers.png" style="width:122mm">
+    <figcaption>Figure 4 — Ranked drivers of negative sentiment: theme counts across the 21 negative reviews (keyword-matched by the tool).</figcaption>
+  </figure>
+
+  <table>
+    <tr><th>Rank</th><th>Driver</th><th class="r">Reviews</th><th class="r">% of negative</th><th>Representative evidence (verbatim)</th></tr>
+    <tr class="hl"><td>1</td><td>App stability &amp; outages</td><td class="r">6</td><td class="r">28.6%</td><td>"The app crashed twice during load shedding while I was paying my exam fees."</td></tr>
+    <tr><td>2</td><td>Fees &amp; charges</td><td class="r">3</td><td class="r">14.3%</td><td>"Fees went up again without any warning. This feels dishonest."</td></tr>
+    <tr><td>2</td><td>Payment delays &amp; limits</td><td class="r">3</td><td class="r">14.3%</td><td>"My instant EFT sat pending overnight and no one could tell me why."</td></tr>
+    <tr><td>2</td><td>Security &amp; fraud</td><td class="r">3</td><td class="r">14.3%</td><td>"The ATM kept my card on payday and I had to order a replacement."</td></tr>
+    <tr><td>2</td><td>Service &amp; support</td><td class="r">3</td><td class="r">14.3%</td><td>"Queued for 45 minutes at month end just to draw my pension."</td></tr>
+    <tr><td>6</td><td>Accessibility &amp; UX</td><td class="r">2</td><td class="r">9.5%</td><td>"The statements are hard to read… small text for older eyes."</td></tr>
+  </table>
+
+  <h2><span class="num">5</span>Customer Segment Comparison</h2>
+  <figure>
+    <img src="fig_segments.png" style="width:122mm">
+    <figcaption>Figure 5 — Negative sentiment share by customer segment (n = reviews per segment).</figcaption>
+  </figure>
+  <p><b>The digital divide is generational.</b> Young Professionals (71.4% negative, avg polarity −0.338) and Families (70.0%) are the unhappiest segments — both are heavy app and EFT users, so they absorb the App's stability problems directly. Small Business clients are the happiest (25.0% negative, avg +0.301), and their praise centres on branch consulting and same-day batch payments. Pensioners (57.1% negative) complain about branch queues and ATM card retention, not digital issues.</p>
+</div>
+
+<!-- ═══════════════ PAGE 4 ═══════════════ -->
+<!-- ═══════════════ PAGE 5 ═══════════════ -->
+<div class="page">
+  <h2><span class="num">6</span>Strategic Recommendations</h2>
+  <p class="small muted">Each recommendation states the finding it comes from (with its number), the action, and the metric to track.</p>
+
+  <div class="rec"><span class="no">1</span><span class="act">Stand up a joint tech-and-ops task force to triage banking app complaints.</span><br>
+  <span class="small">From Finding 1: the App is the weakest channel (61.5% negative, 13 reviews) with the highest feedback volume. A weekly cross-functional review of app complaints shortens the loop between complaint and fix.</span>
+  <div class="metric">Metric: % negative Banking App reviews, tracked weekly (baseline 61.5%)</div></div>
+
+  <div class="rec"><span class="no">2</span><span class="act">Add load-shedding resilience testing to the app release cycle and publish outage alerts in-app.</span><br>
+  <span class="small">From Finding 1 + Section 4: app stability is the #1 driver (6 of 21 negative reviews, 28.6%) and the evidence ties crashes to load shedding windows. Customers lost money-moment access (exam fees, data purchases) during outages.</span>
+  <div class="metric">Metric: App crash complaints per 1,000 active users (baseline: 28.6% of negative reviews)</div></div>
+
+  <div class="rec"><span class="no">3</span><span class="act">Commit to a same-day EFT settlement SLA and proactive fee-change notifications 30 days ahead.</span><br>
+  <span class="small">From Section 4: overnight EFT delays (14.3% of negatives) and unexpected fee increases (14.3%) are trust destroyers for digital-heavy segments (Young Professionals 71.4% negative). Clear the overnight backlog and remove the surprise.</span>
+  <div class="metric">Metrics: median EFT settlement time (hours) · fee-related complaints per month</div></div>
+
+  <div class="rec"><span class="no">4</span><span class="act">Target Card/ATM incidents on paydays: predictive cash replenishment and card-retention reviews.</span><br>
+  <span class="small">From Finding 2: Card/ATM has the lowest average polarity (−0.218) though only 9 reviews; incidents cluster on paydays and pension days (card retention, cash outages), hitting Pensioners (57.1% negative) hardest.</span>
+  <div class="metric">Metric: Card retention incidents and cash-out outages per 1,000 ATM transactions, month-end vs baseline</div></div>
+
+  <h2><span class="num">7</span>Methodology &amp; Limitations</h2>
+  <p class="small"><b>Method:</b> 41 reviews (bundled demonstration dataset representative of SA retail banking feedback, Sep–Oct 2026) were ingested, preprocessed (lowercasing, URL and special-character removal via regex) and scored with TextBlob polarity/subjectivity. Sentiment thresholds: Positive &gt; +0.1, Negative &lt; −0.1, Neutral otherwise. Negative drivers were identified by keyword-theme matching across negative reviews. All figures were produced by the dashboard tool's analysis functions on 16 October 2026.</p>
+  <p class="small"><b>Limitations:</b> (1) 41 reviews is a small sample — percentages carry wide confidence intervals and should be read as directional. (2) Lexicon-based scoring (TextBlob) misses sarcasm and SA slang, and can underweight words like "furious" or "unacceptable" that its lexicon does not score. (3) Theme matching is keyword-based; a review can carry multiple themes or none. (4) The dataset is a realistic demonstration set, not live production feedback. Recommended next step: re-run on live complaint exports and 500+ reviews, and pilot an LLM-based classifier for comparison against the TextBlob baseline.</p>
+
+  <h3>Verbatim evidence — most extreme reviews</h3>
+  <div class="cols">
+    <div>
+      <p class="kicker" style="color:#fca5a5">Most negative</p>
+      <blockquote>"Queued for 45 minutes at month end just to draw my pension. Terrible experience."<span class="who"> — R004, Branch, polarity −1.0</span></blockquote>
+      <blockquote>"The ATM kept my card on payday and I had to order a replacement. Disgusted."<span class="who"> — R021, Card/ATM, polarity −1.0</span></blockquote>
+      <blockquote>"The app crashed twice during load shedding while I was paying my exam fees."<span class="who"> — R034, Banking App, polarity −1.0</span></blockquote>
+    </div>
+    <div>
+      <p class="kicker" style="color:#86efac">Most positive</p>
+      <blockquote>"Opened a business account in one visit, the consultant knew his products inside out."<span class="who"> — R031, Branch, polarity +1.0</span></blockquote>
+      <blockquote>"Biometric login works flawlessly and the notifications are instant. Very impressed."<span class="who"> — R006, Banking App, polarity +0.67</span></blockquote>
+      <blockquote>"Cardless cash withdrawal worked first time at the ATM. Wonderful."<span class="who"> — R017, Card/ATM, polarity +0.62</span></blockquote>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
