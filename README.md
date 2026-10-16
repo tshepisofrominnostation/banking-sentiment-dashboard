@@ -2,6 +2,8 @@
 
 A fully functional Streamlit prototype that analyses South African retail banking customer feedback — Banking App, Instant EFT, Branch, and Card/ATM — and turns it into KPIs, interactive charts, an executive insights report, and a downloadable results file.
 
+UI link:http://localhost:8501/
+
 ## What it does
 
 1. **Ingests data** — a bundled 41-row SA retail banking sample dataset, or your own CSV (`Review_ID, Date, Channel, Review_Text, Customer_Segment`)
