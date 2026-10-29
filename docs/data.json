@@ -1,0 +1,2520 @@
+{
+ "generated_by": "TextBlob polarity/subjectivity, recomputed 2026-10-29",
+ "sets": {
+  "main": {
+   "label": "Baseline sample (Sep 2026)",
+   "file": "default_reviews.csv",
+   "summary": {
+    "total": 41,
+    "mix": {
+     "Positive": 15,
+     "Neutral": 5,
+     "Negative": 21
+    },
+    "mix_pct": {
+     "Positive": 36.6,
+     "Neutral": 12.2,
+     "Negative": 51.2
+    },
+    "avg_polarity": -0.1078,
+    "avg_subjectivity": 0.6406,
+    "negative_pct": 51.2,
+    "by_channel": {
+     "Banking App": {
+      "total": 13,
+      "avg_polarity": -0.1857,
+      "negative": 8,
+      "negative_pct": 61.5
+     },
+     "Branch": {
+      "total": 9,
+      "avg_polarity": -0.0384,
+      "negative": 3,
+      "negative_pct": 33.3
+     },
+     "Card/ATM": {
+      "total": 9,
+      "avg_polarity": -0.2176,
+      "negative": 5,
+      "negative_pct": 55.6
+     },
+     "Instant EFT": {
+      "total": 10,
+      "avg_polarity": 0.03,
+      "negative": 5,
+      "negative_pct": 50.0
+     }
+    },
+    "by_segment": {
+     "Family": {
+      "total": 10,
+      "negative_pct": 70.0,
+      "avg_polarity": -0.2288
+     },
+     "Pensioner": {
+      "total": 7,
+      "negative_pct": 57.1,
+      "avg_polarity": -0.1409
+     },
+     "Small Business": {
+      "total": 8,
+      "negative_pct": 25.0,
+      "avg_polarity": 0.3008
+     },
+     "Student": {
+      "total": 9,
+      "negative_pct": 33.3,
+      "avg_polarity": -0.1316
+     },
+     "Young Professional": {
+      "total": 7,
+      "negative_pct": 71.4,
+      "avg_polarity": -0.3381
+     }
+    },
+    "negative_terms": [
+     [
+      "terrible",
+      5
+     ],
+     [
+      "money",
+      4
+     ],
+     [
+      "card",
+      4
+     ],
+     [
+      "payment",
+      3
+     ],
+     [
+      "frustrating",
+      2
+     ],
+     [
+      "minutes",
+      2
+     ],
+     [
+      "month",
+      2
+     ],
+     [
+      "draw",
+      2
+     ],
+     [
+      "pension",
+      2
+     ],
+     [
+      "angry",
+      2
+     ],
+     [
+      "instant",
+      2
+     ],
+     [
+      "annoying",
+      2
+     ],
+     [
+      "again",
+      2
+     ],
+     [
+      "during",
+      2
+     ],
+     [
+      "load",
+      2
+     ],
+     [
+      "shedding",
+      2
+     ],
+     [
+      "while",
+      2
+     ],
+     [
+      "disappointing",
+      2
+     ],
+     [
+      "only",
+      2
+     ],
+     [
+      "fees",
+      2
+     ],
+     [
+      "increased",
+      2
+     ],
+     [
+      "without",
+      2
+     ],
+     [
+      "disappointed",
+      2
+     ],
+     [
+      "kept",
+      2
+     ],
+     [
+      "branch",
+      2
+     ]
+    ]
+   },
+   "reviews": [
+    {
+     "id": "R001",
+     "date": "2026-09-02",
+     "channel": "Banking App",
+     "segment": "Young Professional",
+     "text": "The app updated and now it keeps crashing every time I try to send money. So frustrating.",
+     "clean": "The app updated and now it keeps crashing every time I try to send money. So frustrating.",
+     "polarity": -0.4,
+     "subjectivity": 0.9,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "R002",
+     "date": "2026-09-03",
+     "channel": "Banking App",
+     "segment": "Student",
+     "text": "Love the new app design, paying my friends is quick and easy. Great work.",
+     "clean": "Love the new app design, paying my friends is quick and easy. Great work.",
+     "polarity": 0.4406,
+     "subjectivity": 0.6276,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "R003",
+     "date": "2026-09-04",
+     "channel": "Instant EFT",
+     "segment": "Small Business",
+     "text": "Instant EFT reflected immediately, my supplier payment cleared in seconds. Excellent.",
+     "clean": "Instant EFT reflected immediately, my supplier payment cleared in seconds. Excellent.",
+     "polarity": 0.5,
+     "subjectivity": 0.8333,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "R004",
+     "date": "2026-09-05",
+     "channel": "Branch",
+     "segment": "Pensioner",
+     "text": "Queued for 45 minutes at month end just to draw my pension. Terrible experience.",
+     "clean": "Queued for 45 minutes at month end just to draw my pension. Terrible experience.",
+     "polarity": -1.0,
+     "subjectivity": 1.0,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "R005",
+     "date": "2026-09-06",
+     "channel": "Card/ATM",
+     "segment": "Family",
+     "text": "My card was cloned at an ATM and money disappeared from my account. I am so angry about this.",
+     "clean": "My card was cloned at an ATM and money disappeared from my account. I am so angry about this.",
+     "polarity": -0.5,
+     "subjectivity": 1.0,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "R006",
+     "date": "2026-09-07",
+     "channel": "Banking App",
+     "segment": "Family",
+     "text": "Biometric login works flawlessly and the notifications are instant. Very impressed.",
+     "clean": "Biometric login works flawlessly and the notifications are instant. Very impressed.",
+     "polarity": 0.6667,
+     "subjectivity": 0.8889,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "R007",
+     "date": "2026-09-08",
+     "channel": "Instant EFT",
+     "segment": "Young Professional",
+     "text": "My instant EFT sat pending overnight and no one could tell me why. Really annoying.",
+     "clean": "My instant EFT sat pending overnight and no one could tell me why. Really annoying.",
+     "polarity": -0.4,
+     "subjectivity": 0.7833,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "R008",
+     "date": "2026-09-09",
+     "channel": "Branch",
+     "segment": "Family",
+     "text": "The consultant helped me open a savings account for my daughter, warm and professional service.",
+     "clean": "The consultant helped me open a savings account for my daughter, warm and professional service.",
+     "polarity": 0.2333,
+     "subjectivity": 0.4,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "R009",
+     "date": "2026-09-10",
+     "channel": "Card/ATM",
+     "segment": "Student",
+     "text": "Withdrew cash at the campus ATM, transaction took a few seconds. It was okay.",
+     "clean": "Withdrew cash at the campus ATM, transaction took a few seconds. It was okay.",
+     "polarity": 0.15,
+     "subjectivity": 0.3,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "R010",
+     "date": "2026-09-11",
+     "channel": "Banking App",
+     "segment": "Small Business",
+     "text": "App down again during load shedding, third outage this month. Terrible for my business.",
+     "clean": "App down again during load shedding, third outage this month. Terrible for my business.",
+     "polarity": -0.3852,
+     "subjectivity": 0.4296,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "R011",
+     "date": "2026-09-12",
+     "channel": "Banking App",
+     "segment": "Pensioner",
+     "text": "I struggle to read the small text in the app, and the update made it worse for older people like me.",
+     "clean": "I struggle to read the small text in the app, and the update made it worse for older people like me.",
+     "polarity": -0.1611,
+     "subjectivity": 0.4444,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "R012",
+     "date": "2026-09-13",
+     "channel": "Instant EFT",
+     "segment": "Student",
+     "text": "Instant EFT is seamless, my allowance lands the second my parents send it. Love it.",
+     "clean": "Instant EFT is seamless, my allowance lands the second my parents send it. Love it.",
+     "polarity": 0.15,
+     "subjectivity": 0.3417,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "R013",
+     "date": "2026-09-14",
+     "channel": "Card/ATM",
+     "segment": "Young Professional",
+     "text": "ATM was out of cash the whole weekend, had to drive to three machines. Terrible inconvenience.",
+     "clean": "ATM was out of cash the whole weekend, had to drive to three machines. Terrible inconvenience.",
+     "polarity": -0.4,
+     "subjectivity": 0.7,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "R014",
+     "date": "2026-09-15",
+     "channel": "Branch",
+     "segment": "Small Business",
+     "text": "Month-end queue outside the door again. Staff are friendly but there are never enough tellers.",
+     "clean": "Month-end queue outside the door again. Staff are friendly but there are never enough tellers.",
+     "polarity": 0.125,
+     "subjectivity": 0.35,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "R015",
+     "date": "2026-09-16",
+     "channel": "Banking App",
+     "segment": "Student",
+     "text": "The app logged me out four times while I was trying to pay for data. Terrible and disappointing.",
+     "clean": "The app logged me out four times while I was trying to pay for data. Terrible and disappointing.",
+     "polarity": -0.8,
+     "subjectivity": 0.85,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "R016",
+     "date": "2026-09-17",
+     "channel": "Instant EFT",
+     "segment": "Family",
+     "text": "Payment I sent on Friday only cleared Monday. The delay messed up my debit orders. Not happy.",
+     "clean": "Payment I sent on Friday only cleared Monday. The delay messed up my debit orders. Not happy.",
+     "polarity": -0.2,
+     "subjectivity": 1.0,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "R017",
+     "date": "2026-09-18",
+     "channel": "Card/ATM",
+     "segment": "Pensioner",
+     "text": "Cardless cash withdrawal worked first time at the ATM. Wonderful.",
+     "clean": "Cardless cash withdrawal worked first time at the ATM. Wonderful.",
+     "polarity": 0.625,
+     "subjectivity": 0.6667,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "R018",
+     "date": "2026-09-19",
+     "channel": "Branch",
+     "segment": "Student",
+     "text": "Went in to unblock my card, was in and out in ten minutes. Efficient staff, thank you.",
+     "clean": "Went in to unblock my card, was in and out in ten minutes. Efficient staff, thank you.",
+     "polarity": 0.0,
+     "subjectivity": 0.0,
+     "sentiment": "Neutral"
+    },
+    {
+     "id": "R019",
+     "date": "2026-09-20",
+     "channel": "Banking App",
+     "segment": "Family",
+     "text": "Monthly fees increased again without any warning. This feels dishonest and I am disappointed.",
+     "clean": "Monthly fees increased again without any warning. This feels dishonest and I am disappointed.",
+     "polarity": -0.525,
+     "subjectivity": 0.625,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "R020",
+     "date": "2026-09-21",
+     "channel": "Instant EFT",
+     "segment": "Small Business",
+     "text": "All batch payments cleared same day with no hiccups. Excellent, reliable service.",
+     "clean": "All batch payments cleared same day with no hiccups. Excellent, reliable service.",
+     "polarity": 0.5,
+     "subjectivity": 0.5625,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "R021",
+     "date": "2026-09-22",
+     "channel": "Card/ATM",
+     "segment": "Young Professional",
+     "text": "The ATM kept my card on payday and I had to order a replacement. Disgusted with the bank.",
+     "clean": "The ATM kept my card on payday and I had to order a replacement. Disgusted with the bank.",
+     "polarity": -1.0,
+     "subjectivity": 1.0,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "R022",
+     "date": "2026-09-23",
+     "channel": "Branch",
+     "segment": "Pensioner",
+     "text": "The branch closes at 3pm now which is difficult, but the staff who helped me were kind and patient.",
+     "clean": "The branch closes at 3pm now which is difficult, but the staff who helped me were kind and patient.",
+     "polarity": 0.05,
+     "subjectivity": 0.95,
+     "sentiment": "Neutral"
+    },
+    {
+     "id": "R023",
+     "date": "2026-09-24",
+     "channel": "Banking App",
+     "segment": "Small Business",
+     "text": "Dashboard shows my sales in real time, best banking app I have used in years.",
+     "clean": "Dashboard shows my sales in real time, best banking app I have used in years.",
+     "polarity": 0.6,
+     "subjectivity": 0.3,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "R024",
+     "date": "2026-09-25",
+     "channel": "Instant EFT",
+     "segment": "Pensioner",
+     "text": "I do not trust sending money on my phone, I prefer the branch. This EFT thing is confusing to me.",
+     "clean": "I do not trust sending money on my phone, I prefer the branch. This EFT thing is confusing to me.",
+     "polarity": -0.3,
+     "subjectivity": 0.4,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "R025",
+     "date": "2026-09-26",
+     "channel": "Card/ATM",
+     "segment": "Student",
+     "text": "Used the ATM at the garage, R500 out, no issues to report.",
+     "clean": "Used the ATM at the garage, R500 out, no issues to report.",
+     "polarity": 0.0,
+     "subjectivity": 0.0,
+     "sentiment": "Neutral"
+    },
+    {
+     "id": "R026",
+     "date": "2026-09-27",
+     "channel": "Banking App",
+     "segment": "Family",
+     "text": "App froze halfway through a transfer and I panicked. Money eventually went through but scary stuff.",
+     "clean": "App froze halfway through a transfer and I panicked. Money eventually went through but scary stuff.",
+     "polarity": -0.5,
+     "subjectivity": 1.0,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "R027",
+     "date": "2026-09-28",
+     "channel": "Branch",
+     "segment": "Young Professional",
+     "text": "Needed a bank letter, requested it online and collected same day. Smooth and simple.",
+     "clean": "Needed a bank letter, requested it online and collected same day. Smooth and simple.",
+     "polarity": 0.1333,
+     "subjectivity": 0.3274,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "R028",
+     "date": "2026-09-29",
+     "channel": "Instant EFT",
+     "segment": "Young Professional",
+     "text": "EFT limit too low for my rent payment, had to split transfers across two days. Inconvenient.",
+     "clean": "EFT limit too low for my rent payment, had to split transfers across two days. Inconvenient.",
+     "polarity": -0.3,
+     "subjectivity": 0.65,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "R029",
+     "date": "2026-09-30",
+     "channel": "Card/ATM",
+     "segment": "Family",
+     "text": "Contactless tap on the card machine at the shops stopped working, had to insert and pin. Mildly annoying.",
+     "clean": "Contactless tap on the card machine at the shops stopped working, had to insert and pin. Mildly annoying.",
+     "polarity": -0.8,
+     "subjectivity": 0.9,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "R030",
+     "date": "2026-10-01",
+     "channel": "Banking App",
+     "segment": "Pensioner",
+     "text": "Whoever designed the latest app update should be ashamed. I cannot find my statements anymore. Frustrating.",
+     "clean": "Whoever designed the latest app update should be ashamed. I cannot find my statements anymore. Frustrating.",
+     "polarity": 0.05,
+     "subjectivity": 0.9,
+     "sentiment": "Neutral"
+    },
+    {
+     "id": "R031",
+     "date": "2026-10-02",
+     "channel": "Branch",
+     "segment": "Small Business",
+     "text": "Opened a business account in one visit, the consultant knew his products inside out. Impressive.",
+     "clean": "Opened a business account in one visit, the consultant knew his products inside out. Impressive.",
+     "polarity": 1.0,
+     "subjectivity": 1.0,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "R032",
+     "date": "2026-10-03",
+     "channel": "Instant EFT",
+     "segment": "Family",
+     "text": "Transferred school fees instantly at 11pm and it reflected before I closed the app. Fantastic.",
+     "clean": "Transferred school fees instantly at 11pm and it reflected before I closed the app. Fantastic.",
+     "polarity": 0.1,
+     "subjectivity": 0.5556,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "R033",
+     "date": "2026-10-04",
+     "channel": "Card/ATM",
+     "segment": "Small Business",
+     "text": "Weekly cash deposits at the ATM are quick and the slips are clear. No complaints.",
+     "clean": "Weekly cash deposits at the ATM are quick and the slips are clear. No complaints.",
+     "polarity": 0.2167,
+     "subjectivity": 0.4417,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "R034",
+     "date": "2026-10-05",
+     "channel": "Banking App",
+     "segment": "Student",
+     "text": "The app crashed twice during load shedding while I was paying my exam fees. Terrible and unacceptable.",
+     "clean": "The app crashed twice during load shedding while I was paying my exam fees. Terrible and unacceptable.",
+     "polarity": -1.0,
+     "subjectivity": 1.0,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "R035",
+     "date": "2026-10-06",
+     "channel": "Branch",
+     "segment": "Family",
+     "text": "The branch moved to the other side of town without telling customers. Inconvenient for us who walk.",
+     "clean": "The branch moved to the other side of town without telling customers. Inconvenient for us who walk.",
+     "polarity": -0.3625,
+     "subjectivity": 0.6875,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "R036",
+     "date": "2026-10-07",
+     "channel": "Instant EFT",
+     "segment": "Student",
+     "text": "Sent my friend money for the braai, it arrived instantly. Fantastic and lekker.",
+     "clean": "Sent my friend money for the braai, it arrived instantly. Fantastic and lekker.",
+     "polarity": 0.4,
+     "subjectivity": 0.9,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "R037",
+     "date": "2026-10-08",
+     "channel": "Card/ATM",
+     "segment": "Pensioner",
+     "text": "The ATM rejected my card and I could not draw my pension. I left upset and angry.",
+     "clean": "The ATM rejected my card and I could not draw my pension. I left upset and angry.",
+     "polarity": -0.25,
+     "subjectivity": 0.5,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "R038",
+     "date": "2026-10-09",
+     "channel": "Banking App",
+     "segment": "Young Professional",
+     "text": "Customer service replied on WhatsApp within a minute when my OTP did not arrive. Helpful people.",
+     "clean": "Customer service replied on WhatsApp within a minute when my OTP did not arrive. Helpful people.",
+     "polarity": 0.0,
+     "subjectivity": 0.0,
+     "sentiment": "Neutral"
+    },
+    {
+     "id": "R039",
+     "date": "2026-10-10",
+     "channel": "Branch",
+     "segment": "Student",
+     "text": "The security guard was rude when I asked for directions to the deposits counter. Disappointed.",
+     "clean": "The security guard was rude when I asked for directions to the deposits counter. Disappointed.",
+     "polarity": -0.525,
+     "subjectivity": 0.675,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "R040",
+     "date": "2026-10-11",
+     "channel": "Instant EFT",
+     "segment": "Small Business",
+     "text": "The instant payment fee quietly increased, I only noticed on my statement. Sneaky and disappointing.",
+     "clean": "The instant payment fee quietly increased, I only noticed on my statement. Sneaky and disappointing.",
+     "polarity": -0.15,
+     "subjectivity": 0.675,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "R041",
+     "date": "2026-10-12",
+     "channel": "Banking App",
+     "segment": "Family",
+     "text": "The app balance never matches my records and the call centre kept me waiting 20 minutes. So frustrating and exhausting.",
+     "clean": "The app balance never matches my records and the call centre kept me waiting 20 minutes. So frustrating and exhausting.",
+     "polarity": -0.4,
+     "subjectivity": 0.7,
+     "sentiment": "Negative"
+    }
+   ]
+  },
+  "march": {
+   "label": "March baseline",
+   "file": "practice_reviews_march_baseline.csv",
+   "summary": {
+    "total": 40,
+    "mix": {
+     "Positive": 17,
+     "Neutral": 4,
+     "Negative": 19
+    },
+    "mix_pct": {
+     "Positive": 42.5,
+     "Neutral": 10.0,
+     "Negative": 47.5
+    },
+    "avg_polarity": 0.0074,
+    "avg_subjectivity": 0.658,
+    "negative_pct": 47.5,
+    "by_channel": {
+     "Banking App": {
+      "total": 9,
+      "avg_polarity": -0.1538,
+      "negative": 6,
+      "negative_pct": 66.7
+     },
+     "Branch": {
+      "total": 8,
+      "avg_polarity": 0.0768,
+      "negative": 3,
+      "negative_pct": 37.5
+     },
+     "Card/ATM": {
+      "total": 7,
+      "avg_polarity": -0.2,
+      "negative": 3,
+      "negative_pct": 42.9
+     },
+     "Contact Centre": {
+      "total": 4,
+      "avg_polarity": 0.0833,
+      "negative": 2,
+      "negative_pct": 50.0
+     },
+     "Instant EFT": {
+      "total": 8,
+      "avg_polarity": 0.0917,
+      "negative": 3,
+      "negative_pct": 37.5
+     },
+     "WhatsApp Banking": {
+      "total": 4,
+      "avg_polarity": 0.35,
+      "negative": 2,
+      "negative_pct": 50.0
+     }
+    },
+    "by_segment": {
+     "Family": {
+      "total": 10,
+      "negative_pct": 40.0,
+      "avg_polarity": -0.0347
+     },
+     "Pensioner": {
+      "total": 7,
+      "negative_pct": 42.9,
+      "avg_polarity": -0.0057
+     },
+     "Small Business": {
+      "total": 8,
+      "negative_pct": 62.5,
+      "avg_polarity": -0.1417
+     },
+     "Student": {
+      "total": 7,
+      "negative_pct": 57.1,
+      "avg_polarity": 0.0071
+     },
+     "Young Professional": {
+      "total": 8,
+      "negative_pct": 37.5,
+      "avg_polarity": 0.2208
+     }
+    },
+    "negative_terms": [
+     [
+      "frustrating",
+      3
+     ],
+     [
+      "terrible",
+      3
+     ],
+     [
+      "annoying",
+      3
+     ],
+     [
+      "load",
+      2
+     ],
+     [
+      "shedding",
+      2
+     ],
+     [
+      "kept",
+      2
+     ],
+     [
+      "card",
+      2
+     ],
+     [
+      "disgusting",
+      2
+     ],
+     [
+      "disappointed",
+      2
+     ],
+     [
+      "days",
+      2
+     ],
+     [
+      "business",
+      2
+     ],
+     [
+      "minutes",
+      2
+     ],
+     [
+      "useless",
+      2
+     ],
+     [
+      "whatsapp",
+      2
+     ],
+     [
+      "keeps",
+      1
+     ],
+     [
+      "crashing",
+      1
+     ],
+     [
+      "whenever",
+      1
+     ],
+     [
+      "hits",
+      1
+     ],
+     [
+      "mall",
+      1
+     ],
+     [
+      "payday",
+      1
+     ],
+     [
+      "absolutely",
+      1
+     ],
+     [
+      "monthly",
+      1
+     ],
+     [
+      "fees",
+      1
+     ],
+     [
+      "went",
+      1
+     ],
+     [
+      "warning",
+      1
+     ]
+    ]
+   },
+   "reviews": [
+    {
+     "id": "M001",
+     "date": "2026-03-02",
+     "channel": "Banking App",
+     "segment": "Young Professional",
+     "text": "The app keeps crashing whenever load shedding hits. So frustrating.",
+     "clean": "The app keeps crashing whenever load shedding hits. So frustrating.",
+     "polarity": -0.4,
+     "subjectivity": 0.9,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "M002",
+     "date": "2026-03-03",
+     "channel": "Instant EFT",
+     "segment": "Student",
+     "text": "Sent money to my flatmate and it reflected instantly. Excellent.",
+     "clean": "Sent money to my flatmate and it reflected instantly. Excellent.",
+     "polarity": 1.0,
+     "subjectivity": 1.0,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "M003",
+     "date": "2026-03-05",
+     "channel": "Branch",
+     "segment": "Pensioner",
+     "text": "The consultant helped me order a new bank card in ten minutes. Great service.",
+     "clean": "The consultant helped me order a new bank card in ten minutes. Great service.",
+     "polarity": 0.3121,
+     "subjectivity": 0.4015,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "M004",
+     "date": "2026-03-06",
+     "channel": "Card/ATM",
+     "segment": "Family",
+     "text": "The ATM at the mall kept my card on payday. Absolutely disgusting.",
+     "clean": "The ATM at the mall kept my card on payday. Absolutely disgusting.",
+     "polarity": -1.0,
+     "subjectivity": 1.0,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "M005",
+     "date": "2026-03-09",
+     "channel": "Banking App",
+     "segment": "Small Business",
+     "text": "Monthly fees went up with no warning at all. I am so disappointed.",
+     "clean": "Monthly fees went up with no warning at all. I am so disappointed.",
+     "polarity": -0.75,
+     "subjectivity": 0.75,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "M006",
+     "date": "2026-03-10",
+     "channel": "Instant EFT",
+     "segment": "Young Professional",
+     "text": "My EFT to a supplier sat pending for two days. Terrible for my business.",
+     "clean": "My EFT to a supplier sat pending for two days. Terrible for my business.",
+     "polarity": -1.0,
+     "subjectivity": 1.0,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "M007",
+     "date": "2026-03-12",
+     "channel": "Branch",
+     "segment": "Family",
+     "text": "Month-end queue was out the door but the tellers were friendly and fast.",
+     "clean": "Month-end queue was out the door but the tellers were friendly and fast.",
+     "polarity": 0.2875,
+     "subjectivity": 0.55,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "M008",
+     "date": "2026-03-13",
+     "channel": "Card/ATM",
+     "segment": "Student",
+     "text": "Withdrew R200 for the week. The machine was out of R10 notes.",
+     "clean": "Withdrew R200 for the week. The machine was out of R10 notes.",
+     "polarity": 0.0,
+     "subjectivity": 0.0,
+     "sentiment": "Neutral"
+    },
+    {
+     "id": "M009",
+     "date": "2026-03-16",
+     "channel": "Banking App",
+     "segment": "Young Professional",
+     "text": "Biometric login works every time now. Smooth and quick.",
+     "clean": "Biometric login works every time now. Smooth and quick.",
+     "polarity": 0.3667,
+     "subjectivity": 0.5,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "M010",
+     "date": "2026-03-17",
+     "channel": "Instant EFT",
+     "segment": "Small Business",
+     "text": "Instant EFT limit is too low for my payroll. Very annoying.",
+     "clean": "Instant EFT limit is too low for my payroll. Very annoying.",
+     "polarity": -0.3333,
+     "subjectivity": 0.6556,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "M011",
+     "date": "2026-03-19",
+     "channel": "Branch",
+     "segment": "Pensioner",
+     "text": "I waited 40 minutes just to withdraw my pension. Terrible experience.",
+     "clean": "I waited 40 minutes just to withdraw my pension. Terrible experience.",
+     "polarity": -1.0,
+     "subjectivity": 1.0,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "M012",
+     "date": "2026-03-20",
+     "channel": "Card/ATM",
+     "segment": "Family",
+     "text": "Cardless cash withdrawal at the ATM worked perfectly. Love this feature.",
+     "clean": "Cardless cash withdrawal at the ATM worked perfectly. Love this feature.",
+     "polarity": 0.5,
+     "subjectivity": 0.6,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "M013",
+     "date": "2026-03-23",
+     "channel": "Banking App",
+     "segment": "Student",
+     "text": "The app logged me out twice while paying for data. Frustrating.",
+     "clean": "The app logged me out twice while paying for data. Frustrating.",
+     "polarity": -0.4,
+     "subjectivity": 0.9,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "M014",
+     "date": "2026-03-24",
+     "channel": "Instant EFT",
+     "segment": "Family",
+     "text": "Paid the school fees online, cleared same day. Easy and painless.",
+     "clean": "Paid the school fees online, cleared same day. Easy and painless.",
+     "polarity": 0.2167,
+     "subjectivity": 0.4792,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "M015",
+     "date": "2026-03-26",
+     "channel": "Branch",
+     "segment": "Small Business",
+     "text": "Opened my business account in one visit. The consultant was brilliant.",
+     "clean": "Opened my business account in one visit. The consultant was brilliant.",
+     "polarity": 0.9,
+     "subjectivity": 1.0,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "M016",
+     "date": "2026-03-27",
+     "channel": "Card/ATM",
+     "segment": "Young Professional",
+     "text": "ATM was out of cash the whole weekend. Had to drive to three machines, terrible.",
+     "clean": "ATM was out of cash the whole weekend. Had to drive to three machines, terrible.",
+     "polarity": -0.4,
+     "subjectivity": 0.7,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "M017",
+     "date": "2026-03-30",
+     "channel": "Banking App",
+     "segment": "Family",
+     "text": "App down again during stage 4 load shedding. Third time this month, awful.",
+     "clean": "App down again during stage 4 load shedding. Third time this month, awful.",
+     "polarity": -0.3852,
+     "subjectivity": 0.4296,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "M018",
+     "date": "2026-03-31",
+     "channel": "Branch",
+     "segment": "Pensioner",
+     "text": "Queue on grant day was long but the security guard helped us, very kind.",
+     "clean": "Queue on grant day was long but the security guard helped us, very kind.",
+     "polarity": 0.365,
+     "subjectivity": 0.7,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "M019",
+     "date": "2026-03-03",
+     "channel": "Instant EFT",
+     "segment": "Young Professional",
+     "text": "Payment to my car dealer reflected in seconds. Fantastic.",
+     "clean": "Payment to my car dealer reflected in seconds. Fantastic.",
+     "polarity": 0.4,
+     "subjectivity": 0.9,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "M020",
+     "date": "2026-03-07",
+     "channel": "Banking App",
+     "segment": "Small Business",
+     "text": "Cannot upload invoices on the app. Useless for business banking.",
+     "clean": "Cannot upload invoices on the app. Useless for business banking.",
+     "polarity": -0.5,
+     "subjectivity": 0.2,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "M021",
+     "date": "2026-03-11",
+     "channel": "Card/ATM",
+     "segment": "Student",
+     "text": "My card was cloned at a sketchy ATM. I am so angry about this.",
+     "clean": "My card was cloned at a sketchy ATM. I am so angry about this.",
+     "polarity": -0.5,
+     "subjectivity": 1.0,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "M022",
+     "date": "2026-03-14",
+     "channel": "Branch",
+     "segment": "Family",
+     "text": "The branch closed early without notice. Wasted trip, very annoying.",
+     "clean": "The branch closed early without notice. Wasted trip, very annoying.",
+     "polarity": -0.3,
+     "subjectivity": 0.35,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "M023",
+     "date": "2026-03-18",
+     "channel": "Instant EFT",
+     "segment": "Small Business",
+     "text": "Batch payments cleared overnight without any issues. Great work.",
+     "clean": "Batch payments cleared overnight without any issues. Great work.",
+     "polarity": 0.8,
+     "subjectivity": 0.75,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "M024",
+     "date": "2026-03-21",
+     "channel": "Banking App",
+     "segment": "Pensioner",
+     "text": "The font on the app is too small for me. Struggled to read my balance.",
+     "clean": "The font on the app is too small for me. Struggled to read my balance.",
+     "polarity": -0.25,
+     "subjectivity": 0.4,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "M025",
+     "date": "2026-03-25",
+     "channel": "Card/ATM",
+     "segment": "Family",
+     "text": "Withdrew cash for the weekend braai, no issues at all.",
+     "clean": "Withdrew cash for the weekend braai, no issues at all.",
+     "polarity": 0.0,
+     "subjectivity": 0.0,
+     "sentiment": "Neutral"
+    },
+    {
+     "id": "M026",
+     "date": "2026-03-28",
+     "channel": "Banking App",
+     "segment": "Student",
+     "text": "Notifications for every swipe are so helpful for budgeting. Love it.",
+     "clean": "Notifications for every swipe are so helpful for budgeting. Love it.",
+     "polarity": 0.5,
+     "subjectivity": 0.6,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "M027",
+     "date": "2026-03-31",
+     "channel": "Branch",
+     "segment": "Small Business",
+     "text": "Tellers could not process my deposit slip properly. Disappointed with the service.",
+     "clean": "Tellers could not process my deposit slip properly. Disappointed with the service.",
+     "polarity": -0.75,
+     "subjectivity": 0.75,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "M028",
+     "date": "2026-03-05",
+     "channel": "Contact Centre",
+     "segment": "Young Professional",
+     "text": "Called the contact centre and the agent sorted my dispute in one call. Excellent.",
+     "clean": "Called the contact centre and the agent sorted my dispute in one call. Excellent.",
+     "polarity": 1.0,
+     "subjectivity": 1.0,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "M029",
+     "date": "2026-03-08",
+     "channel": "Contact Centre",
+     "segment": "Family",
+     "text": "Held for 25 minutes on the phone then got cut off. Disgusting.",
+     "clean": "Held for 25 minutes on the phone then got cut off. Disgusting.",
+     "polarity": -1.0,
+     "subjectivity": 1.0,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "M030",
+     "date": "2026-03-15",
+     "channel": "Contact Centre",
+     "segment": "Pensioner",
+     "text": "The lady on the phone was patient, kind and brilliant with my reversal. Excellent service.",
+     "clean": "The lady on the phone was patient, kind and brilliant with my reversal. Excellent service.",
+     "polarity": 0.8333,
+     "subjectivity": 0.9667,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "M031",
+     "date": "2026-03-22",
+     "channel": "Contact Centre",
+     "segment": "Small Business",
+     "text": "Nobody at the contact centre understands merchant codes. Useless.",
+     "clean": "Nobody at the contact centre understands merchant codes. Useless.",
+     "polarity": -0.5,
+     "subjectivity": 0.2,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "M032",
+     "date": "2026-03-04",
+     "channel": "WhatsApp Banking",
+     "segment": "Young Professional",
+     "text": "WhatsApp banking answered my balance query in seconds. Impressive.",
+     "clean": "WhatsApp banking answered my balance query in seconds. Impressive.",
+     "polarity": 1.0,
+     "subjectivity": 1.0,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "M033",
+     "date": "2026-03-10",
+     "channel": "WhatsApp Banking",
+     "segment": "Student",
+     "text": "The WhatsApp chatbot kept looping the same menu. So frustrating.",
+     "clean": "The WhatsApp chatbot kept looping the same menu. So frustrating.",
+     "polarity": -0.2,
+     "subjectivity": 0.5125,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "M034",
+     "date": "2026-03-19",
+     "channel": "WhatsApp Banking",
+     "segment": "Family",
+     "text": "Blocked my lost card through WhatsApp in two minutes. Brilliant.",
+     "clean": "Blocked my lost card through WhatsApp in two minutes. Brilliant.",
+     "polarity": 0.9,
+     "subjectivity": 1.0,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "M035",
+     "date": "2026-03-26",
+     "channel": "WhatsApp Banking",
+     "segment": "Pensioner",
+     "text": "I do not understand the WhatsApp banking prompts. Confusing for me.",
+     "clean": "I do not understand the WhatsApp banking prompts. Confusing for me.",
+     "polarity": -0.3,
+     "subjectivity": 0.4,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "M036",
+     "date": "2026-03-12",
+     "channel": "Card/ATM",
+     "segment": "Small Business",
+     "text": "Deposited my weekend takings at the ATM. Receipt printed and done.",
+     "clean": "Deposited my weekend takings at the ATM. Receipt printed and done.",
+     "polarity": 0.0,
+     "subjectivity": 0.0,
+     "sentiment": "Neutral"
+    },
+    {
+     "id": "M037",
+     "date": "2026-03-17",
+     "channel": "Instant EFT",
+     "segment": "Student",
+     "text": "My transfer to myself took two days to clear. Annoying.",
+     "clean": "My transfer to myself took two days to clear. Annoying.",
+     "polarity": -0.35,
+     "subjectivity": 0.6417,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "M038",
+     "date": "2026-03-24",
+     "channel": "Banking App",
+     "segment": "Family",
+     "text": "The new statements view is clean and easy to read. Great improvement.",
+     "clean": "The new statements view is clean and easy to read. Great improvement.",
+     "polarity": 0.4341,
+     "subjectivity": 0.6845,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "M039",
+     "date": "2026-03-29",
+     "channel": "Branch",
+     "segment": "Young Professional",
+     "text": "Branch consultant opened my tax-free savings account quickly. Happy with the service.",
+     "clean": "Branch consultant opened my tax-free savings account quickly. Happy with the service.",
+     "polarity": 0.8,
+     "subjectivity": 1.0,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "M040",
+     "date": "2026-03-16",
+     "channel": "Instant EFT",
+     "segment": "Pensioner",
+     "text": "Moved R500 from my current account to my savings at the teller.",
+     "clean": "Moved R500 from my current account to my savings at the teller.",
+     "polarity": 0.0,
+     "subjectivity": 0.4,
+     "sentiment": "Neutral"
+    }
+   ]
+  },
+  "june": {
+   "label": "June improved",
+   "file": "practice_reviews_june_improved.csv",
+   "summary": {
+    "total": 40,
+    "mix": {
+     "Positive": 25,
+     "Neutral": 4,
+     "Negative": 11
+    },
+    "mix_pct": {
+     "Positive": 62.5,
+     "Neutral": 10.0,
+     "Negative": 27.5
+    },
+    "avg_polarity": 0.1485,
+    "avg_subjectivity": 0.6348,
+    "negative_pct": 27.5,
+    "by_channel": {
+     "Banking App": {
+      "total": 10,
+      "avg_polarity": 0.0697,
+      "negative": 4,
+      "negative_pct": 40.0
+     },
+     "Branch": {
+      "total": 7,
+      "avg_polarity": 0.2127,
+      "negative": 2,
+      "negative_pct": 28.6
+     },
+     "Card/ATM": {
+      "total": 8,
+      "avg_polarity": -0.1812,
+      "negative": 2,
+      "negative_pct": 25.0
+     },
+     "Contact Centre": {
+      "total": 4,
+      "avg_polarity": 0.5,
+      "negative": 1,
+      "negative_pct": 25.0
+     },
+     "Instant EFT": {
+      "total": 7,
+      "avg_polarity": 0.1341,
+      "negative": 2,
+      "negative_pct": 28.6
+     },
+     "WhatsApp Banking": {
+      "total": 4,
+      "avg_polarity": 0.5666,
+      "negative": 0,
+      "negative_pct": 0.0
+     }
+    },
+    "by_segment": {
+     "Family": {
+      "total": 9,
+      "negative_pct": 33.3,
+      "avg_polarity": 0.0931
+     },
+     "Pensioner": {
+      "total": 8,
+      "negative_pct": 25.0,
+      "avg_polarity": 0.2029
+     },
+     "Small Business": {
+      "total": 8,
+      "negative_pct": 25.0,
+      "avg_polarity": 0.1325
+     },
+     "Student": {
+      "total": 7,
+      "negative_pct": 28.6,
+      "avg_polarity": 0.1982
+     },
+     "Young Professional": {
+      "total": 8,
+      "negative_pct": 25.0,
+      "avg_polarity": 0.129
+     }
+    },
+    "negative_terms": [
+     [
+      "still",
+      4
+     ],
+     [
+      "annoying",
+      3
+     ],
+     [
+      "about",
+      2
+     ],
+     [
+      "frustrating",
+      2
+     ],
+     [
+      "disappointed",
+      2
+     ],
+     [
+      "deposit",
+      2
+     ],
+     [
+      "getting",
+      1
+     ],
+     [
+      "charged",
+      1
+     ],
+     [
+      "notice",
+      1
+     ],
+     [
+      "deposits",
+      1
+     ],
+     [
+      "fees",
+      1
+     ],
+     [
+      "disappointing",
+      1
+     ],
+     [
+      "service",
+      1
+     ],
+     [
+      "maintenance",
+      1
+     ],
+     [
+      "payday",
+      1
+     ],
+     [
+      "transfer",
+      1
+     ],
+     [
+      "delayed",
+      1
+     ],
+     [
+      "overnight",
+      1
+     ],
+     [
+      "happy",
+      1
+     ],
+     [
+      "performance",
+      1
+     ],
+     [
+      "phones",
+      1
+     ],
+     [
+      "slow",
+      1
+     ],
+     [
+      "mother",
+      1
+     ],
+     [
+      "business",
+      1
+     ],
+     [
+      "account",
+      1
+     ]
+    ]
+   },
+   "reviews": [
+    {
+     "id": "J001",
+     "date": "2026-06-01",
+     "channel": "Banking App",
+     "segment": "Young Professional",
+     "text": "The app update fixed all the crashing. Excellent and rock solid during load shedding now.",
+     "clean": "The app update fixed all the crashing. Excellent and rock solid during load shedding now.",
+     "polarity": 0.3667,
+     "subjectivity": 0.4333,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "J002",
+     "date": "2026-06-02",
+     "channel": "Instant EFT",
+     "segment": "Student",
+     "text": "Instant EFT cleared in seconds again. Excellent as always.",
+     "clean": "Instant EFT cleared in seconds again. Excellent as always.",
+     "polarity": 0.5,
+     "subjectivity": 0.8333,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "J003",
+     "date": "2026-06-03",
+     "channel": "Branch",
+     "segment": "Pensioner",
+     "text": "New queue system at the branch meant ten minutes max. Impressed.",
+     "clean": "New queue system at the branch meant ten minutes max. Impressed.",
+     "polarity": 0.3788,
+     "subjectivity": 0.4848,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "J004",
+     "date": "2026-06-04",
+     "channel": "Card/ATM",
+     "segment": "Family",
+     "text": "Cardless withdrawal with my phone worked first time. Love it.",
+     "clean": "Cardless withdrawal with my phone worked first time. Love it.",
+     "polarity": 0.375,
+     "subjectivity": 0.4667,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "J005",
+     "date": "2026-06-05",
+     "channel": "Banking App",
+     "segment": "Small Business",
+     "text": "Still getting charged for notice deposits. Fees are disappointing.",
+     "clean": "Still getting charged for notice deposits. Fees are disappointing.",
+     "polarity": -0.6,
+     "subjectivity": 0.7,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "J006",
+     "date": "2026-06-08",
+     "channel": "Instant EFT",
+     "segment": "Small Business",
+     "text": "Payroll EFT batch processed same day. Smooth and reliable.",
+     "clean": "Payroll EFT batch processed same day. Smooth and reliable.",
+     "polarity": 0.2,
+     "subjectivity": 0.3125,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "J007",
+     "date": "2026-06-09",
+     "channel": "Card/ATM",
+     "segment": "Young Professional",
+     "text": "ATM was out of service for maintenance on payday. Very annoying.",
+     "clean": "ATM was out of service for maintenance on payday. Very annoying.",
+     "polarity": -1.0,
+     "subjectivity": 1.0,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "J008",
+     "date": "2026-06-10",
+     "channel": "Branch",
+     "segment": "Family",
+     "text": "Teller helped reverse a double debit order with a smile. Great service.",
+     "clean": "Teller helped reverse a double debit order with a smile. Great service.",
+     "polarity": 0.3667,
+     "subjectivity": 0.2833,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "J009",
+     "date": "2026-06-11",
+     "channel": "Banking App",
+     "segment": "Student",
+     "text": "The app now lets me freeze my card instantly. Fantastic feature.",
+     "clean": "The app now lets me freeze my card instantly. Fantastic feature.",
+     "polarity": 0.4,
+     "subjectivity": 0.9,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "J010",
+     "date": "2026-06-12",
+     "channel": "Instant EFT",
+     "segment": "Young Professional",
+     "text": "My transfer was delayed overnight. Still not happy about that.",
+     "clean": "My transfer was delayed overnight. Still not happy about that.",
+     "polarity": -0.4,
+     "subjectivity": 1.0,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "J011",
+     "date": "2026-06-15",
+     "channel": "WhatsApp Banking",
+     "segment": "Young Professional",
+     "text": "WhatsApp banking handled my beneficiary payment end to end. Brilliant.",
+     "clean": "WhatsApp banking handled my beneficiary payment end to end. Brilliant.",
+     "polarity": 0.9,
+     "subjectivity": 1.0,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "J012",
+     "date": "2026-06-16",
+     "channel": "Branch",
+     "segment": "Pensioner",
+     "text": "Youth Day crowd was big but staff kept the queue moving. Impressive.",
+     "clean": "Youth Day crowd was big but staff kept the queue moving. Impressive.",
+     "polarity": 0.5,
+     "subjectivity": 0.55,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "J013",
+     "date": "2026-06-17",
+     "channel": "Card/ATM",
+     "segment": "Student",
+     "text": "Withdrew R300 for the long weekend at the campus ATM.",
+     "clean": "Withdrew R300 for the long weekend at the campus ATM.",
+     "polarity": -0.05,
+     "subjectivity": 0.4,
+     "sentiment": "Neutral"
+    },
+    {
+     "id": "J014",
+     "date": "2026-06-18",
+     "channel": "Banking App",
+     "segment": "Family",
+     "text": "App performance on old phones is still slow. Frustrating for my mother.",
+     "clean": "App performance on old phones is still slow. Frustrating for my mother.",
+     "polarity": -0.2,
+     "subjectivity": 0.5,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "J015",
+     "date": "2026-06-19",
+     "channel": "Contact Centre",
+     "segment": "Small Business",
+     "text": "Merchant support call resolved in eight minutes. Excellent.",
+     "clean": "Merchant support call resolved in eight minutes. Excellent.",
+     "polarity": 1.0,
+     "subjectivity": 1.0,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "J016",
+     "date": "2026-06-22",
+     "channel": "Instant EFT",
+     "segment": "Family",
+     "text": "School fee payment cleared instantly. Quick and easy.",
+     "clean": "School fee payment cleared instantly. Quick and easy.",
+     "polarity": 0.3833,
+     "subjectivity": 0.6667,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "J017",
+     "date": "2026-06-23",
+     "channel": "Banking App",
+     "segment": "Pensioner",
+     "text": "The larger font option in settings is so helpful and easy. Great improvement.",
+     "clean": "The larger font option in settings is so helpful and easy. Great improvement.",
+     "polarity": 0.4111,
+     "subjectivity": 0.6944,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "J018",
+     "date": "2026-06-24",
+     "channel": "Branch",
+     "segment": "Small Business",
+     "text": "Business account statements were wrong for a week. Disappointed.",
+     "clean": "Business account statements were wrong for a week. Disappointed.",
+     "polarity": -0.625,
+     "subjectivity": 0.825,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "J019",
+     "date": "2026-06-25",
+     "channel": "Card/ATM",
+     "segment": "Family",
+     "text": "Cash deposit machine rejected four of my notes. Very annoying.",
+     "clean": "Cash deposit machine rejected four of my notes. Very annoying.",
+     "polarity": -1.0,
+     "subjectivity": 1.0,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "J020",
+     "date": "2026-06-26",
+     "channel": "WhatsApp Banking",
+     "segment": "Student",
+     "text": "Chatbot answered my campus card query perfectly. Love the speed.",
+     "clean": "Chatbot answered my campus card query perfectly. Love the speed.",
+     "polarity": 0.5,
+     "subjectivity": 0.6,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "J021",
+     "date": "2026-06-29",
+     "channel": "Banking App",
+     "segment": "Young Professional",
+     "text": "Load shedding hit for four hours and the app never went down. Great work.",
+     "clean": "Load shedding hit for four hours and the app never went down. Great work.",
+     "polarity": 0.3222,
+     "subjectivity": 0.5194,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "J022",
+     "date": "2026-06-30",
+     "channel": "Branch",
+     "segment": "Pensioner",
+     "text": "Grant day queue was managed so well this month. Excellent.",
+     "clean": "Grant day queue was managed so well this month. Excellent.",
+     "polarity": 1.0,
+     "subjectivity": 1.0,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "J023",
+     "date": "2026-06-05",
+     "channel": "Contact Centre",
+     "segment": "Family",
+     "text": "Called about a suspicious debit and got help immediately. Impressed.",
+     "clean": "Called about a suspicious debit and got help immediately. Impressed.",
+     "polarity": 1.0,
+     "subjectivity": 1.0,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "J024",
+     "date": "2026-06-08",
+     "channel": "Instant EFT",
+     "segment": "Student",
+     "text": "My shared flat electricity payment bounced twice. Terrible.",
+     "clean": "My shared flat electricity payment bounced twice. Terrible.",
+     "polarity": -0.5125,
+     "subjectivity": 0.5625,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "J025",
+     "date": "2026-06-11",
+     "channel": "Card/ATM",
+     "segment": "Young Professional",
+     "text": "The ATM gave me R100 short but the branch fixed it same day. Happy with the fix.",
+     "clean": "The ATM gave me R100 short but the branch fixed it same day. Happy with the fix.",
+     "polarity": 0.225,
+     "subjectivity": 0.4062,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "J026",
+     "date": "2026-06-14",
+     "channel": "Banking App",
+     "segment": "Small Business",
+     "text": "Invoice upload finally works on the app. Great improvement for business.",
+     "clean": "Invoice upload finally works on the app. Great improvement for business.",
+     "polarity": 0.4,
+     "subjectivity": 0.875,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "J027",
+     "date": "2026-06-16",
+     "channel": "WhatsApp Banking",
+     "segment": "Pensioner",
+     "text": "The WhatsApp prompts are simpler now. Easy to follow, thank you.",
+     "clean": "The WhatsApp prompts are simpler now. Easy to follow, thank you.",
+     "polarity": 0.4333,
+     "subjectivity": 0.8333,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "J028",
+     "date": "2026-06-18",
+     "channel": "Branch",
+     "segment": "Young Professional",
+     "text": "Consultant explained the new savings product clearly. Helpful.",
+     "clean": "Consultant explained the new savings product clearly. Helpful.",
+     "polarity": 0.1182,
+     "subjectivity": 0.4189,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "J029",
+     "date": "2026-06-20",
+     "channel": "Card/ATM",
+     "segment": "Small Business",
+     "text": "Night deposit for my shop at the branch deposit slot before closing.",
+     "clean": "Night deposit for my shop at the branch deposit slot before closing.",
+     "polarity": 0.0,
+     "subjectivity": 0.0,
+     "sentiment": "Neutral"
+    },
+    {
+     "id": "J030",
+     "date": "2026-06-22",
+     "channel": "Banking App",
+     "segment": "Family",
+     "text": "My card was blocked by fraud systems wrongly. Very frustrating experience.",
+     "clean": "My card was blocked by fraud systems wrongly. Very frustrating experience.",
+     "polarity": -0.52,
+     "subjectivity": 1.0,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "J031",
+     "date": "2026-06-25",
+     "channel": "Instant EFT",
+     "segment": "Small Business",
+     "text": "Same-day settlement on the new EFT rails is fantastic.",
+     "clean": "Same-day settlement on the new EFT rails is fantastic.",
+     "polarity": 0.2682,
+     "subjectivity": 0.6773,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "J032",
+     "date": "2026-06-27",
+     "channel": "Contact Centre",
+     "segment": "Pensioner",
+     "text": "Waited 15 minutes on hold about my statement. Annoying.",
+     "clean": "Waited 15 minutes on hold about my statement. Annoying.",
+     "polarity": -0.8,
+     "subjectivity": 0.9,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "J033",
+     "date": "2026-06-02",
+     "channel": "Contact Centre",
+     "segment": "Student",
+     "text": "Agent reset my online banking in minutes. Great support.",
+     "clean": "Agent reset my online banking in minutes. Great support.",
+     "polarity": 0.8,
+     "subjectivity": 0.75,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "J034",
+     "date": "2026-06-09",
+     "channel": "WhatsApp Banking",
+     "segment": "Family",
+     "text": "Loaded beneficiaries on WhatsApp without any problems. Easy.",
+     "clean": "Loaded beneficiaries on WhatsApp without any problems. Easy.",
+     "polarity": 0.4333,
+     "subjectivity": 0.8333,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "J035",
+     "date": "2026-06-13",
+     "channel": "Branch",
+     "segment": "Student",
+     "text": "Branch ATM deposit window closed early. Disappointed.",
+     "clean": "Branch ATM deposit window closed early. Disappointed.",
+     "polarity": -0.25,
+     "subjectivity": 0.3833,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "J036",
+     "date": "2026-06-17",
+     "channel": "Banking App",
+     "segment": "Pensioner",
+     "text": "I still struggle with the app menus. Confusing for pensioners.",
+     "clean": "I still struggle with the app menus. Confusing for pensioners.",
+     "polarity": -0.3,
+     "subjectivity": 0.4,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "J037",
+     "date": "2026-06-21",
+     "channel": "Instant EFT",
+     "segment": "Young Professional",
+     "text": "Split the bill with three friends instantly. Love this.",
+     "clean": "Split the bill with three friends instantly. Love this.",
+     "polarity": 0.5,
+     "subjectivity": 0.6,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "J038",
+     "date": "2026-06-26",
+     "channel": "Card/ATM",
+     "segment": "Family",
+     "text": "Drew cash for the school cake sale at the branch ATM.",
+     "clean": "Drew cash for the school cake sale at the branch ATM.",
+     "polarity": 0.0,
+     "subjectivity": 0.0,
+     "sentiment": "Neutral"
+    },
+    {
+     "id": "J039",
+     "date": "2026-06-30",
+     "channel": "Banking App",
+     "segment": "Small Business",
+     "text": "Month-end recon on the app took half the time. Excellent update.",
+     "clean": "Month-end recon on the app took half the time. Excellent update.",
+     "polarity": 0.4167,
+     "subjectivity": 0.5833,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "J040",
+     "date": "2026-06-29",
+     "channel": "Card/ATM",
+     "segment": "Pensioner",
+     "text": "Withdrew my grant money at the post office ATM. Transaction completed.",
+     "clean": "Withdrew my grant money at the post office ATM. Transaction completed.",
+     "polarity": 0.0,
+     "subjectivity": 0.0,
+     "sentiment": "Neutral"
+    }
+   ]
+  },
+  "november": {
+   "label": "November incident",
+   "file": "practice_reviews_november_incident.csv",
+   "summary": {
+    "total": 40,
+    "mix": {
+     "Positive": 19,
+     "Neutral": 3,
+     "Negative": 18
+    },
+    "mix_pct": {
+     "Positive": 47.5,
+     "Neutral": 7.5,
+     "Negative": 45.0
+    },
+    "avg_polarity": 0.0104,
+    "avg_subjectivity": 0.6799,
+    "negative_pct": 45.0,
+    "by_channel": {
+     "Banking App": {
+      "total": 12,
+      "avg_polarity": 0.0815,
+      "negative": 5,
+      "negative_pct": 41.7
+     },
+     "Branch": {
+      "total": 6,
+      "avg_polarity": 0.4206,
+      "negative": 1,
+      "negative_pct": 16.7
+     },
+     "Card/ATM": {
+      "total": 5,
+      "avg_polarity": -0.3517,
+      "negative": 3,
+      "negative_pct": 60.0
+     },
+     "Contact Centre": {
+      "total": 5,
+      "avg_polarity": -0.1344,
+      "negative": 3,
+      "negative_pct": 60.0
+     },
+     "Instant EFT": {
+      "total": 9,
+      "avg_polarity": -0.1914,
+      "negative": 6,
+      "negative_pct": 66.7
+     },
+     "WhatsApp Banking": {
+      "total": 3,
+      "avg_polarity": 0.3556,
+      "negative": 0,
+      "negative_pct": 0.0
+     }
+    },
+    "by_segment": {
+     "Family": {
+      "total": 9,
+      "negative_pct": 44.4,
+      "avg_polarity": 0.0728
+     },
+     "Pensioner": {
+      "total": 7,
+      "negative_pct": 57.1,
+      "avg_polarity": -0.0089
+     },
+     "Small Business": {
+      "total": 9,
+      "negative_pct": 44.4,
+      "avg_polarity": -0.0361
+     },
+     "Student": {
+      "total": 6,
+      "negative_pct": 33.3,
+      "avg_polarity": 0.0893
+     },
+     "Young Professional": {
+      "total": 9,
+      "negative_pct": 44.4,
+      "avg_polarity": -0.0432
+     }
+    },
+    "negative_terms": [
+     [
+      "outage",
+      4
+     ],
+     [
+      "terrible",
+      4
+     ],
+     [
+      "frustrating",
+      3
+     ],
+     [
+      "angry",
+      3
+     ],
+     [
+      "during",
+      3
+     ],
+     [
+      "cannot",
+      2
+     ],
+     [
+      "failed",
+      2
+     ],
+     [
+      "centre",
+      2
+     ],
+     [
+      "minutes",
+      2
+     ],
+     [
+      "three",
+      2
+     ],
+     [
+      "phishing",
+      2
+     ],
+     [
+      "black",
+      2
+     ],
+     [
+      "friday",
+      2
+     ],
+     [
+      "payment",
+      2
+     ],
+     [
+      "annoying",
+      2
+     ],
+     [
+      "disappointed",
+      2
+     ],
+     [
+      "cash",
+      2
+     ],
+     [
+      "transfer",
+      2
+     ],
+     [
+      "took",
+      2
+     ],
+     [
+      "days",
+      2
+     ],
+     [
+      "down",
+      1
+     ],
+     [
+      "since",
+      1
+     ],
+     [
+      "sunday",
+      1
+     ],
+     [
+      "anyone",
+      1
+     ],
+     [
+      "payroll",
+      1
+     ]
+    ]
+   },
+   "reviews": [
+    {
+     "id": "N001",
+     "date": "2026-11-02",
+     "channel": "Banking App",
+     "segment": "Young Professional",
+     "text": "The app has been down since Sunday. So frustrating, I cannot pay anyone.",
+     "clean": "The app has been down since Sunday. So frustrating, I cannot pay anyone.",
+     "polarity": -0.2778,
+     "subjectivity": 0.5944,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "N002",
+     "date": "2026-11-02",
+     "channel": "Instant EFT",
+     "segment": "Small Business",
+     "text": "My payroll batch failed in the outage. Terrible day for my business.",
+     "clean": "My payroll batch failed in the outage. Terrible day for my business.",
+     "polarity": -0.75,
+     "subjectivity": 0.65,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "N003",
+     "date": "2026-11-03",
+     "channel": "Banking App",
+     "segment": "Student",
+     "text": "Cannot check my balance before the outage notice even appeared. Angry.",
+     "clean": "Cannot check my balance before the outage notice even appeared. Angry.",
+     "polarity": -0.5,
+     "subjectivity": 1.0,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "N004",
+     "date": "2026-11-03",
+     "channel": "Contact Centre",
+     "segment": "Family",
+     "text": "Contact centre queue was 40 minutes during the outage. Disgusting.",
+     "clean": "Contact centre queue was 40 minutes during the outage. Disgusting.",
+     "polarity": -1.0,
+     "subjectivity": 1.0,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "N005",
+     "date": "2026-11-04",
+     "channel": "Branch",
+     "segment": "Pensioner",
+     "text": "The branch was packed with angry customers during the app outage.",
+     "clean": "The branch was packed with angry customers during the app outage.",
+     "polarity": -0.5,
+     "subjectivity": 1.0,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "N006",
+     "date": "2026-11-04",
+     "channel": "Banking App",
+     "segment": "Young Professional",
+     "text": "Day three of the app not loading. The worst week, absolutely terrible.",
+     "clean": "Day three of the app not loading. The worst week, absolutely terrible.",
+     "polarity": -1.0,
+     "subjectivity": 1.0,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "N007",
+     "date": "2026-11-05",
+     "channel": "Branch",
+     "segment": "Young Professional",
+     "text": "Consultants set up paper withdrawals for everyone. Great recovery effort.",
+     "clean": "Consultants set up paper withdrawals for everyone. Great recovery effort.",
+     "polarity": 0.8,
+     "subjectivity": 0.75,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "N008",
+     "date": "2026-11-05",
+     "channel": "Contact Centre",
+     "segment": "Small Business",
+     "text": "A supervisor called me back to fix my merchant payments. Impressed.",
+     "clean": "A supervisor called me back to fix my merchant payments. Impressed.",
+     "polarity": 0.5,
+     "subjectivity": 0.5,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "N009",
+     "date": "2026-11-06",
+     "channel": "Banking App",
+     "segment": "Family",
+     "text": "App is back and my transfers went through. Excellent recovery.",
+     "clean": "App is back and my transfers went through. Excellent recovery.",
+     "polarity": 0.5,
+     "subjectivity": 0.5,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "N010",
+     "date": "2026-11-06",
+     "channel": "Instant EFT",
+     "segment": "Family",
+     "text": "Backlog of payments cleared overnight. Great work by the bank.",
+     "clean": "Backlog of payments cleared overnight. Great work by the bank.",
+     "polarity": 0.8,
+     "subjectivity": 0.75,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "N011",
+     "date": "2026-11-09",
+     "channel": "Banking App",
+     "segment": "Student",
+     "text": "Got a phishing SMS pretending to be the bank. Scary and sneaky.",
+     "clean": "Got a phishing SMS pretending to be the bank. Scary and sneaky.",
+     "polarity": -0.5,
+     "subjectivity": 1.0,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "N012",
+     "date": "2026-11-10",
+     "channel": "Instant EFT",
+     "segment": "Pensioner",
+     "text": "Nearly fell for a fake bank WhatsApp. These scammers are terrible.",
+     "clean": "Nearly fell for a fake bank WhatsApp. These scammers are terrible.",
+     "polarity": -0.4667,
+     "subjectivity": 0.8,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "N013",
+     "date": "2026-11-11",
+     "channel": "Banking App",
+     "segment": "Young Professional",
+     "text": "The in-app fraud warnings are clear and helpful. Love that.",
+     "clean": "The in-app fraud warnings are clear and helpful. Love that.",
+     "polarity": 0.3,
+     "subjectivity": 0.4917,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "N014",
+     "date": "2026-11-12",
+     "channel": "Card/ATM",
+     "segment": "Family",
+     "text": "Skimming device found at our local ATM. I am so angry, feel completely unsafe there.",
+     "clean": "Skimming device found at our local ATM. I am so angry, feel completely unsafe there.",
+     "polarity": -0.1333,
+     "subjectivity": 0.4667,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "N015",
+     "date": "2026-11-13",
+     "channel": "Contact Centre",
+     "segment": "Small Business",
+     "text": "The bank froze my card after a suspicious R8,000 charge. Great security, so happy.",
+     "clean": "The bank froze my card after a suspicious R8,000 charge. Great security, so happy.",
+     "polarity": 0.8,
+     "subjectivity": 0.875,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "N016",
+     "date": "2026-11-16",
+     "channel": "Banking App",
+     "segment": "Student",
+     "text": "Someone tried to log in as me and the app blocked them. Great security.",
+     "clean": "Someone tried to log in as me and the app blocked them. Great security.",
+     "polarity": 0.8,
+     "subjectivity": 0.75,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "N017",
+     "date": "2026-11-17",
+     "channel": "WhatsApp Banking",
+     "segment": "Pensioner",
+     "text": "Reported a scam number through WhatsApp banking. Quick response, impressed.",
+     "clean": "Reported a scam number through WhatsApp banking. Quick response, impressed.",
+     "polarity": 0.6667,
+     "subjectivity": 0.75,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "N018",
+     "date": "2026-11-18",
+     "channel": "Instant EFT",
+     "segment": "Young Professional",
+     "text": "Black Friday payment failed twice. Very annoying at midnight.",
+     "clean": "Black Friday payment failed twice. Very annoying at midnight.",
+     "polarity": -0.5556,
+     "subjectivity": 0.5778,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "N019",
+     "date": "2026-11-19",
+     "channel": "Banking App",
+     "segment": "Family",
+     "text": "Black Friday checkout through the app was seamless. Excellent.",
+     "clean": "Black Friday checkout through the app was seamless. Excellent.",
+     "polarity": 0.3111,
+     "subjectivity": 0.5111,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "N020",
+     "date": "2026-11-20",
+     "channel": "Instant EFT",
+     "segment": "Small Business",
+     "text": "My supplier payment was delayed on the busiest weekend. Disappointed.",
+     "clean": "My supplier payment was delayed on the busiest weekend. Disappointed.",
+     "polarity": -0.75,
+     "subjectivity": 0.75,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "N021",
+     "date": "2026-11-21",
+     "channel": "Branch",
+     "segment": "Student",
+     "text": "Branch was calm and quick after the online rush. Friendly tellers.",
+     "clean": "Branch was calm and quick after the online rush. Friendly tellers.",
+     "polarity": 0.3361,
+     "subjectivity": 0.5833,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "N022",
+     "date": "2026-11-23",
+     "channel": "Card/ATM",
+     "segment": "Young Professional",
+     "text": "ATM limits dropped my cash withdrawal on payday. Terrible timing.",
+     "clean": "ATM limits dropped my cash withdrawal on payday. Terrible timing.",
+     "polarity": -1.0,
+     "subjectivity": 1.0,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "N023",
+     "date": "2026-11-24",
+     "channel": "Banking App",
+     "segment": "Small Business",
+     "text": "Stokvel payout day and the app struggled all morning. Frustrating.",
+     "clean": "Stokvel payout day and the app struggled all morning. Frustrating.",
+     "polarity": -0.4,
+     "subjectivity": 0.9,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "N024",
+     "date": "2026-11-25",
+     "channel": "Contact Centre",
+     "segment": "Family",
+     "text": "Waited 20 minutes to dispute a Black Friday double charge. Annoying.",
+     "clean": "Waited 20 minutes to dispute a Black Friday double charge. Annoying.",
+     "polarity": -0.3222,
+     "subjectivity": 0.4444,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "N025",
+     "date": "2026-11-26",
+     "channel": "Instant EFT",
+     "segment": "Student",
+     "text": "Refund from an online store reflected the same day. Great.",
+     "clean": "Refund from an online store reflected the same day. Great.",
+     "polarity": 0.4,
+     "subjectivity": 0.4375,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "N026",
+     "date": "2026-11-27",
+     "channel": "Banking App",
+     "segment": "Young Professional",
+     "text": "Black Friday sale purchase went through instantly at midnight. Brilliant.",
+     "clean": "Black Friday sale purchase went through instantly at midnight. Brilliant.",
+     "polarity": 0.2444,
+     "subjectivity": 0.7,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "N027",
+     "date": "2026-11-27",
+     "channel": "Instant EFT",
+     "segment": "Family",
+     "text": "My transfer to family for December took two days. Not happy.",
+     "clean": "My transfer to family for December took two days. Not happy.",
+     "polarity": -0.4,
+     "subjectivity": 1.0,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "N028",
+     "date": "2026-11-28",
+     "channel": "Branch",
+     "segment": "Pensioner",
+     "text": "Consultant helped me set up account alerts. Friendly, patient and excellent.",
+     "clean": "Consultant helped me set up account alerts. Friendly, patient and excellent.",
+     "polarity": 0.6875,
+     "subjectivity": 0.75,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "N029",
+     "date": "2026-11-29",
+     "channel": "Card/ATM",
+     "segment": "Small Business",
+     "text": "Cash deposit for the shop counted wrong by R50. Disappointed.",
+     "clean": "Cash deposit for the shop counted wrong by R50. Disappointed.",
+     "polarity": -0.625,
+     "subjectivity": 0.825,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "N030",
+     "date": "2026-11-30",
+     "channel": "Banking App",
+     "segment": "Pensioner",
+     "text": "The app kept me informed through the whole outage week. Impressed.",
+     "clean": "The app kept me informed through the whole outage week. Impressed.",
+     "polarity": 0.6,
+     "subjectivity": 0.7,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "N031",
+     "date": "2026-11-08",
+     "channel": "WhatsApp Banking",
+     "segment": "Young Professional",
+     "text": "WhatsApp banking never skipped a beat during the outage. Fantastic.",
+     "clean": "WhatsApp banking never skipped a beat during the outage. Fantastic.",
+     "polarity": 0.4,
+     "subjectivity": 0.9,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "N032",
+     "date": "2026-11-13",
+     "channel": "Branch",
+     "segment": "Small Business",
+     "text": "Business banking desk sorted my POS machine issue same day. Excellent.",
+     "clean": "Business banking desk sorted my POS machine issue same day. Excellent.",
+     "polarity": 0.5,
+     "subjectivity": 0.5625,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "N033",
+     "date": "2026-11-14",
+     "channel": "Card/ATM",
+     "segment": "Student",
+     "text": "Used the campus ATM for my allowance withdrawal. No problems.",
+     "clean": "Used the campus ATM for my allowance withdrawal. No problems.",
+     "polarity": 0.0,
+     "subjectivity": 0.0,
+     "sentiment": "Neutral"
+    },
+    {
+     "id": "N034",
+     "date": "2026-11-15",
+     "channel": "Instant EFT",
+     "segment": "Pensioner",
+     "text": "My grandchild's transfer took three days during the backlog. Frustrating.",
+     "clean": "My grandchild's transfer took three days during the backlog. Frustrating.",
+     "polarity": -0.4,
+     "subjectivity": 0.9,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "N035",
+     "date": "2026-11-18",
+     "channel": "Contact Centre",
+     "segment": "Pensioner",
+     "text": "The call centre agent was rude about my phishing report. Disgusted.",
+     "clean": "The call centre agent was rude about my phishing report. Disgusted.",
+     "polarity": -0.65,
+     "subjectivity": 0.8,
+     "sentiment": "Negative"
+    },
+    {
+     "id": "N036",
+     "date": "2026-11-20",
+     "channel": "Banking App",
+     "segment": "Family",
+     "text": "App stability since the outage has been perfect. Great to see.",
+     "clean": "App stability since the outage has been perfect. Great to see.",
+     "polarity": 0.9,
+     "subjectivity": 0.875,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "N037",
+     "date": "2026-11-22",
+     "channel": "Branch",
+     "segment": "Young Professional",
+     "text": "Opened a December savings plan with good advice. Helpful consultant.",
+     "clean": "Opened a December savings plan with good advice. Helpful consultant.",
+     "polarity": 0.7,
+     "subjectivity": 0.6,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "N038",
+     "date": "2026-11-25",
+     "channel": "Card/ATM",
+     "segment": "Family",
+     "text": "Drew December grocery money at the mall ATM.",
+     "clean": "Drew December grocery money at the mall ATM.",
+     "polarity": 0.0,
+     "subjectivity": 0.0,
+     "sentiment": "Neutral"
+    },
+    {
+     "id": "N039",
+     "date": "2026-11-28",
+     "channel": "Instant EFT",
+     "segment": "Small Business",
+     "text": "Client payments all landed on time this week. Smooth sailing.",
+     "clean": "Client payments all landed on time this week. Smooth sailing.",
+     "polarity": 0.4,
+     "subjectivity": 0.5,
+     "sentiment": "Positive"
+    },
+    {
+     "id": "N040",
+     "date": "2026-11-21",
+     "channel": "WhatsApp Banking",
+     "segment": "Small Business",
+     "text": "Checked my shop balance on WhatsApp during the outage week.",
+     "clean": "Checked my shop balance on WhatsApp during the outage week.",
+     "polarity": 0.0,
+     "subjectivity": 0.0,
+     "sentiment": "Neutral"
+    }
+   ]
+  }
+ }
+}

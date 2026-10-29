@@ -2,7 +2,25 @@
 
 A fully functional Streamlit prototype that analyses South African retail banking customer feedback — Banking App, Instant EFT, Branch, and Card/ATM — and turns it into KPIs, interactive charts, an executive insights report, and a downloadable results file.
 
-UI link:http://localhost:8501/
+**Live dashboard:** https://tshepisofrominnostation.github.io/banking-sentiment-dashboard/
+
+Two ways to look at it:
+- **Published dashboard (live, no setup):** real TextBlob scores for all four datasets, interactive filters, trend and segment analysis.
+- **Streamlit app (local, full pipeline):** `streamlit run app.py` for CSV upload and the executive report.
+
+## Headline findings (recomputed 2026-10-29)
+
+| Dataset | Reviews | Negative | Avg polarity |
+|---|---|---|---|
+| Baseline sample (Sep 2026) | 41 | 51.2% | -0.108 |
+| March baseline | 40 | 47.5% | +0.007 |
+| June improved | 40 | **27.5%** | +0.148 |
+| November incident | 40 | **45.0%** | +0.010 |
+
+- **Banking App is the weakest channel: 61.5% negative.** Branch is the strongest at 33.3%.
+- **Young Professionals (71.4%) and Families (70.0%) carry the most negative sentiment;** Small Business the least (25.0%).
+- The same instrument tracks events: an app fix dropped negativity 20 points (March to June), and an incident pushed it back 17.5 points (June to November).
+- Scores are computed in Python (`polish_analyze.py`) and exported to `docs/data.json`; the dashboard renders those numbers, so the page shows real TextBlob output rather than an approximation.
 
 ## What it does
 

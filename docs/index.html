@@ -3,312 +3,258 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Retail Banking Sentiment Analysis Dashboard</title>
-<meta name="description" content="Live sentiment analysis of South African retail banking reviews - KPIs, channel breakdowns and executive insights, computed entirely in your browser.">
+<title>Retail Banking Sentiment Analysis — SA Dashboard</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = {
-  theme: { extend: { colors: {
-    navy: {950:'#060d1a',900:'#0a1628',800:'#0f2038',700:'#16305c'},
-    cyanx:'#22d3ee', green:'#34d399', redx:'#f87171', orange:'#fb923c'
-  }}}
-}
-</script>
-<style>
-  body { background:#0a1628; }
-  .card { background:rgba(15,32,56,.72); border:1px solid rgba(148,163,184,.14); border-radius:1rem; }
-  .chip { background:rgba(34,211,238,.12); border:1px solid rgba(34,211,238,.25); color:#a5f3fc; }
-  .tabbtn { transition:all .2s; }
-  .tabbtn.active { background:rgba(34,211,238,.15); border-color:rgba(34,211,238,.4); color:#22d3ee; }
-  ::selection { background:rgba(34,211,238,.35); }
-</style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{--bg:#0a1628;--panel:#0f2035;--panel2:#13263e;--line:#1e3a5f;--cyan:#22d3ee;--mut:#94a3b8;--red:#f87171;--amber:#fbbf24;--green:#4ade80}
+body{background:var(--bg);color:#e2e8f0;font-family:system-ui,-apple-system,sans-serif}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px}
+.tab{background:transparent;border:1px solid var(--line);color:#cbd5e1;border-radius:8px;padding:6px 14px;font-size:13px;font-weight:600}
+.tab.on{background:var(--cyan);color:#06222e;border-color:var(--cyan)}
+.chip{display:inline-flex;align-items:center;gap:5px;background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700}
+.pos{color:var(--green)} .neg{color:var(--red)} .neu{color:var(--amber)} .mut{color:var(--mut)}
+input,select,textarea{background:var(--panel2);border:1px solid var(--line);border-radius:8px;color:#e2e8f0;padding:8px 10px;font-size:13px}
+table{border-collapse:collapse;width:100%}
+th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);padding:8px 6px;border-bottom:1px solid var(--line)}
+td{padding:8px 6px;border-bottom:1px solid rgba(30,58,95,.5);font-size:12.5px;vertical-align:top}
+.btn{background:var(--cyan);color:#06222e;font-weight:700;border-radius:8px;padding:9px 18px;font-size:13px}
+.btn2{background:transparent;border:1px solid var(--line);color:#e2e8f0;border-radius:8px;padding:9px 14px;font-size:13px}
+</style>
 </head>
-<body class="text-slate-300 antialiased">
-<div class="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
+<body class="max-w-6xl mx-auto p-5">
+<header class="mb-5">
+  <div class="text-[11px] font-bold tracking-widest" style="color:var(--cyan)">SENTIMENT ANALYSIS PROJECT · SA RETAIL BANKING</div>
+  <h1 class="text-3xl font-bold mt-1">Retail Banking Sentiment Analysis</h1>
+  <p class="text-sm mt-2 max-w-3xl" style="color:var(--mut)">
+    161 customer reviews across four channels and five customer segments, scored with <b style="color:#e2e8f0">real TextBlob polarity</b> in Python and published as a static dashboard so it runs anywhere without a server.
+  </p>
+  <div class="flex flex-wrap gap-2 mt-3">
+    <span class="chip" style="color:var(--cyan)">TextBlob · computed in Python</span>
+    <span class="chip">4 datasets · 161 reviews</span>
+    <span class="chip">4 channels · 5 segments</span>
+    <span class="chip" style="color:var(--green)">Live · no server required</span>
+  </div>
+</header>
 
-  <!-- header -->
-  <header class="flex flex-wrap items-center justify-between gap-4 py-8">
-    <div>
-      <h1 class="text-2xl font-bold text-white sm:text-3xl">Retail Banking Sentiment Analysis Dashboard</h1>
-      <p class="mt-2 max-w-2xl text-sm leading-6 text-slate-400">Polarity and subjectivity scoring of SA retail banking reviews with KPIs, channel breakdowns and an executive insights report - computed entirely in your browser.</p>
+<section class="card p-4 mb-4">
+  <div class="flex flex-wrap items-center gap-2">
+    <span class="text-xs font-bold uppercase tracking-wider mr-1" style="color:var(--mut)">Dataset</span>
+    <button class="tab on" data-set="main">Baseline · Sep</button>
+    <button class="tab" data-set="march">March</button>
+    <button class="tab" data-set="june">June · improved</button>
+    <button class="tab" data-set="november">November · incident</button>
+    <div class="ml-auto flex gap-2">
+      <button class="btn2" id="dl">Download CSV</button>
     </div>
-    <div class="flex items-center gap-3">
-      <span class="chip rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wider">TextBlob-style scorer</span>
-      <a href="https://github.com/tshepisofrominnostation/banking-sentiment-dashboard" target="_blank" rel="noreferrer" class="rounded-xl border border-white/10 px-4 py-2 text-xs font-bold text-white transition hover:border-cyanx/40 hover:bg-white/5">GitHub repo</a>
-    </div>
-  </header>
+  </div>
+  <p class="text-xs mt-3" id="setLabel" style="color:var(--mut)"></p>
+</section>
 
-  <!-- dataset picker -->
-  <section class="card p-6">
-    <h2 class="text-xs font-bold uppercase tracking-widest text-cyanx">1 - Load reviews</h2>
-    <div id="setTabs" class="mt-4 flex flex-wrap gap-2"></div>
-    <div class="mt-4 flex flex-wrap items-center gap-3">
-      <label class="cursor-pointer rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-xs font-bold text-white transition hover:border-cyanx/40">
-        Upload CSV<input id="csvInput" type="file" accept=".csv" class="hidden">
-      </label>
-      <p id="srcNote" class="text-xs text-slate-500"></p>
-    </div>
-  </section>
+<section class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4" id="kpis"></section>
 
-  <!-- KPIs -->
-  <section id="kpiRow" class="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4"></section>
+<section class="grid md:grid-cols-2 gap-4 mb-4">
+  <div class="card p-4"><h2 class="text-sm font-bold mb-1">Sentiment mix</h2><p class="text-[11px] mut mb-2">Positive &gt; +0.10 · Neutral −0.10 to +0.10 · Negative &lt; −0.10</p>
+    <div class="h-56"><canvas id="mixChart"></canvas></div></div>
+  <div class="card p-4"><h2 class="text-sm font-bold mb-1">Negative share by channel</h2><p class="text-[11px] mut mb-2">Where the pain concentrates</p>
+    <div class="h-56"><canvas id="chanChart"></canvas></div></div>
+</section>
 
-  <!-- charts -->
-  <section class="mt-6 grid gap-6 lg:grid-cols-2">
-    <div class="card p-6">
-      <h3 class="text-sm font-bold text-white">Overall sentiment distribution</h3>
-      <div class="mt-4 flex justify-center"><canvas id="pieChart" class="max-h-64"></canvas></div>
-    </div>
-    <div class="card p-6">
-      <h3 class="text-sm font-bold text-white">Sentiment by banking channel</h3>
-      <div class="mt-4"><canvas id="barChart" class="max-h-64"></canvas></div>
-    </div>
-  </section>
+<section class="grid md:grid-cols-2 gap-4 mb-4">
+  <div class="card p-4"><h2 class="text-sm font-bold mb-1">Negative share by customer segment</h2><p class="text-[11px] mut mb-2">Who is most affected</p>
+    <div class="h-56"><canvas id="segChart"></canvas></div></div>
+  <div class="card p-4"><h2 class="text-sm font-bold mb-1">Sentiment as a monitoring signal</h2><p class="text-[11px] mut mb-2">Same instrument, three moments: baseline → fixed → incident</p>
+    <div class="h-56"><canvas id="trendChart"></canvas></div></div>
+</section>
 
-  <!-- insights + filters -->
-  <section class="mt-6 grid gap-6 lg:grid-cols-3">
-    <div class="card p-6 lg:col-span-1">
-      <h3 class="text-sm font-bold text-white">Executive insights</h3>
-      <div id="insights" class="mt-4 space-y-3 text-xs leading-6"></div>
-    </div>
-    <div class="card p-6 lg:col-span-2">
-      <div class="flex flex-wrap items-center justify-between gap-3">
-        <h3 class="text-sm font-bold text-white">Scored reviews</h3>
-        <div class="flex flex-wrap gap-2" id="filters"></div>
-      </div>
-      <div id="tableWrap" class="mt-4 max-h-96 overflow-y-auto rounded-xl border border-white/10"></div>
-      <button id="dlBtn" class="mt-4 rounded-xl bg-cyanx px-4 py-2 text-xs font-bold text-navy-900 hover:bg-cyan-300">Download scored CSV</button>
-    </div>
-  </section>
+<section class="card p-4 mb-4">
+  <h2 class="text-sm font-bold mb-1">What drives the negativity</h2>
+  <p class="text-[11px] mut mb-3">Most frequent terms inside negative reviews only (stop-words removed)</p>
+  <div id="terms" class="flex flex-wrap gap-2"></div>
+</section>
 
-  <footer class="mt-10 border-t border-white/10 pt-6 text-xs leading-6 text-slate-500">
-    <p><b class="text-slate-400">Method:</b> reviews are scored with a compact TextBlob-style lexicon scorer (polarity in [-1,+1], sentiment thresholds +/-0.1). This is a simplified in-browser port for demonstration - the reference implementation is the Streamlit app in the repository, which uses real TextBlob.</p>
-    <p class="mt-2">Datasets: bundled default sample (41 reviews) plus three 40-row practice sets (March baseline / June improved / November incident). <a class="text-cyanx hover:underline" href="https://github.com/tshepisofrominnostation/banking-sentiment-dashboard/tree/main/data" target="_blank" rel="noreferrer">View the data folder</a>.</p>
-  </footer>
-</div>
+<section class="card p-4 mb-4">
+  <div class="flex flex-wrap items-end gap-2 mb-3">
+    <div><h2 class="text-sm font-bold mb-1">Review explorer</h2><p class="text-[11px] mut">Every review, its real polarity score and label</p></div>
+    <div class="ml-auto flex flex-wrap gap-2">
+      <select id="fChan"><option value="">All channels</option></select>
+      <select id="fSent"><option value="">All sentiments</option><option>Negative</option><option>Neutral</option><option>Positive</option></select>
+      <input id="fSearch" placeholder="Search text…" class="w-44">
+      <span class="text-xs self-center mut" id="fCount"></span>
+    </div>
+  </div>
+  <div class="overflow-x-auto"><table><thead><tr><th>ID</th><th>Date</th><th>Channel</th><th>Segment</th><th>Score</th><th>Review</th></tr></thead><tbody id="rows"></tbody></table></div>
+</section>
+
+<section class="card p-4 mb-4">
+  <h2 class="text-sm font-bold mb-1">Try it: score your own review</h2>
+  <p class="text-[11px] mut mb-2">Uses a compact in-browser lexicon (labelled approximation below). The datasets above use real TextBlob — the reference implementation is the Streamlit app in the repository.</p>
+  <textarea id="myText" rows="2" class="w-full" placeholder="e.g. The app keeps crashing when I try to send money"></textarea>
+  <div class="flex items-center gap-3 mt-2">
+    <button class="btn" id="scoreBtn">Score it</button>
+    <span id="scoreOut" class="text-sm"></span>
+  </div>
+</section>
+
+<footer class="text-[11px] pb-6" style="color:var(--mut)">
+  <b style="color:#cbd5e1">Method:</b> polarity and subjectivity computed with TextBlob (pattern lexicon) in Python — see <code>polish_analyze.py</code>; results exported to <code>docs/data.json</code> and rendered here. Thresholds ±0.10.
+  <br><b style="color:#cbd5e1">Source:</b> github.com/tshepisofrominnostation/banking-sentiment-dashboard
+  <br><b style="color:#cbd5e1">Limitation:</b> TextBlob is a general-purpose English lexicon; it misses SA slang, sarcasm and isiZulu — which is why the dashboard reports scores, not verdicts.
+</footer>
+
 <script>
-// ── TextBlob-style lexical scorer (simplified port) ────────────────────────
-const LEX = {
-  great:3, good:2, excellent:3, amazing:3.5, love:3, loved:3, lovely:2.5, fantastic:3.5,
-  brilliant:3.5, awesome:3.5, perfect:3, happy:2.5, glad:2, impressed:2.5, impress:2.5, impressive:2.5,
-  smooth:1.5, easy:1.5, quick:1.5, fast:1.5, painless:1.5, helpful:2, friendly:2, kind:2,
-  patient:1.5, safe:1.5, secure:1.5, reliable:2, seamless:2, instant:1.5, instantly:1.5,
-  smoothly:1.5, lekker:2.5, legend:3, delight:3, delighted:3, relieved:2, prompt:1.5,
-  polite:2, respect:2, appreciate:2, appreciation:2, superb:3.5, best:3, worked:1.5,
-  helps:2, helped:2, helping:2, warm:1.5, efficient:2, simple:1, clear:1, neat:1.5,
-  comfortable:1.5, convenient:1.5, okay:1, genius:3, star:1, stars:1, brilliantbank:3.5,
-  terrible:-3.5, awful:-3, horrible:-3.5, worst:-4, disappointed:-3, disappointing:-3,
-  angry:-3, annoying:-3, disgusted:-3, disgusting:-3, useless:-3, frustrating:-3,
-  frustrated:-3, poor:-2, sad:-2, upset:-2, stuck:-1.5, crashed:-2, crash:-2,
-  crashing:-2, broke:-2, broken:-2, failed:-2, failing:-2, rude:-3, slow:-1.5,
-  late:-1.5, delayed:-1.5, delay:-1.5, unhelpful:-2, unacceptable:-3, furious:-3,
-  unsafe:-3, scared:-2, scary:-2.5, afraid:-1.5, mess:-2, chaos:-2, nightmare:-3.5, eish:-1,
-  struggling:-1.5, struggle:-1.5, struggled:-1.5, unhappy:-2.5, disaster:-3.5, pain:-2, painful:-2.5,
-  gamble:-2, risky:-2, unreliable:-3, froze:-2, frozen:-2, panicked:-2.5, wrong:-1,
-  confusing:-2, confused:-2, difficult:-2, inconvenient:-2.5, low:-1, ashamed:-3,
-  shame:-2.5, trust:2
-};
-delete LEX.brilliantbank;
-delete LEX.frozen2;
-const NEGATORS = new Set(["not","never","no","nothing","cannot","without","hardly"]);
-const BOOSTERS = { very:1.35, really:1.35, so:1.3, extremely:1.5, absolutely:1.5, super:1.4, totally:1.3, honestly:1.1 };
+const SET_ORDER = ["main","march","june","november"];
+let DATA = null, current = "main", charts = {}, rows = [];
 
-function polarity(text) {
-  const tokens = String(text).toLowerCase().match(/[a-z']+|[.!?;]/g) || [];
-  let sum = 0;
-  let neg = false, negDist = 0;
-  let boost = 1;
-  for (const tok of tokens) {
-    if (/[.!?;]/.test(tok)) { neg = false; negDist = 0; boost = 1; continue; }
-    const v = LEX[tok];
-    if (v !== undefined) {
-      let sc = v * boost;
-      if (neg) sc = -sc * 0.8;
-      sum += sc;
-      neg = false; negDist = 0; boost = 1;
-      continue;
-    }
-    if (NEGATORS.has(tok)) { neg = true; negDist = 0; continue; }
-    if (BOOSTERS[tok]) { boost = BOOSTERS[tok]; continue; }
-    if (neg) { negDist++; if (negDist >= 3) { neg = false; negDist = 0; } }
-  }
-  const excl = (String(text).match(/!/g) || []).length;
-  sum += Math.min(excl, 3) * 0.5;
-  return sum / Math.sqrt(sum*sum + 15);
-}
-const classify = p => p > 0.1 ? "Positive" : (p < -0.1 ? "Negative" : "Neutral");
-const preprocess = t => String(t).toLowerCase().replace(/https?:\/\/\S+/g," ").replace(/[^a-z0-9\s]/g," ").replace(/\s+/g," ").trim();
+const fmtPct = n => (n*1).toFixed(1) + "%";
+const col = s => s === "Positive" ? "#4ade80" : s === "Negative" ? "#f87171" : "#fbbf24";
 
-// themes for insights (mirrors app.py)
-const THEMES = {
-  "App stability & outages": ["crash","crashed","crashing","outage","down","frozen","stuck","not loading","logged me out","update"],
-  "Fees & charges": ["fee","fees","charge","charged","price","cost"],
-  "Payment delays & limits": ["delay","delayed","pending","limit","overnight","slow","cleared monday"],
-  "Security & fraud": ["cloned","clone","fraud","phishing","smishing","skim","skimming","scam","blocked","cardless"],
-  "Service & support": ["queue","queued","tellers","teller","rude","unhelpful","waited","waiting","call centre","consultant","staff"],
-  "Accessibility & UX": ["font","text","read","confusing","navigate","design","cluttered","dark mode"]
-};
-function themeHits(text) {
-  const t = " " + preprocess(text) + " ";
-  return Object.entries(THEMES).filter(([_, kws]) => kws.some(k => t.includes(" " + k + " ") || t.includes(" " + k + "s ") || t.includes(k + " ")));
-}
-
-// ── state ──────────────────────────────────────────────────────────────────
-let CURRENT = "default";
-let DATA = {"default": [{"Review_ID": "R001", "Date": "2026-09-02", "Channel": "Banking App", "Review_Text": "The app updated and now it keeps crashing every time I try to send money. So frustrating.", "Customer_Segment": "Young Professional"}, {"Review_ID": "R002", "Date": "2026-09-03", "Channel": "Banking App", "Review_Text": "Love the new app design, paying my friends is quick and easy. Great work.", "Customer_Segment": "Student"}, {"Review_ID": "R003", "Date": "2026-09-04", "Channel": "Instant EFT", "Review_Text": "Instant EFT reflected immediately, my supplier payment cleared in seconds. Excellent.", "Customer_Segment": "Small Business"}, {"Review_ID": "R004", "Date": "2026-09-05", "Channel": "Branch", "Review_Text": "Queued for 45 minutes at month end just to draw my pension. Terrible experience.", "Customer_Segment": "Pensioner"}, {"Review_ID": "R005", "Date": "2026-09-06", "Channel": "Card/ATM", "Review_Text": "My card was cloned at an ATM and money disappeared from my account. I am so angry about this.", "Customer_Segment": "Family"}, {"Review_ID": "R006", "Date": "2026-09-07", "Channel": "Banking App", "Review_Text": "Biometric login works flawlessly and the notifications are instant. Very impressed.", "Customer_Segment": "Family"}, {"Review_ID": "R007", "Date": "2026-09-08", "Channel": "Instant EFT", "Review_Text": "My instant EFT sat pending overnight and no one could tell me why. Really annoying.", "Customer_Segment": "Young Professional"}, {"Review_ID": "R008", "Date": "2026-09-09", "Channel": "Branch", "Review_Text": "The consultant helped me open a savings account for my daughter, warm and professional service.", "Customer_Segment": "Family"}, {"Review_ID": "R009", "Date": "2026-09-10", "Channel": "Card/ATM", "Review_Text": "Withdrew cash at the campus ATM, transaction took a few seconds. It was okay.", "Customer_Segment": "Student"}, {"Review_ID": "R010", "Date": "2026-09-11", "Channel": "Banking App", "Review_Text": "App down again during load shedding, third outage this month. Terrible for my business.", "Customer_Segment": "Small Business"}, {"Review_ID": "R011", "Date": "2026-09-12", "Channel": "Banking App", "Review_Text": "I struggle to read the small text in the app, and the update made it worse for older people like me.", "Customer_Segment": "Pensioner"}, {"Review_ID": "R012", "Date": "2026-09-13", "Channel": "Instant EFT", "Review_Text": "Instant EFT is seamless, my allowance lands the second my parents send it. Love it.", "Customer_Segment": "Student"}, {"Review_ID": "R013", "Date": "2026-09-14", "Channel": "Card/ATM", "Review_Text": "ATM was out of cash the whole weekend, had to drive to three machines. Terrible inconvenience.", "Customer_Segment": "Young Professional"}, {"Review_ID": "R014", "Date": "2026-09-15", "Channel": "Branch", "Review_Text": "Month-end queue outside the door again. Staff are friendly but there are never enough tellers.", "Customer_Segment": "Small Business"}, {"Review_ID": "R015", "Date": "2026-09-16", "Channel": "Banking App", "Review_Text": "The app logged me out four times while I was trying to pay for data. Terrible and disappointing.", "Customer_Segment": "Student"}, {"Review_ID": "R016", "Date": "2026-09-17", "Channel": "Instant EFT", "Review_Text": "Payment I sent on Friday only cleared Monday. The delay messed up my debit orders. Not happy.", "Customer_Segment": "Family"}, {"Review_ID": "R017", "Date": "2026-09-18", "Channel": "Card/ATM", "Review_Text": "Cardless cash withdrawal worked first time at the ATM. Wonderful.", "Customer_Segment": "Pensioner"}, {"Review_ID": "R018", "Date": "2026-09-19", "Channel": "Branch", "Review_Text": "Went in to unblock my card, was in and out in ten minutes. Efficient staff, thank you.", "Customer_Segment": "Student"}, {"Review_ID": "R019", "Date": "2026-09-20", "Channel": "Banking App", "Review_Text": "Monthly fees increased again without any warning. This feels dishonest and I am disappointed.", "Customer_Segment": "Family"}, {"Review_ID": "R020", "Date": "2026-09-21", "Channel": "Instant EFT", "Review_Text": "All batch payments cleared same day with no hiccups. Excellent, reliable service.", "Customer_Segment": "Small Business"}, {"Review_ID": "R021", "Date": "2026-09-22", "Channel": "Card/ATM", "Review_Text": "The ATM kept my card on payday and I had to order a replacement. Disgusted with the bank.", "Customer_Segment": "Young Professional"}, {"Review_ID": "R022", "Date": "2026-09-23", "Channel": "Branch", "Review_Text": "The branch closes at 3pm now which is difficult, but the staff who helped me were kind and patient.", "Customer_Segment": "Pensioner"}, {"Review_ID": "R023", "Date": "2026-09-24", "Channel": "Banking App", "Review_Text": "Dashboard shows my sales in real time, best banking app I have used in years.", "Customer_Segment": "Small Business"}, {"Review_ID": "R024", "Date": "2026-09-25", "Channel": "Instant EFT", "Review_Text": "I do not trust sending money on my phone, I prefer the branch. This EFT thing is confusing to me.", "Customer_Segment": "Pensioner"}, {"Review_ID": "R025", "Date": "2026-09-26", "Channel": "Card/ATM", "Review_Text": "Used the ATM at the garage, R500 out, no issues to report.", "Customer_Segment": "Student"}, {"Review_ID": "R026", "Date": "2026-09-27", "Channel": "Banking App", "Review_Text": "App froze halfway through a transfer and I panicked. Money eventually went through but scary stuff.", "Customer_Segment": "Family"}, {"Review_ID": "R027", "Date": "2026-09-28", "Channel": "Branch", "Review_Text": "Needed a bank letter, requested it online and collected same day. Smooth and simple.", "Customer_Segment": "Young Professional"}, {"Review_ID": "R028", "Date": "2026-09-29", "Channel": "Instant EFT", "Review_Text": "EFT limit too low for my rent payment, had to split transfers across two days. Inconvenient.", "Customer_Segment": "Young Professional"}, {"Review_ID": "R029", "Date": "2026-09-30", "Channel": "Card/ATM", "Review_Text": "Contactless tap on the card machine at the shops stopped working, had to insert and pin. Mildly annoying.", "Customer_Segment": "Family"}, {"Review_ID": "R030", "Date": "2026-10-01", "Channel": "Banking App", "Review_Text": "Whoever designed the latest app update should be ashamed. I cannot find my statements anymore. Frustrating.", "Customer_Segment": "Pensioner"}, {"Review_ID": "R031", "Date": "2026-10-02", "Channel": "Branch", "Review_Text": "Opened a business account in one visit, the consultant knew his products inside out. Impressive.", "Customer_Segment": "Small Business"}, {"Review_ID": "R032", "Date": "2026-10-03", "Channel": "Instant EFT", "Review_Text": "Transferred school fees instantly at 11pm and it reflected before I closed the app. Fantastic.", "Customer_Segment": "Family"}, {"Review_ID": "R033", "Date": "2026-10-04", "Channel": "Card/ATM", "Review_Text": "Weekly cash deposits at the ATM are quick and the slips are clear. No complaints.", "Customer_Segment": "Small Business"}, {"Review_ID": "R034", "Date": "2026-10-05", "Channel": "Banking App", "Review_Text": "The app crashed twice during load shedding while I was paying my exam fees. Terrible and unacceptable.", "Customer_Segment": "Student"}, {"Review_ID": "R035", "Date": "2026-10-06", "Channel": "Branch", "Review_Text": "The branch moved to the other side of town without telling customers. Inconvenient for us who walk.", "Customer_Segment": "Family"}, {"Review_ID": "R036", "Date": "2026-10-07", "Channel": "Instant EFT", "Review_Text": "Sent my friend money for the braai, it arrived instantly. Fantastic and lekker.", "Customer_Segment": "Student"}, {"Review_ID": "R037", "Date": "2026-10-08", "Channel": "Card/ATM", "Review_Text": "The ATM rejected my card and I could not draw my pension. I left upset and angry.", "Customer_Segment": "Pensioner"}, {"Review_ID": "R038", "Date": "2026-10-09", "Channel": "Banking App", "Review_Text": "Customer service replied on WhatsApp within a minute when my OTP did not arrive. Helpful people.", "Customer_Segment": "Young Professional"}, {"Review_ID": "R039", "Date": "2026-10-10", "Channel": "Branch", "Review_Text": "The security guard was rude when I asked for directions to the deposits counter. Disappointed.", "Customer_Segment": "Student"}, {"Review_ID": "R040", "Date": "2026-10-11", "Channel": "Instant EFT", "Review_Text": "The instant payment fee quietly increased, I only noticed on my statement. Sneaky and disappointing.", "Customer_Segment": "Small Business"}, {"Review_ID": "R041", "Date": "2026-10-12", "Channel": "Banking App", "Review_Text": "The app balance never matches my records and the call centre kept me waiting 20 minutes. So frustrating and exhausting.", "Customer_Segment": "Family"}], "march": [{"Review_ID": "M001", "Date": "2026-03-02", "Channel": "Banking App", "Review_Text": "The app keeps crashing whenever load shedding hits. So frustrating.", "Customer_Segment": "Young Professional"}, {"Review_ID": "M002", "Date": "2026-03-03", "Channel": "Instant EFT", "Review_Text": "Sent money to my flatmate and it reflected instantly. Excellent.", "Customer_Segment": "Student"}, {"Review_ID": "M003", "Date": "2026-03-05", "Channel": "Branch", "Review_Text": "The consultant helped me order a new bank card in ten minutes. Great service.", "Customer_Segment": "Pensioner"}, {"Review_ID": "M004", "Date": "2026-03-06", "Channel": "Card/ATM", "Review_Text": "The ATM at the mall kept my card on payday. Absolutely disgusting.", "Customer_Segment": "Family"}, {"Review_ID": "M005", "Date": "2026-03-09", "Channel": "Banking App", "Review_Text": "Monthly fees went up with no warning at all. I am so disappointed.", "Customer_Segment": "Small Business"}, {"Review_ID": "M006", "Date": "2026-03-10", "Channel": "Instant EFT", "Review_Text": "My EFT to a supplier sat pending for two days. Terrible for my business.", "Customer_Segment": "Young Professional"}, {"Review_ID": "M007", "Date": "2026-03-12", "Channel": "Branch", "Review_Text": "Month-end queue was out the door but the tellers were friendly and fast.", "Customer_Segment": "Family"}, {"Review_ID": "M008", "Date": "2026-03-13", "Channel": "Card/ATM", "Review_Text": "Withdrew R200 for the week. The machine was out of R10 notes.", "Customer_Segment": "Student"}, {"Review_ID": "M009", "Date": "2026-03-16", "Channel": "Banking App", "Review_Text": "Biometric login works every time now. Smooth and quick.", "Customer_Segment": "Young Professional"}, {"Review_ID": "M010", "Date": "2026-03-17", "Channel": "Instant EFT", "Review_Text": "Instant EFT limit is too low for my payroll. Very annoying.", "Customer_Segment": "Small Business"}, {"Review_ID": "M011", "Date": "2026-03-19", "Channel": "Branch", "Review_Text": "I waited 40 minutes just to withdraw my pension. Terrible experience.", "Customer_Segment": "Pensioner"}, {"Review_ID": "M012", "Date": "2026-03-20", "Channel": "Card/ATM", "Review_Text": "Cardless cash withdrawal at the ATM worked perfectly. Love this feature.", "Customer_Segment": "Family"}, {"Review_ID": "M013", "Date": "2026-03-23", "Channel": "Banking App", "Review_Text": "The app logged me out twice while paying for data. Frustrating.", "Customer_Segment": "Student"}, {"Review_ID": "M014", "Date": "2026-03-24", "Channel": "Instant EFT", "Review_Text": "Paid the school fees online, cleared same day. Easy and painless.", "Customer_Segment": "Family"}, {"Review_ID": "M015", "Date": "2026-03-26", "Channel": "Branch", "Review_Text": "Opened my business account in one visit. The consultant was brilliant.", "Customer_Segment": "Small Business"}, {"Review_ID": "M016", "Date": "2026-03-27", "Channel": "Card/ATM", "Review_Text": "ATM was out of cash the whole weekend. Had to drive to three machines, terrible.", "Customer_Segment": "Young Professional"}, {"Review_ID": "M017", "Date": "2026-03-30", "Channel": "Banking App", "Review_Text": "App down again during stage 4 load shedding. Third time this month, awful.", "Customer_Segment": "Family"}, {"Review_ID": "M018", "Date": "2026-03-31", "Channel": "Branch", "Review_Text": "Queue on grant day was long but the security guard helped us, very kind.", "Customer_Segment": "Pensioner"}, {"Review_ID": "M019", "Date": "2026-03-03", "Channel": "Instant EFT", "Review_Text": "Payment to my car dealer reflected in seconds. Fantastic.", "Customer_Segment": "Young Professional"}, {"Review_ID": "M020", "Date": "2026-03-07", "Channel": "Banking App", "Review_Text": "Cannot upload invoices on the app. Useless for business banking.", "Customer_Segment": "Small Business"}, {"Review_ID": "M021", "Date": "2026-03-11", "Channel": "Card/ATM", "Review_Text": "My card was cloned at a sketchy ATM. I am so angry about this.", "Customer_Segment": "Student"}, {"Review_ID": "M022", "Date": "2026-03-14", "Channel": "Branch", "Review_Text": "The branch closed early without notice. Wasted trip, very annoying.", "Customer_Segment": "Family"}, {"Review_ID": "M023", "Date": "2026-03-18", "Channel": "Instant EFT", "Review_Text": "Batch payments cleared overnight without any issues. Great work.", "Customer_Segment": "Small Business"}, {"Review_ID": "M024", "Date": "2026-03-21", "Channel": "Banking App", "Review_Text": "The font on the app is too small for me. Struggled to read my balance.", "Customer_Segment": "Pensioner"}, {"Review_ID": "M025", "Date": "2026-03-25", "Channel": "Card/ATM", "Review_Text": "Withdrew cash for the weekend braai, no issues at all.", "Customer_Segment": "Family"}, {"Review_ID": "M026", "Date": "2026-03-28", "Channel": "Banking App", "Review_Text": "Notifications for every swipe are so helpful for budgeting. Love it.", "Customer_Segment": "Student"}, {"Review_ID": "M027", "Date": "2026-03-31", "Channel": "Branch", "Review_Text": "Tellers could not process my deposit slip properly. Disappointed with the service.", "Customer_Segment": "Small Business"}, {"Review_ID": "M028", "Date": "2026-03-05", "Channel": "Contact Centre", "Review_Text": "Called the contact centre and the agent sorted my dispute in one call. Excellent.", "Customer_Segment": "Young Professional"}, {"Review_ID": "M029", "Date": "2026-03-08", "Channel": "Contact Centre", "Review_Text": "Held for 25 minutes on the phone then got cut off. Disgusting.", "Customer_Segment": "Family"}, {"Review_ID": "M030", "Date": "2026-03-15", "Channel": "Contact Centre", "Review_Text": "The lady on the phone was patient, kind and brilliant with my reversal. Excellent service.", "Customer_Segment": "Pensioner"}, {"Review_ID": "M031", "Date": "2026-03-22", "Channel": "Contact Centre", "Review_Text": "Nobody at the contact centre understands merchant codes. Useless.", "Customer_Segment": "Small Business"}, {"Review_ID": "M032", "Date": "2026-03-04", "Channel": "WhatsApp Banking", "Review_Text": "WhatsApp banking answered my balance query in seconds. Impressive.", "Customer_Segment": "Young Professional"}, {"Review_ID": "M033", "Date": "2026-03-10", "Channel": "WhatsApp Banking", "Review_Text": "The WhatsApp chatbot kept looping the same menu. So frustrating.", "Customer_Segment": "Student"}, {"Review_ID": "M034", "Date": "2026-03-19", "Channel": "WhatsApp Banking", "Review_Text": "Blocked my lost card through WhatsApp in two minutes. Brilliant.", "Customer_Segment": "Family"}, {"Review_ID": "M035", "Date": "2026-03-26", "Channel": "WhatsApp Banking", "Review_Text": "I do not understand the WhatsApp banking prompts. Confusing for me.", "Customer_Segment": "Pensioner"}, {"Review_ID": "M036", "Date": "2026-03-12", "Channel": "Card/ATM", "Review_Text": "Deposited my weekend takings at the ATM. Receipt printed and done.", "Customer_Segment": "Small Business"}, {"Review_ID": "M037", "Date": "2026-03-17", "Channel": "Instant EFT", "Review_Text": "My transfer to myself took two days to clear. Annoying.", "Customer_Segment": "Student"}, {"Review_ID": "M038", "Date": "2026-03-24", "Channel": "Banking App", "Review_Text": "The new statements view is clean and easy to read. Great improvement.", "Customer_Segment": "Family"}, {"Review_ID": "M039", "Date": "2026-03-29", "Channel": "Branch", "Review_Text": "Branch consultant opened my tax-free savings account quickly. Happy with the service.", "Customer_Segment": "Young Professional"}, {"Review_ID": "M040", "Date": "2026-03-16", "Channel": "Instant EFT", "Review_Text": "Moved R500 from my current account to my savings at the teller.", "Customer_Segment": "Pensioner"}], "june": [{"Review_ID": "J001", "Date": "2026-06-01", "Channel": "Banking App", "Review_Text": "The app update fixed all the crashing. Excellent and rock solid during load shedding now.", "Customer_Segment": "Young Professional"}, {"Review_ID": "J002", "Date": "2026-06-02", "Channel": "Instant EFT", "Review_Text": "Instant EFT cleared in seconds again. Excellent as always.", "Customer_Segment": "Student"}, {"Review_ID": "J003", "Date": "2026-06-03", "Channel": "Branch", "Review_Text": "New queue system at the branch meant ten minutes max. Impressed.", "Customer_Segment": "Pensioner"}, {"Review_ID": "J004", "Date": "2026-06-04", "Channel": "Card/ATM", "Review_Text": "Cardless withdrawal with my phone worked first time. Love it.", "Customer_Segment": "Family"}, {"Review_ID": "J005", "Date": "2026-06-05", "Channel": "Banking App", "Review_Text": "Still getting charged for notice deposits. Fees are disappointing.", "Customer_Segment": "Small Business"}, {"Review_ID": "J006", "Date": "2026-06-08", "Channel": "Instant EFT", "Review_Text": "Payroll EFT batch processed same day. Smooth and reliable.", "Customer_Segment": "Small Business"}, {"Review_ID": "J007", "Date": "2026-06-09", "Channel": "Card/ATM", "Review_Text": "ATM was out of service for maintenance on payday. Very annoying.", "Customer_Segment": "Young Professional"}, {"Review_ID": "J008", "Date": "2026-06-10", "Channel": "Branch", "Review_Text": "Teller helped reverse a double debit order with a smile. Great service.", "Customer_Segment": "Family"}, {"Review_ID": "J009", "Date": "2026-06-11", "Channel": "Banking App", "Review_Text": "The app now lets me freeze my card instantly. Fantastic feature.", "Customer_Segment": "Student"}, {"Review_ID": "J010", "Date": "2026-06-12", "Channel": "Instant EFT", "Review_Text": "My transfer was delayed overnight. Still not happy about that.", "Customer_Segment": "Young Professional"}, {"Review_ID": "J011", "Date": "2026-06-15", "Channel": "WhatsApp Banking", "Review_Text": "WhatsApp banking handled my beneficiary payment end to end. Brilliant.", "Customer_Segment": "Young Professional"}, {"Review_ID": "J012", "Date": "2026-06-16", "Channel": "Branch", "Review_Text": "Youth Day crowd was big but staff kept the queue moving. Impressive.", "Customer_Segment": "Pensioner"}, {"Review_ID": "J013", "Date": "2026-06-17", "Channel": "Card/ATM", "Review_Text": "Withdrew R300 for the long weekend at the campus ATM.", "Customer_Segment": "Student"}, {"Review_ID": "J014", "Date": "2026-06-18", "Channel": "Banking App", "Review_Text": "App performance on old phones is still slow. Frustrating for my mother.", "Customer_Segment": "Family"}, {"Review_ID": "J015", "Date": "2026-06-19", "Channel": "Contact Centre", "Review_Text": "Merchant support call resolved in eight minutes. Excellent.", "Customer_Segment": "Small Business"}, {"Review_ID": "J016", "Date": "2026-06-22", "Channel": "Instant EFT", "Review_Text": "School fee payment cleared instantly. Quick and easy.", "Customer_Segment": "Family"}, {"Review_ID": "J017", "Date": "2026-06-23", "Channel": "Banking App", "Review_Text": "The larger font option in settings is so helpful and easy. Great improvement.", "Customer_Segment": "Pensioner"}, {"Review_ID": "J018", "Date": "2026-06-24", "Channel": "Branch", "Review_Text": "Business account statements were wrong for a week. Disappointed.", "Customer_Segment": "Small Business"}, {"Review_ID": "J019", "Date": "2026-06-25", "Channel": "Card/ATM", "Review_Text": "Cash deposit machine rejected four of my notes. Very annoying.", "Customer_Segment": "Family"}, {"Review_ID": "J020", "Date": "2026-06-26", "Channel": "WhatsApp Banking", "Review_Text": "Chatbot answered my campus card query perfectly. Love the speed.", "Customer_Segment": "Student"}, {"Review_ID": "J021", "Date": "2026-06-29", "Channel": "Banking App", "Review_Text": "Load shedding hit for four hours and the app never went down. Great work.", "Customer_Segment": "Young Professional"}, {"Review_ID": "J022", "Date": "2026-06-30", "Channel": "Branch", "Review_Text": "Grant day queue was managed so well this month. Excellent.", "Customer_Segment": "Pensioner"}, {"Review_ID": "J023", "Date": "2026-06-05", "Channel": "Contact Centre", "Review_Text": "Called about a suspicious debit and got help immediately. Impressed.", "Customer_Segment": "Family"}, {"Review_ID": "J024", "Date": "2026-06-08", "Channel": "Instant EFT", "Review_Text": "My shared flat electricity payment bounced twice. Terrible.", "Customer_Segment": "Student"}, {"Review_ID": "J025", "Date": "2026-06-11", "Channel": "Card/ATM", "Review_Text": "The ATM gave me R100 short but the branch fixed it same day. Happy with the fix.", "Customer_Segment": "Young Professional"}, {"Review_ID": "J026", "Date": "2026-06-14", "Channel": "Banking App", "Review_Text": "Invoice upload finally works on the app. Great improvement for business.", "Customer_Segment": "Small Business"}, {"Review_ID": "J027", "Date": "2026-06-16", "Channel": "WhatsApp Banking", "Review_Text": "The WhatsApp prompts are simpler now. Easy to follow, thank you.", "Customer_Segment": "Pensioner"}, {"Review_ID": "J028", "Date": "2026-06-18", "Channel": "Branch", "Review_Text": "Consultant explained the new savings product clearly. Helpful.", "Customer_Segment": "Young Professional"}, {"Review_ID": "J029", "Date": "2026-06-20", "Channel": "Card/ATM", "Review_Text": "Night deposit for my shop at the branch deposit slot before closing.", "Customer_Segment": "Small Business"}, {"Review_ID": "J030", "Date": "2026-06-22", "Channel": "Banking App", "Review_Text": "My card was blocked by fraud systems wrongly. Very frustrating experience.", "Customer_Segment": "Family"}, {"Review_ID": "J031", "Date": "2026-06-25", "Channel": "Instant EFT", "Review_Text": "Same-day settlement on the new EFT rails is fantastic.", "Customer_Segment": "Small Business"}, {"Review_ID": "J032", "Date": "2026-06-27", "Channel": "Contact Centre", "Review_Text": "Waited 15 minutes on hold about my statement. Annoying.", "Customer_Segment": "Pensioner"}, {"Review_ID": "J033", "Date": "2026-06-02", "Channel": "Contact Centre", "Review_Text": "Agent reset my online banking in minutes. Great support.", "Customer_Segment": "Student"}, {"Review_ID": "J034", "Date": "2026-06-09", "Channel": "WhatsApp Banking", "Review_Text": "Loaded beneficiaries on WhatsApp without any problems. Easy.", "Customer_Segment": "Family"}, {"Review_ID": "J035", "Date": "2026-06-13", "Channel": "Branch", "Review_Text": "Branch ATM deposit window closed early. Disappointed.", "Customer_Segment": "Student"}, {"Review_ID": "J036", "Date": "2026-06-17", "Channel": "Banking App", "Review_Text": "I still struggle with the app menus. Confusing for pensioners.", "Customer_Segment": "Pensioner"}, {"Review_ID": "J037", "Date": "2026-06-21", "Channel": "Instant EFT", "Review_Text": "Split the bill with three friends instantly. Love this.", "Customer_Segment": "Young Professional"}, {"Review_ID": "J038", "Date": "2026-06-26", "Channel": "Card/ATM", "Review_Text": "Drew cash for the school cake sale at the branch ATM.", "Customer_Segment": "Family"}, {"Review_ID": "J039", "Date": "2026-06-30", "Channel": "Banking App", "Review_Text": "Month-end recon on the app took half the time. Excellent update.", "Customer_Segment": "Small Business"}, {"Review_ID": "J040", "Date": "2026-06-29", "Channel": "Card/ATM", "Review_Text": "Withdrew my grant money at the post office ATM. Transaction completed.", "Customer_Segment": "Pensioner"}], "november": [{"Review_ID": "N001", "Date": "2026-11-02", "Channel": "Banking App", "Review_Text": "The app has been down since Sunday. So frustrating, I cannot pay anyone.", "Customer_Segment": "Young Professional"}, {"Review_ID": "N002", "Date": "2026-11-02", "Channel": "Instant EFT", "Review_Text": "My payroll batch failed in the outage. Terrible day for my business.", "Customer_Segment": "Small Business"}, {"Review_ID": "N003", "Date": "2026-11-03", "Channel": "Banking App", "Review_Text": "Cannot check my balance before the outage notice even appeared. Angry.", "Customer_Segment": "Student"}, {"Review_ID": "N004", "Date": "2026-11-03", "Channel": "Contact Centre", "Review_Text": "Contact centre queue was 40 minutes during the outage. Disgusting.", "Customer_Segment": "Family"}, {"Review_ID": "N005", "Date": "2026-11-04", "Channel": "Branch", "Review_Text": "The branch was packed with angry customers during the app outage.", "Customer_Segment": "Pensioner"}, {"Review_ID": "N006", "Date": "2026-11-04", "Channel": "Banking App", "Review_Text": "Day three of the app not loading. The worst week, absolutely terrible.", "Customer_Segment": "Young Professional"}, {"Review_ID": "N007", "Date": "2026-11-05", "Channel": "Branch", "Review_Text": "Consultants set up paper withdrawals for everyone. Great recovery effort.", "Customer_Segment": "Young Professional"}, {"Review_ID": "N008", "Date": "2026-11-05", "Channel": "Contact Centre", "Review_Text": "A supervisor called me back to fix my merchant payments. Impressed.", "Customer_Segment": "Small Business"}, {"Review_ID": "N009", "Date": "2026-11-06", "Channel": "Banking App", "Review_Text": "App is back and my transfers went through. Excellent recovery.", "Customer_Segment": "Family"}, {"Review_ID": "N010", "Date": "2026-11-06", "Channel": "Instant EFT", "Review_Text": "Backlog of payments cleared overnight. Great work by the bank.", "Customer_Segment": "Family"}, {"Review_ID": "N011", "Date": "2026-11-09", "Channel": "Banking App", "Review_Text": "Got a phishing SMS pretending to be the bank. Scary and sneaky.", "Customer_Segment": "Student"}, {"Review_ID": "N012", "Date": "2026-11-10", "Channel": "Instant EFT", "Review_Text": "Nearly fell for a fake bank WhatsApp. These scammers are terrible.", "Customer_Segment": "Pensioner"}, {"Review_ID": "N013", "Date": "2026-11-11", "Channel": "Banking App", "Review_Text": "The in-app fraud warnings are clear and helpful. Love that.", "Customer_Segment": "Young Professional"}, {"Review_ID": "N014", "Date": "2026-11-12", "Channel": "Card/ATM", "Review_Text": "Skimming device found at our local ATM. I am so angry, feel completely unsafe there.", "Customer_Segment": "Family"}, {"Review_ID": "N015", "Date": "2026-11-13", "Channel": "Contact Centre", "Review_Text": "The bank froze my card after a suspicious R8,000 charge. Great security, so happy.", "Customer_Segment": "Small Business"}, {"Review_ID": "N016", "Date": "2026-11-16", "Channel": "Banking App", "Review_Text": "Someone tried to log in as me and the app blocked them. Great security.", "Customer_Segment": "Student"}, {"Review_ID": "N017", "Date": "2026-11-17", "Channel": "WhatsApp Banking", "Review_Text": "Reported a scam number through WhatsApp banking. Quick response, impressed.", "Customer_Segment": "Pensioner"}, {"Review_ID": "N018", "Date": "2026-11-18", "Channel": "Instant EFT", "Review_Text": "Black Friday payment failed twice. Very annoying at midnight.", "Customer_Segment": "Young Professional"}, {"Review_ID": "N019", "Date": "2026-11-19", "Channel": "Banking App", "Review_Text": "Black Friday checkout through the app was seamless. Excellent.", "Customer_Segment": "Family"}, {"Review_ID": "N020", "Date": "2026-11-20", "Channel": "Instant EFT", "Review_Text": "My supplier payment was delayed on the busiest weekend. Disappointed.", "Customer_Segment": "Small Business"}, {"Review_ID": "N021", "Date": "2026-11-21", "Channel": "Branch", "Review_Text": "Branch was calm and quick after the online rush. Friendly tellers.", "Customer_Segment": "Student"}, {"Review_ID": "N022", "Date": "2026-11-23", "Channel": "Card/ATM", "Review_Text": "ATM limits dropped my cash withdrawal on payday. Terrible timing.", "Customer_Segment": "Young Professional"}, {"Review_ID": "N023", "Date": "2026-11-24", "Channel": "Banking App", "Review_Text": "Stokvel payout day and the app struggled all morning. Frustrating.", "Customer_Segment": "Small Business"}, {"Review_ID": "N024", "Date": "2026-11-25", "Channel": "Contact Centre", "Review_Text": "Waited 20 minutes to dispute a Black Friday double charge. Annoying.", "Customer_Segment": "Family"}, {"Review_ID": "N025", "Date": "2026-11-26", "Channel": "Instant EFT", "Review_Text": "Refund from an online store reflected the same day. Great.", "Customer_Segment": "Student"}, {"Review_ID": "N026", "Date": "2026-11-27", "Channel": "Banking App", "Review_Text": "Black Friday sale purchase went through instantly at midnight. Brilliant.", "Customer_Segment": "Young Professional"}, {"Review_ID": "N027", "Date": "2026-11-27", "Channel": "Instant EFT", "Review_Text": "My transfer to family for December took two days. Not happy.", "Customer_Segment": "Family"}, {"Review_ID": "N028", "Date": "2026-11-28", "Channel": "Branch", "Review_Text": "Consultant helped me set up account alerts. Friendly, patient and excellent.", "Customer_Segment": "Pensioner"}, {"Review_ID": "N029", "Date": "2026-11-29", "Channel": "Card/ATM", "Review_Text": "Cash deposit for the shop counted wrong by R50. Disappointed.", "Customer_Segment": "Small Business"}, {"Review_ID": "N030", "Date": "2026-11-30", "Channel": "Banking App", "Review_Text": "The app kept me informed through the whole outage week. Impressed.", "Customer_Segment": "Pensioner"}, {"Review_ID": "N031", "Date": "2026-11-08", "Channel": "WhatsApp Banking", "Review_Text": "WhatsApp banking never skipped a beat during the outage. Fantastic.", "Customer_Segment": "Young Professional"}, {"Review_ID": "N032", "Date": "2026-11-13", "Channel": "Branch", "Review_Text": "Business banking desk sorted my POS machine issue same day. Excellent.", "Customer_Segment": "Small Business"}, {"Review_ID": "N033", "Date": "2026-11-14", "Channel": "Card/ATM", "Review_Text": "Used the campus ATM for my allowance withdrawal. No problems.", "Customer_Segment": "Student"}, {"Review_ID": "N034", "Date": "2026-11-15", "Channel": "Instant EFT", "Review_Text": "My grandchild's transfer took three days during the backlog. Frustrating.", "Customer_Segment": "Pensioner"}, {"Review_ID": "N035", "Date": "2026-11-18", "Channel": "Contact Centre", "Review_Text": "The call centre agent was rude about my phishing report. Disgusted.", "Customer_Segment": "Pensioner"}, {"Review_ID": "N036", "Date": "2026-11-20", "Channel": "Banking App", "Review_Text": "App stability since the outage has been perfect. Great to see.", "Customer_Segment": "Family"}, {"Review_ID": "N037", "Date": "2026-11-22", "Channel": "Branch", "Review_Text": "Opened a December savings plan with good advice. Helpful consultant.", "Customer_Segment": "Young Professional"}, {"Review_ID": "N038", "Date": "2026-11-25", "Channel": "Card/ATM", "Review_Text": "Drew December grocery money at the mall ATM.", "Customer_Segment": "Family"}, {"Review_ID": "N039", "Date": "2026-11-28", "Channel": "Instant EFT", "Review_Text": "Client payments all landed on time this week. Smooth sailing.", "Customer_Segment": "Small Business"}, {"Review_ID": "N040", "Date": "2026-11-21", "Channel": "WhatsApp Banking", "Review_Text": "Checked my shop balance on WhatsApp during the outage week.", "Customer_Segment": "Small Business"}]};
-let rows = [];
-let filter = { sentiment: "All" };
-let pie = null, bar = null;
-
-function scoreAll(records) {
-  return records.map(r => {
-    const text = r.Review_Text || r.review_text || r.text || "";
-    const p = polarity(text);
-    return {
-      id: r.Review_ID || r.review_id || ("#" + Math.random().toString(36).slice(2,7)),
-      date: r.Date || r.date || "",
-      channel: r.Channel || r.channel || "Unknown",
-      segment: r.Customer_Segment || r.customer_segment || "Unknown",
-      text,
-      polarity: +p.toFixed(3),
-      subjectivity: +(Math.min(0.99, Math.abs(p) * 1.15 + (text.split(/[.!?]/).length > 1 ? 0.15 : 0.05))).toFixed(2),
-      sentiment: classify(p)
-    };
-  });
-}
-
-function renderTabs() {
-  const labels = { default:"Default sample (41)", march:"March 2026 - baseline", june:"June 2026 - improved", november:"November 2026 - incident" };
-  document.getElementById("setTabs").innerHTML = Object.keys(DATA).map(k =>
-    `<button data-set="${k}" class="tabbtn rounded-xl border border-white/10 px-4 py-2 text-xs font-bold ${k===CURRENT?'active':'text-slate-400'} hover:border-cyanx/40">${labels[k]||k}</button>`).join("");
-  document.querySelectorAll("[data-set]").forEach(b => b.onclick = () => { CURRENT = b.dataset.set; load(CURRENT, null); });
-}
-
-function load(key, records) {
-  rows = scoreAll(records || DATA[key]);
-  document.getElementById("srcNote").textContent = records
-    ? `Loaded ${rows.length} reviews from your CSV.`
-    : `Loaded ${rows.length} reviews from the bundled ${key} dataset.`;
-  filter = { sentiment: "All" };
-  renderKpis(); renderCharts(); renderInsights(); renderFilters(); renderTable();
+function kpi(label, value, sub, color) {
+  return `<div class="card p-4">
+    <div class="text-[10px] font-bold uppercase tracking-widest" style="color:var(--mut)">${label}</div>
+    <div class="text-3xl font-bold mt-1" style="color:${color}">${value}</div>
+    <div class="text-[11px] mt-1" style="color:var(--mut)">${sub}</div></div>`;
 }
 
 function renderKpis() {
-  const n = rows.length;
-  const pos = rows.filter(r => r.sentiment === "Positive").length;
-  const neg = rows.filter(r => r.sentiment === "Negative").length;
-  const avg = n ? rows.reduce((a,r) => a + r.polarity, 0) / n : 0;
-  document.getElementById("kpiRow").innerHTML = [
-    ["TOTAL REVIEWS", n, "text-white"],
-    ["POSITIVE", n ? Math.round(100*pos/n) + "%" : "0%", "text-green"],
-    ["NEGATIVE", n ? Math.round(100*neg/n) + "%" : "0%", "text-redx"],
-    ["AVG POLARITY", avg.toFixed(3), avg < 0 ? "text-redx" : "text-cyanx"]
-  ].map(([l,v,c]) => `<div class="card p-5"><p class="text-[11px] font-bold tracking-widest text-slate-500">${l}</p><p class="mt-2 text-2xl font-bold ${c}">${v}</p></div>`).join("");
+  const s = DATA.sets[current].summary;
+  document.getElementById("kpis").innerHTML =
+    kpi("Reviews", s.total, DATA.sets[current].label, "#e2e8f0") +
+    kpi("Negative", fmtPct(s.negative_pct), "share of all reviews", "var(--red)") +
+    kpi("Avg polarity", (s.avg_polarity >= 0 ? "+" : "") + s.avg_polarity.toFixed(3), "range −1 to +1", s.avg_polarity < 0 ? "var(--red)" : "var(--green)") +
+    kpi("Subjectivity", s.avg_subjectivity.toFixed(2), "0 = factual, 1 = opinion", "var(--cyan)");
+}
+
+function barOpts(max) {
+  return { responsive: true, maintainAspectRatio: false, indexAxis: "y",
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { beginAtZero: true, max: max, ticks: { color: "#94a3b8", callback: v => v + "%" }, grid: { color: "rgba(30,58,95,.6)" } },
+      y: { ticks: { color: "#cbd5e1", font: { size: 11 } }, grid: { display: false } } } };
 }
 
 function renderCharts() {
-  const counts = { Positive:0, Neutral:0, Negative:0 };
-  rows.forEach(r => counts[r.sentiment]++);
-  const palette = { Positive:"#34d399", Neutral:"#94a3b8", Negative:"#f87171" };
-  if (pie) pie.destroy();
-  pie = new Chart(document.getElementById("pieChart"), {
+  const s = DATA.sets[current].summary;
+  Object.values(charts).forEach(c => c && c.destroy()); charts = {};
+
+  charts.mix = new Chart(document.getElementById("mixChart"), {
     type: "doughnut",
-    data: { labels: Object.keys(counts), datasets: [{ data: Object.values(counts),
-      backgroundColor: Object.keys(counts).map(k => palette[k]), borderWidth: 0, hoverOffset: 6 }] },
-    options: { plugins: { legend: { position: "bottom", labels: { color:"#94a3b8", boxWidth:12, padding:14 } } },
-      cutout: "58%" }
-  });
-  const channels = [...new Set(rows.map(r => r.channel))];
-  const byC = { Positive:[], Neutral:[], Negative:[] };
-  channels.forEach(c => ["Positive","Neutral","Negative"].forEach(s =>
-    byC[s].push(rows.filter(r => r.channel === c && r.sentiment === s).length)));
-  if (bar) bar.destroy();
-  bar = new Chart(document.getElementById("barChart"), {
+    data: { labels: ["Positive", "Neutral", "Negative"],
+      datasets: [{ data: [s.mix.Positive, s.mix.Neutral, s.mix.Negative],
+        backgroundColor: ["#4ade80", "#fbbf24", "#f87171"], borderWidth: 0, hoverOffset: 4 }] },
+    options: { responsive: true, maintainAspectRatio: false, cutout: "58%",
+      plugins: { legend: { position: "bottom", labels: { color: "#cbd5e1", font: { size: 11 }, boxWidth: 10 } },
+        tooltip: { callbacks: { label: c => `${c.label}: ${c.raw} reviews (${s.mix_pct[c.label]}%)` } } } } });
+
+  const chans = Object.entries(s.by_channel).sort((a, b) => b[1].negative_pct - a[1].negative_pct);
+  charts.chan = new Chart(document.getElementById("chanChart"), {
     type: "bar",
-    data: { labels: channels, datasets: ["Positive","Neutral","Negative"].map(s => ({
-      label: s, data: byC[s], backgroundColor: palette[s], borderRadius: 4 })) },
+    data: { labels: chans.map(c => c[0]),
+      datasets: [{ data: chans.map(c => c[1].negative_pct), backgroundColor: "#22d3ee", borderRadius: 4, borderWidth: 0 }] },
+    options: barOpts(100) });
+
+  const segs = Object.entries(s.by_segment).sort((a, b) => b[1].negative_pct - a[1].negative_pct);
+  charts.seg = new Chart(document.getElementById("segChart"), {
+    type: "bar",
+    data: { labels: segs.map(c => c[0]),
+      datasets: [{ data: segs.map(c => c[1].negative_pct), backgroundColor: "#a78bfa", borderRadius: 4, borderWidth: 0 }] },
+    options: barOpts(100) });
+
+  const order = ["march", "june", "november"];
+  charts.trend = new Chart(document.getElementById("trendChart"), {
+    type: "line",
+    data: { labels: order.map(k => DATA.sets[k].label.replace(" baseline", "").replace(" improved", "").replace(" incident", "")),
+      datasets: [
+        { label: "Negative %", data: order.map(k => DATA.sets[k].summary.negative_pct), borderColor: "#f87171",
+          backgroundColor: "rgba(248,113,113,.15)", fill: true, tension: .35, borderWidth: 2, pointRadius: 4, pointBackgroundColor: "#f87171" },
+        { label: "Avg polarity", data: order.map(k => DATA.sets[k].summary.avg_polarity * 100), borderColor: "#22d3ee",
+          backgroundColor: "transparent", tension: .35, borderWidth: 2, pointRadius: 4, pointBackgroundColor: "#22d3ee", yAxisID: "y2" } ] },
     options: { responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { position: "bottom", labels: { color:"#94a3b8", boxWidth:12, padding:14 } } },
-      scales: { x: { stacked:true, ticks:{ color:"#94a3b8", font:{size:10} }, grid:{ display:false } },
-                y: { stacked:true, ticks:{ color:"#94a3b8" }, grid:{ color:"rgba(148,163,184,.12)" } } } }
-  });
+      plugins: { legend: { position: "bottom", labels: { color: "#cbd5e1", font: { size: 11 }, boxWidth: 10 } } },
+      scales: { y: { beginAtZero: true, max: 100, ticks: { color: "#94a3b8", callback: v => v + "%" }, grid: { color: "rgba(30,58,95,.6)" } },
+        y2: { position: "right", min: -30, max: 30, ticks: { color: "#22d3ee", callback: v => (v/100).toFixed(1) }, grid: { display: false } },
+        x: { ticks: { color: "#cbd5e1" }, grid: { display: false } } } } });
 }
 
-function renderInsights() {
-  const n = rows.length;
-  if (!n) { document.getElementById("insights").innerHTML = "<p class='text-slate-500'>No reviews loaded.</p>"; return; }
-  const neg = rows.filter(r => r.sentiment === "Negative");
-  const channels = [...new Set(rows.map(r => r.channel))].map(c => {
-    const cr = rows.filter(r => r.channel === c);
-    return { c, n: cr.length, negPct: 100*cr.filter(r => r.sentiment === "Negative").length / cr.length };
-  }).sort((a,b) => b.negPct - a.negPct);
-  const worst = channels[0], best = channels[channels.length-1];
-  const themeCount = {};
-  neg.forEach(r => themeHits(r.text).forEach(([t]) => themeCount[t] = (themeCount[t]||0)+1));
-  const top = Object.entries(themeCount).sort((a,b) => b[1]-a[1]).slice(0,3);
-  const li = (color, title, body) =>
-    `<div class="rounded-lg border border-white/10 bg-navy-900/60 p-3"><p class="text-[11px] font-bold uppercase tracking-wider ${color}">${title}</p><p class="mt-1 text-slate-400">${body}</p></div>`;
-  document.getElementById("insights").innerHTML =
-    li("text-redx", "Weakest channel", `${worst.c}: ${Math.round(worst.negPct)}% of its reviews are negative (${worst.n} reviews).`) +
-    li("text-green", "Strongest channel", `${best.c}: only ${Math.round(best.negPct)}% negative across ${best.n} reviews.`) +
-    (top.length ? li("text-orange", "Top negative drivers", top.map(([t,c]) => `${t} (${c})`).join(" &middot; ")) : "") +
-    li("text-cyanx", "Overall", `${Math.round(100*neg.length/n)}% negative across ${n} reviews, avg polarity ${(rows.reduce((a,r)=>a+r.polarity,0)/n).toFixed(3)}.`);
-}
-
-function renderFilters() {
-  const opts = ["All","Positive","Neutral","Negative"];
-  document.getElementById("filters").innerHTML = opts.map(o =>
-    `<button data-f="${o}" class="rounded-lg px-3 py-1.5 text-[11px] font-bold ${filter.sentiment===o?"bg-cyanx text-navy-900":"border border-white/10 text-slate-400 hover:border-cyanx/40"}">${o}</button>`).join("");
-  document.querySelectorAll("[data-f]").forEach(b => b.onclick = () => { filter.sentiment = b.dataset.f; renderFilters(); renderTable(); });
+function renderTerms() {
+  const terms = DATA.sets[current].summary.negative_terms.slice(0, 18);
+  document.getElementById("terms").innerHTML = terms.map(([w, c]) =>
+    `<span class="chip" style="color:#fca5a5">${w} <b style="color:#f87171">${c}</b></span>`).join("");
 }
 
 function renderTable() {
-  const shown = filter.sentiment === "All" ? rows : rows.filter(r => r.sentiment === filter.sentiment);
-  const badge = s => ({ Positive:"bg-green/15 text-green", Neutral:"bg-slate-500/15 text-slate-300", Negative:"bg-redx/15 text-redx" })[s];
-  document.getElementById("tableWrap").innerHTML = shown.length ? `<table class="w-full text-left text-xs">
-    <thead class="sticky top-0 bg-navy-800 text-[10px] uppercase tracking-wider text-slate-500">
-      <tr><th class="p-2.5">ID</th><th class="p-2.5">Date</th><th class="p-2.5">Channel</th><th class="p-2.5">Review</th><th class="p-2.5">Polarity</th><th class="p-2.5">Sentiment</th></tr></thead>
-    <tbody>${shown.map(r => `<tr class="border-t border-white/5 hover:bg-white/[.03]">
-      <td class="p-2.5 font-mono text-slate-500">${r.id}</td><td class="p-2.5 whitespace-nowrap text-slate-500">${r.date}</td>
-      <td class="p-2.5 whitespace-nowrap text-slate-300">${r.channel}</td><td class="p-2.5 text-slate-400 max-w-xs">${r.text.length>90?r.text.slice(0,90)+"…":r.text}</td>
-      <td class="p-2.5 font-mono ${r.polarity<0?"text-redx":"text-green"}">${r.polarity.toFixed(2)}</td>
-      <td class="p-2.5"><span class="rounded-full px-2 py-0.5 text-[10px] font-bold ${badge(r.sentiment)}">${r.sentiment}</span></td></tr>`).join("")}</tbody></table>`
-    : `<p class="p-6 text-center text-slate-500">No reviews match this filter.</p>`;
+  const fc = document.getElementById("fChan").value;
+  const fs = document.getElementById("fSent").value;
+  const q = document.getElementById("fSearch").value.toLowerCase();
+  const out = rows.filter(r =>
+    (!fc || r.channel === fc) && (!fs || r.sentiment === fs) &&
+    (!q || r.text.toLowerCase().includes(q)));
+  document.getElementById("fCount").textContent = out.length + " of " + rows.length;
+  document.getElementById("rows").innerHTML = out.map(r => {
+    const cls = r.sentiment === "Negative" ? "neg" : r.sentiment === "Positive" ? "pos" : "neu";
+    return `<tr><td style="color:var(--mut)">${r.id}</td><td style="color:var(--mut)">${r.date}</td>
+      <td>${r.channel}</td><td style="color:var(--mut)">${r.segment}</td>
+      <td class="${cls}" style="font-weight:700">${r.polarity.toFixed(2)}</td>
+      <td>${r.text.replace(/</g, "&lt;")}</td></tr>`;
+  }).join("") || `<tr><td colspan="6" style="color:var(--mut)">No reviews match those filters.</td></tr>`;
 }
 
-document.getElementById("dlBtn").onclick = () => {
-  const head = "Review_ID,Date,Channel,Customer_Segment,Review_Text,Polarity,Subjectivity,Sentiment";
-  const esc = v => '"' + String(v).replace(/"/g,'""') + '"';
-  const body = rows.map(r => [r.id,r.date,r.channel,r.segment,r.text,r.polarity,r.subjectivity,r.sentiment].map(esc).join(",")).join("\n");
+function loadSet(key) {
+  current = key;
+  rows = DATA.sets[key].reviews;
+  document.querySelectorAll(".tab").forEach(t => t.classList.toggle("on", t.dataset.set === key));
+  document.getElementById("setLabel").textContent =
+    DATA.sets[key].label + " · " + DATA.sets[key].summary.total + " reviews · source file: " + DATA.sets[key].file;
+  const chans = [...new Set(rows.map(r => r.channel))].sort();
+  const sel = document.getElementById("fChan");
+  sel.innerHTML = '<option value="">All channels</option>' + chans.map(c => `<option>${c}</option>`).join("");
+  renderKpis(); renderCharts(); renderTerms(); renderTable();
+}
+
+function downloadCsv() {
+  const head = "Review_ID,Date,Channel,Customer_Segment,Polarity,Subjectivity,Sentiment,Review_Text";
+  const body = rows.map(r => [r.id, r.date, r.channel, r.segment, r.polarity, r.subjectivity, r.sentiment,
+    '"' + r.text.replace(/"/g, '""') + '"'].join(",")).join("\n");
+  const blob = new Blob([head + "\n" + body], { type: "text/csv;charset=utf-8" });
   const a = document.createElement("a");
-  a.href = URL.createObjectURL(new Blob([head+"\n"+body], { type:"text/csv" }));
-  a.download = "scored_reviews.csv"; a.click();
-};
+  a.href = URL.createObjectURL(blob);
+  a.download = "banking_sentiment_" + current + ".csv";
+  a.click();
+}
 
-document.getElementById("csvInput").onchange = e => {
-  const f = e.target.files[0]; if (!f) return;
-  const rd = new FileReader();
-  rd.onload = () => {
-    const lines = String(rd.result).split(/\r?\n/).filter(Boolean);
-    const sep = lines[0].includes(";") ? ";" : ",";
-    const headers = lines[0].toLowerCase().split(sep).map(h => h.trim());
-    const textCol = headers.findIndex(h => h.includes("review") || h.includes("text"));
-    if (textCol === -1) { alert("CSV needs a Review_Text (or text) column."); return; }
-    const get = (cells, names) => { for (const nm of names) { const i = headers.indexOf(nm); if (i > -1 && cells[i] !== undefined) return cells[i]; } return ""; };
-    const recs = lines.slice(1).map(l => {
-      const cells = l.split(sep);
-      return { Review_ID: get(cells,["review_id","id"]), Date: get(cells,["date"]),
-        Channel: get(cells,["channel"]), Customer_Segment: get(cells,["customer_segment","segment"]),
-        Review_Text: cells[textCol] };
-    }).filter(r => r.Review_Text);
-    load("upload", recs);
-  };
-  rd.readAsText(f);
-};
+// simplified in-browser lexicon — clearly an approximation of TextBlob
+const LEX = { great:2, excellent:3, love:2, quick:1, easy:2, reliable:2, good:1, happy:2, friendly:2, helpful:2,
+  fixed:1, rock:1, solid:1, smooth:1, best:2, amazing:3, perfect:2, fast:1, convenient:1,
+  crash:-3, crashes:-3, crashing:-3, terrible:-3, awful:-3, frustrating:-2, angry:-2, annoying:-2,
+  slow:-2, delay:-2, delayed:-2, failed:-3, fails:-3, charges:-2, expensive:-2, rude:-3, broken:-2, offline:-2, frozen:-2 };
+function approxScore(text) {
+  const words = text.toLowerCase().match(/[a-z']+/g) || [];
+  let sum = 0, hits = 0;
+  for (const w of words) if (LEX[w]) { sum += LEX[w]; hits++; }
+  const pol = hits ? Math.max(-1, Math.min(1, sum / (hits * 3))) : 0;
+  const label = pol > 0.1 ? "Positive" : pol < -0.1 ? "Negative" : "Neutral";
+  return { pol, label };
+}
 
-renderTabs();
-load("default");
+document.getElementById("dl").onclick = downloadCsv;
+document.getElementById("scoreBtn").onclick = () => {
+  const t = document.getElementById("myText").value.trim();
+  const out = document.getElementById("scoreOut");
+  if (t.length < 3) { out.innerHTML = '<span class="mut">Type a review first.</span>'; return; }
+  const r = approxScore(t);
+  out.innerHTML = 'approx. polarity <b style="color:' + col(r.label) + '">' + r.pol.toFixed(2) +
+    '</b> · <b style="color:' + col(r.label) + '">' + r.label + "</b>";
+};
+document.querySelectorAll(".tab").forEach(t => t.onclick = () => loadSet(t.dataset.set));
+["fChan", "fSent"].forEach(id => document.getElementById(id).onchange = renderTable);
+document.getElementById("fSearch").oninput = renderTable;
+
+fetch("data.json").then(r => r.json()).then(d => {
+  DATA = d; loadSet("main");
+}).catch(() => {
+  document.getElementById("kpis").innerHTML =
+    '<div class="card p-4 col-span-4" style="color:var(--red)">Could not load data.json — open the dashboard through its published URL or serve the folder locally.</div>';
+});
 </script>
 </body>
 </html>
