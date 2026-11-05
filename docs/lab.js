@@ -4,8 +4,16 @@
   var S = window.SentimentScorer, parity = null, rows = [];
 
   fetch("parity.json").then(function (r) { return r.json(); }).then(function (p) { parity = p; renderParity(); }).catch(function () {});
-  fetch("lexicon.json").then(function (r) { return r.json(); }).then(function (l) { S.load(l); })
-    .catch(function () { msg("Lexicon failed to load.", true); });
+  // base TextBlob lexicon + documented banking supplement
+  Promise.all([
+    fetch("lexicon.json").then(function (r) { return r.json(); }),
+    fetch("domain.json").then(function (r) { return r.json(); }).catch(function () { return { terms: {} }; })
+  ]).then(function (res) {
+    var lex = res[0], extra = (res[1] && res[1].terms) || {}, k;
+    for (k in extra) if (Object.prototype.hasOwnProperty.call(extra, k)) lex[k] = extra[k];
+    S.load(lex);
+    window.__lexiconLoaded = true;
+  }).catch(function () { msg("Lexicon failed to load.", true); });
 
   function msg(t, err) {
     var m = document.getElementById("labMsg");

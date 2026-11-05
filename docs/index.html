@@ -123,8 +123,8 @@ td{padding:8px 6px;border-bottom:1px solid rgba(30,58,95,.5);font-size:12.5px;ve
     </div>
     <div class="text-[11px] leading-relaxed" style="color:var(--mut)">
       <div class="text-[10px] tracking-widest mb-1">HOW THE SCORING WORKS</div>
-      Polarity and subjectivity from TextBlob's <code>en-sentiment</code> lexicon (1,528 entries), with negation and
-      intensifier rules, averaged per sentence — the same approach as the Python pipeline. Labels use the identical
+      Polarity and subjectivity from TextBlob's <code>en-sentiment</code> lexicon (1,528 entries) plus a documented
+      30-term banking supplement (crash, declined, load shedding…), with negation and intensifier rules, averaged per sentence — the same approach as the Python pipeline. Labels use the identical
       ±0.10 thresholds, so a review lands in the same band here as it does in Python.
       <div class="mt-2">
         Known limits: sarcasm, isiZulu and code-switching are invisible to a lexicon. The parity figure above is measured

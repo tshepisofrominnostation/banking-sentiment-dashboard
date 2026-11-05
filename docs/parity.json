@@ -1,9 +1,9 @@
 {
  "reviews": 161,
- "label_matches": 157,
- "label_agreement": 0.9752,
- "mean_abs_error": 0.1498,
- "near_exact": 60,
- "generated_by": "JS port of TextBlob's en-sentiment lexicon, calibrated on the bundled corpus",
- "engine": "sentence-level average, intensifier 1.3, diminisher 0.5, negation -0.5"
+ "label_matches": 156,
+ "label_agreement": 0.9689,
+ "mean_abs_error": 0.1599,
+ "engine": "TextBlob en-sentiment lexicon (1528 entries) + 30-term banking supplement; sentence-level average; intensifier 1.3, diminisher 0.5, negation -0.5",
+ "generated_by": "Node parity harness over the bundled corpus, compared against Python TextBlob polarity",
+ "note": "The banking supplement lowers agreement slightly (97.5% -> 96.9%) but stops terms like 'crashed', 'declined' and 'load shedding' being scored as neutral."
 }

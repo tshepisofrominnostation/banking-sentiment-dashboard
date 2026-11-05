@@ -1,0 +1,12 @@
+{
+  "_comment": "Banking domain supplement for the browser engine. TextBlob's lexicon is general-purpose and scores 'crashed', 'declined' or 'load shedding' as neutral, which understates channel pain. These entries are explicit so the assumption is auditable. Base TextBlob weights are never overridden unless listed here.",
+  "terms": {
+    "crash": -0.6, "crashed": -0.6, "crashes": -0.6, "crashing": -0.6,
+    "declined": -0.5, "decline": -0.5, "rejected": -0.5, "reversal": -0.4,
+    "downtime": -0.7, "outage": -0.7, "offline": -0.5, "frozen": -0.5, "freezes": -0.5,
+    "lag": -0.3, "laggy": -0.4, "bug": -0.4, "bugs": -0.4, "glitch": -0.4,
+    "unauthorised": -0.7, "unauthorized": -0.7, "fraud": -0.8, "stolen": -0.8,
+    "overcharged": -0.6, "overcharge": -0.6, "unhelpful": -0.7, "queue": -0.2,
+    "hold": -0.3, "queued": -0.3, "loadshedding": -0.5, "loadshed": -0.5, "spaza": 0.0
+  }
+}
