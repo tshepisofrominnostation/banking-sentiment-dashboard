@@ -1,0 +1,11 @@
+Review_ID,Date,Channel,Customer_Segment,Review_Text
+T-01,2026-11-01,Banking App,Young Professional,The app crashed again this morning and I could not pay rent
+T-02,2026-11-01,Banking App,Student,Honestly the new update is not bad at all
+T-03,2026-11-01,Branch,Pensioner,Branch staff were lovely but the queue was over an hour
+T-04,2026-11-02,Card/ATM,Family,Card declined twice at the till with money in the account - embarrassing
+T-05,2026-11-02,Instant EFT,Small Business,Instant EFT worked perfectly and the money arrived in seconds
+T-06,2026-11-02,Banking App,Young Professional,Wow great job breaking the app again
+T-07,2026-11-03,Branch,Family,Fees are too high and nobody explains them properly
+T-08,2026-11-03,Card/ATM,Pensioner,I am not happy about the new pension payout process
+T-09,2026-11-03,Banking App,Student,Eish this app is slow but at least it works
+T-10,2026-11-04,Instant EFT,Small Business,Payment failed and support never called me back

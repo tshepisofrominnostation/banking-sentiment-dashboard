@@ -1,0 +1,9 @@
+{
+ "reviews": 161,
+ "label_matches": 157,
+ "label_agreement": 0.9752,
+ "mean_abs_error": 0.1498,
+ "near_exact": 60,
+ "generated_by": "JS port of TextBlob's en-sentiment lexicon, calibrated on the bundled corpus",
+ "engine": "sentence-level average, intensifier 1.3, diminisher 0.5, negation -0.5"
+}

@@ -96,10 +96,57 @@ td{padding:8px 6px;border-bottom:1px solid rgba(30,58,95,.5);font-size:12.5px;ve
   </div>
 </section>
 
+
+<section class="card" style="padding:1.25rem;margin-bottom:1rem" id="lab">
+  <div class="flex flex-wrap items-baseline justify-between gap-2">
+    <h2 class="text-sm font-bold">Analyse your own data</h2>
+    <div class="text-[11px]" style="color:var(--mut)" id="labParity">Browser engine loading…</div>
+  </div>
+  <p class="text-[11px] mt-1" style="color:var(--mut)">
+    Upload a CSV with a <b>Review_Text</b> column (plus optional Date, Channel, Customer_Segment), or paste reviews one per line.
+    Scoring runs entirely in your browser against TextBlob's own lexicon. Nothing is uploaded to a server.
+  </p>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
+    <div>
+      <label class="text-[10px] tracking-widest" style="color:var(--mut)">PASTE REVIEWS (one per line)</label>
+      <textarea id="labText" rows="5" class="w-full mt-1 rounded border p-2 text-[12px]"
+        style="background:#0d1a2e;border-color:#1e3352;color:#e2e8f0"
+        placeholder="The app crashed again this morning.&#10;Honestly the new update is not bad.&#10;Branch staff were lovely but the queue was an hour."></textarea>
+      <div class="flex flex-wrap items-center gap-2 mt-2">
+        <button id="labPaste" class="btn2">Score pasted text</button>
+        <button id="labSample" class="btn2">Load sample CSV</button>
+        <label class="btn2" style="cursor:pointer">
+          Upload CSV<input id="labFile" type="file" accept=".csv,text/csv" style="display:none">
+        </label>
+      </div>
+      <div id="labMsg" class="text-[11px] mt-2" style="color:var(--mut)"></div>
+    </div>
+    <div class="text-[11px] leading-relaxed" style="color:var(--mut)">
+      <div class="text-[10px] tracking-widest mb-1">HOW THE SCORING WORKS</div>
+      Polarity and subjectivity from TextBlob's <code>en-sentiment</code> lexicon (1,528 entries), with negation and
+      intensifier rules, averaged per sentence — the same approach as the Python pipeline. Labels use the identical
+      ±0.10 thresholds, so a review lands in the same band here as it does in Python.
+      <div class="mt-2">
+        Known limits: sarcasm, isiZulu and code-switching are invisible to a lexicon. The parity figure above is measured
+        against Python on this site's own corpus, not a claim about all text.
+      </div>
+    </div>
+  </div>
+  <div id="labResults"></div>
+</section>
+
 <footer class="text-[11px] pb-6" style="color:var(--mut)">
   <b style="color:#cbd5e1">Method:</b> polarity and subjectivity computed with TextBlob (pattern lexicon) in Python — see <code>polish_analyze.py</code>; results exported to <code>docs/data.json</code> and rendered here. Thresholds ±0.10.
   <br><b style="color:#cbd5e1">Source:</b> github.com/tshepisofrominnostation/banking-sentiment-dashboard
   <br><b style="color:#cbd5e1">Limitation:</b> TextBlob is a general-purpose English lexicon; it misses SA slang, sarcasm and isiZulu — which is why the dashboard reports scores, not verdicts.
+  <div class="mt-3 flex flex-wrap items-center gap-2">
+    <a href="https://github.com/tshepisofrominnostation/banking-sentiment-dashboard" target="_blank" rel="noopener"
+       class="btn2" style="text-decoration:none">↗ Source on GitHub</a>
+    <a href="Sentiment_Analysis_Slides.pdf" target="_blank" rel="noopener"
+       class="btn2" style="text-decoration:none">↗ Presentation slides (PDF)</a>
+    <a href="https://github.com/tshepisofrominnostation/banking-sentiment-dashboard/blob/main/README.md" target="_blank" rel="noopener"
+       class="btn2" style="text-decoration:none">↗ README &amp; method</a>
+  </div>
 </footer>
 
 <script>
@@ -256,5 +303,7 @@ fetch("data.json").then(r => r.json()).then(d => {
     '<div class="card p-4 col-span-4" style="color:var(--red)">Could not load data.json — open the dashboard through its published URL or serve the folder locally.</div>';
 });
 </script>
+<script src="scorer.js"></script>
+<script src="lab.js"></script>
 </body>
 </html>
