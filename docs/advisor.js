@@ -53,9 +53,11 @@
 
     if (channels.length >= 2) {
       var rates = channels.map(function (k) { return rate(S.channels[k]); });
-      var med = median(rates);
       var worst = channels.slice().sort(function (a, b) { return rate(S.channels[b]) - rate(S.channels[a]); })[0];
       var wr = rate(S.channels[worst]);
+      // median of the OTHER channels - the copy promises the others, so compute it that way
+      var med = median(channels.filter(function (k) { return k !== worst; })
+                              .map(function (k) { return rate(S.channels[k]); }));
       if (wr - med >= 8) {
         // modelled impact: if this channel only performed at the median of the others
         var total = S.n, fixedNeg = 0;
