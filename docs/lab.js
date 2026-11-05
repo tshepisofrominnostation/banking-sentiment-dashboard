@@ -102,41 +102,52 @@
     }).filter(function (r) { return r.text.length > 1; });
   }
 
+  function tile(label, value, sub) {
+    return '<div class="rounded-lg border px-3 py-2" style="border-color:var(--line);background:var(--panel2)">' +
+      '<div class="text-[10px] tracking-widest" style="color:var(--mut)">' + label + '</div>' +
+      '<div class="mt-1 text-xl font-bold" style="color:var(--ink)">' + value + '</div>' +
+      '<div class="text-[10px]" style="color:var(--mut);opacity:.8">' + esc(sub) + '</div></div>';
+  }
+
+  function adviseUploaded(records) {
+    if (!window.CitiAdvisorUI) return;
+    window.CitiAdvisorUI.render(records);
+  }
+
   function render(scored, source) {
     rows = scored;
+    var n = scored.length || 1;
     var neg = scored.filter(function (r) { return r.sentiment === "Negative"; }).length;
     var pos = scored.filter(function (r) { return r.sentiment === "Positive"; }).length;
-    var avg = scored.reduce(function (a, r) { return a + r.polarity; }, 0) / (scored.length || 1);
+    var avg = scored.reduce(function (a, r) { return a + r.polarity; }, 0) / n;
     var el = document.getElementById("labResults");
     if (!el) return;
     el.innerHTML =
       '<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">' +
         tile("REVIEWS", scored.length, source) +
-        tile("NEGATIVE", (100 * neg / scored.length).toFixed(1) + "%", neg + " reviews") +
-        tile("POSITIVE", (100 * pos / scored.length).toFixed(1) + "%", pos + " reviews") +
+        tile("NEGATIVE", (100 * neg / n).toFixed(1) + "%", neg + " reviews") +
+        tile("POSITIVE", (100 * pos / n).toFixed(1) + "%", pos + " reviews") +
         tile("AVG POLARITY", (avg >= 0 ? "+" : "") + avg.toFixed(3), "range -1 to +1") +
       '</div>' +
-      '<div class="mt-4 max-h-72 overflow-auto rounded border border-slate-800">' +
-        '<table class="w-full text-left text-[11px]"><thead class="bg-slate-900/70 text-slate-400 sticky top-0">' +
+      '<div class="mt-4 max-h-72 overflow-auto rounded" style="border:1px solid var(--line)">' +
+        '<table class="w-full text-left text-[11px]"><thead style="background:var(--panel2);color:var(--mut);position:sticky;top:0">' +
         '<tr><th class="px-3 py-2">Review</th><th class="px-3 py-2">Channel</th>' +
         '<th class="px-3 py-2 text-right">Polarity</th><th class="px-3 py-2">Sentiment</th></tr></thead><tbody>' +
         scored.map(function (r) {
-          var col = r.sentiment === "Positive" ? "text-emerald-400" : r.sentiment === "Negative" ? "text-red-400" : "text-amber-300";
-          return '<tr class="border-t border-slate-800/70"><td class="px-3 py-2 text-slate-300">' + esc(r.text.slice(0, 110)) +
-            '</td><td class="px-3 py-2 text-slate-500">' + esc(r.channel || "—") +
-            '</td><td class="px-3 py-2 text-right font-mono ' + col + '">' + r.polarity.toFixed(3) +
-            '</td><td class="px-3 py-2 ' + col + '">' + r.sentiment + '</td></tr>';
+          var c = r.sentiment === "Negative" ? "var(--red)" : (r.sentiment === "Positive" ? "var(--green)" : "var(--amber)");
+          return '<tr style="border-top:1px solid var(--line)">' +
+            '<td class="px-3 py-1" style="color:var(--ink);opacity:.9">' + esc(String(r.text).slice(0, 110)) + '</td>' +
+            '<td class="px-3 py-1" style="color:var(--mut)">' + esc(r.channel || "—") + '</td>' +
+            '<td class="px-3 py-1 text-right" style="font-variant-numeric:tabular-nums">' + r.polarity.toFixed(3) + '</td>' +
+            '<td class="px-3 py-1" style="color:' + c + '">' + esc(r.sentiment) + '</td></tr>';
         }).join("") +
-      '</tbody></table></div>' +
-      '<button id="labDownload" class="mt-3 rounded bg-cyan-500/20 border border-cyan-400/40 px-3 py-1.5 text-[11px] font-bold text-cyan-200 hover:bg-cyan-500/30">Download scored CSV</button>';
-    document.getElementById("labDownload").onclick = download;
-  }
-
-  function tile(label, value, sub) {
-    return '<div class="rounded-lg border border-slate-800 bg-slate-900/50 p-3">' +
-      '<div class="text-[10px] tracking-widest text-slate-500">' + label + '</div>' +
-      '<div class="mt-1 text-xl font-bold text-white">' + value + '</div>' +
-      '<div class="text-[10px] text-slate-500">' + esc(sub) + '</div></div>';
+        '</tbody></table></div>' +
+      '<div class="mt-3"><button class="btn2" id="labDownload">Download scored CSV</button></div>';
+    var dl = document.getElementById("labDownload");
+    if (dl) dl.onclick = download;
+    adviseUploaded(scored.map(function (r) {
+      return { text: r.text, sentiment: r.sentiment, channel: r.channel, segment: r.segment, date: r.date };
+    }));
   }
 
   function download() {
@@ -147,7 +158,7 @@
     }).join("\n");
     var blob = new Blob([head + body], { type: "text/csv" });
     var a = document.createElement("a");
-    a.href = URL.createObjectURL(blob); a.download = "scored_reviews.csv"; a.click();
+    a.href = URL.createObjectURL(blob); a.download = "citi_analysis_scored.csv"; a.click();
   }
 
   function wire() {
@@ -160,7 +171,7 @@
       var lines = (ta.value || "").split("\n").map(function (l) { return l.trim(); }).filter(function (l) { return l.length > 2; });
       if (!lines.length) { msg("Paste one review per line first.", true); return; }
       render(scoreRecords(lines.map(function (l) { return { text: l }; })), "pasted text");
-      msg("Scored " + lines.length + " pasted lines with the browser engine.");
+      msg("Scored " + lines.length + " pasted lines in your browser.");
     };
 
     if (file) file.onchange = function (e) {
@@ -169,7 +180,7 @@
       var reader = new FileReader();
       reader.onload = function () {
         var recs = fromCSV(String(reader.result));
-        if (!recs.length) { msg("No reviews found in that file. Need a column named Review_Text, Text or Review.", true); return; }
+        if (!recs.length) { msg("No reviews found. Need a column named Review_Text, Text or Review.", true); return; }
         render(scoreRecords(recs), f.name);
         msg("Scored " + recs.length + " rows from " + f.name + " — nothing was uploaded, it ran in your browser.");
       };

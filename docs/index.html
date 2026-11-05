@@ -3,34 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Retail Banking Sentiment Analysis — SA Dashboard</title>
+<title>Citi Analysis — bank sentiment intelligence</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
-:root{--bg:#0a1628;--panel:#0f2035;--panel2:#13263e;--line:#1e3a5f;--cyan:#22d3ee;--mut:#94a3b8;--red:#f87171;--amber:#fbbf24;--green:#4ade80}
-body{background:var(--bg);color:#e2e8f0;font-family:system-ui,-apple-system,sans-serif}
+:root{--bg:#17100c;--panel:#221812;--panel2:#2b1e16;--line:#3d2b1f;--cyan:#c9803f;--mut:#b9a488;--red:#c4633f;--amber:#d9a441;--green:#8a9a5b;--ink:#f6ece0}
+body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,sans-serif}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:12px}
-.tab{background:transparent;border:1px solid var(--line);color:#cbd5e1;border-radius:8px;padding:6px 14px;font-size:13px;font-weight:600}
-.tab.on{background:var(--cyan);color:#06222e;border-color:var(--cyan)}
+.tab{background:transparent;border:1px solid var(--line);color:#ecdfcd;border-radius:8px;padding:6px 14px;font-size:13px;font-weight:600}
+.tab.on{background:var(--cyan);color:#2a1a12;border-color:var(--cyan)}
 .chip{display:inline-flex;align-items:center;gap:5px;background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700}
 .pos{color:var(--green)} .neg{color:var(--red)} .neu{color:var(--amber)} .mut{color:var(--mut)}
-input,select,textarea{background:var(--panel2);border:1px solid var(--line);border-radius:8px;color:#e2e8f0;padding:8px 10px;font-size:13px}
+input,select,textarea{background:var(--panel2);border:1px solid var(--line);border-radius:8px;color:#f6ece0;padding:8px 10px;font-size:13px}
 table{border-collapse:collapse;width:100%}
 th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);padding:8px 6px;border-bottom:1px solid var(--line)}
 td{padding:8px 6px;border-bottom:1px solid rgba(30,58,95,.5);font-size:12.5px;vertical-align:top}
-.btn{background:var(--cyan);color:#06222e;font-weight:700;border-radius:8px;padding:9px 18px;font-size:13px}
-.btn2{background:transparent;border:1px solid var(--line);color:#e2e8f0;border-radius:8px;padding:9px 14px;font-size:13px}
+.btn{background:var(--cyan);color:#2a1a12;font-weight:700;border-radius:8px;padding:9px 18px;font-size:13px}
+.btn2{background:transparent;border:1px solid var(--line);color:#f6ece0;border-radius:8px;padding:9px 14px;font-size:13px}
 </style>
 </head>
 <body class="max-w-6xl mx-auto p-5">
 <header class="mb-5">
   <div class="text-[11px] font-bold tracking-widest" style="color:var(--cyan)">SENTIMENT ANALYSIS PROJECT · SA RETAIL BANKING</div>
-  <h1 class="text-3xl font-bold mt-1">Retail Banking Sentiment Analysis</h1>
+  <h1 class="text-3xl font-bold mt-1" style="letter-spacing:-0.02em">Citi Analysis</h1>
   <p class="text-sm mt-2 max-w-3xl" style="color:var(--mut)">
-    161 customer reviews across four channels and five customer segments, scored with <b style="color:#e2e8f0">real TextBlob polarity</b> in Python and published as a static dashboard so it runs anywhere without a server.
+    <b style="color:var(--ink)">Citi Analysis</b> reads what customers actually wrote, scores every review, then tells you what to fix first. 161 reviews, four channels, five segments — TextBlob polarity computed in Python, published as a static site that runs anywhere with no server.
   </p>
   <div class="flex flex-wrap gap-2 mt-3">
-    <span class="chip" style="color:var(--cyan)">TextBlob · computed in Python</span>
+    <span class="chip" style="color:var(--amber)">Citi Advisor · explains every recommendation</span>
     <span class="chip">4 datasets · 161 reviews</span>
     <span class="chip">4 channels · 5 segments</span>
     <span class="chip" style="color:var(--green)">Live · no server required</span>
@@ -97,6 +97,16 @@ td{padding:8px 6px;border-bottom:1px solid rgba(30,58,95,.5);font-size:12.5px;ve
 </section>
 
 
+<section class="card" style="padding:1.5rem;margin-bottom:1rem" id="advisor">
+  <div class="flex flex-wrap items-baseline justify-between gap-2">
+    <div>
+      <h2 class="text-lg font-bold">Citi Advisor</h2>
+      <p class="text-[12px]" style="color:var(--mut)">What to fix first, why, and who owns it &mdash; generated from the scores below. Every action shows its evidence so you can argue with it.</p>
+    </div>
+    <span class="chip" style="color:var(--amber)">explainable &middot; evidence attached</span>
+  </div>
+  <div id="advisorList" class="mt-4 grid gap-3"></div>
+</section>
 <section class="card" style="padding:1.25rem;margin-bottom:1rem" id="lab">
   <div class="flex flex-wrap items-baseline justify-between gap-2">
     <h2 class="text-sm font-bold">Analyse your own data</h2>
@@ -110,7 +120,7 @@ td{padding:8px 6px;border-bottom:1px solid rgba(30,58,95,.5);font-size:12.5px;ve
     <div>
       <label class="text-[10px] tracking-widest" style="color:var(--mut)">PASTE REVIEWS (one per line)</label>
       <textarea id="labText" rows="5" class="w-full mt-1 rounded border p-2 text-[12px]"
-        style="background:#0d1a2e;border-color:#1e3352;color:#e2e8f0"
+        style="background:#1f1610;border-color:#3d2b1f;color:#f6ece0"
         placeholder="The app crashed again this morning.&#10;Honestly the new update is not bad.&#10;Branch staff were lovely but the queue was an hour."></textarea>
       <div class="flex flex-wrap items-center gap-2 mt-2">
         <button id="labPaste" class="btn2">Score pasted text</button>
@@ -136,9 +146,9 @@ td{padding:8px 6px;border-bottom:1px solid rgba(30,58,95,.5);font-size:12.5px;ve
 </section>
 
 <footer class="text-[11px] pb-6" style="color:var(--mut)">
-  <b style="color:#cbd5e1">Method:</b> polarity and subjectivity computed with TextBlob (pattern lexicon) in Python — see <code>polish_analyze.py</code>; results exported to <code>docs/data.json</code> and rendered here. Thresholds ±0.10.
-  <br><b style="color:#cbd5e1">Source:</b> github.com/tshepisofrominnostation/banking-sentiment-dashboard
-  <br><b style="color:#cbd5e1">Limitation:</b> TextBlob is a general-purpose English lexicon; it misses SA slang, sarcasm and isiZulu — which is why the dashboard reports scores, not verdicts.
+  <b style="color:#ecdfcd">Method:</b> polarity and subjectivity computed with TextBlob (pattern lexicon) in Python — see <code>polish_analyze.py</code>; results exported to <code>docs/data.json</code> and rendered here. Thresholds ±0.10.
+  <br><b style="color:#ecdfcd">Source:</b> github.com/tshepisofrominnostation/banking-sentiment-dashboard
+  <br><b style="color:#ecdfcd">Limitation:</b> TextBlob is a general-purpose English lexicon; it misses SA slang, sarcasm and isiZulu — which is why the dashboard reports scores, not verdicts.
   <div class="mt-3 flex flex-wrap items-center gap-2">
     <a href="https://github.com/tshepisofrominnostation/banking-sentiment-dashboard" target="_blank" rel="noopener"
        class="btn2" style="text-decoration:none">↗ Source on GitHub</a>
@@ -154,7 +164,7 @@ const SET_ORDER = ["main","march","june","november"];
 let DATA = null, current = "main", charts = {}, rows = [];
 
 const fmtPct = n => (n*1).toFixed(1) + "%";
-const col = s => s === "Positive" ? "#4ade80" : s === "Negative" ? "#f87171" : "#fbbf24";
+const col = s => s === "Positive" ? "#8a9a5b" : s === "Negative" ? "#c4633f" : "#d9a441";
 
 function kpi(label, value, sub, color) {
   return `<div class="card p-4">
@@ -163,10 +173,19 @@ function kpi(label, value, sub, color) {
     <div class="text-[11px] mt-1" style="color:var(--mut)">${sub}</div></div>`;
 }
 
+function publishForAdvisor() {
+  const rows = DATA.sets[current].reviews.map(r => ({
+    text: r.text, sentiment: r.sentiment, channel: r.channel,
+    segment: r.segment, date: r.date
+  }));
+  window.__citiData = { reviews: rows };
+  if (window.CitiAdvisorUI) window.CitiAdvisorUI.render(rows);
+}
+
 function renderKpis() {
   const s = DATA.sets[current].summary;
   document.getElementById("kpis").innerHTML =
-    kpi("Reviews", s.total, DATA.sets[current].label, "#e2e8f0") +
+    kpi("Reviews", s.total, DATA.sets[current].label, "#f6ece0") +
     kpi("Negative", fmtPct(s.negative_pct), "share of all reviews", "var(--red)") +
     kpi("Avg polarity", (s.avg_polarity >= 0 ? "+" : "") + s.avg_polarity.toFixed(3), "range −1 to +1", s.avg_polarity < 0 ? "var(--red)" : "var(--green)") +
     kpi("Subjectivity", s.avg_subjectivity.toFixed(2), "0 = factual, 1 = opinion", "var(--cyan)");
@@ -176,8 +195,8 @@ function barOpts(max) {
   return { responsive: true, maintainAspectRatio: false, indexAxis: "y",
     plugins: { legend: { display: false } },
     scales: {
-      x: { beginAtZero: true, max: max, ticks: { color: "#94a3b8", callback: v => v + "%" }, grid: { color: "rgba(30,58,95,.6)" } },
-      y: { ticks: { color: "#cbd5e1", font: { size: 11 } }, grid: { display: false } } } };
+      x: { beginAtZero: true, max: max, ticks: { color: "#b9a488", callback: v => v + "%" }, grid: { color: "rgba(30,58,95,.6)" } },
+      y: { ticks: { color: "#ecdfcd", font: { size: 11 } }, grid: { display: false } } } };
 }
 
 function renderCharts() {
@@ -188,23 +207,23 @@ function renderCharts() {
     type: "doughnut",
     data: { labels: ["Positive", "Neutral", "Negative"],
       datasets: [{ data: [s.mix.Positive, s.mix.Neutral, s.mix.Negative],
-        backgroundColor: ["#4ade80", "#fbbf24", "#f87171"], borderWidth: 0, hoverOffset: 4 }] },
+        backgroundColor: ["#8a9a5b", "#d9a441", "#c4633f"], borderWidth: 0, hoverOffset: 4 }] },
     options: { responsive: true, maintainAspectRatio: false, cutout: "58%",
-      plugins: { legend: { position: "bottom", labels: { color: "#cbd5e1", font: { size: 11 }, boxWidth: 10 } },
+      plugins: { legend: { position: "bottom", labels: { color: "#ecdfcd", font: { size: 11 }, boxWidth: 10 } },
         tooltip: { callbacks: { label: c => `${c.label}: ${c.raw} reviews (${s.mix_pct[c.label]}%)` } } } } });
 
   const chans = Object.entries(s.by_channel).sort((a, b) => b[1].negative_pct - a[1].negative_pct);
   charts.chan = new Chart(document.getElementById("chanChart"), {
     type: "bar",
     data: { labels: chans.map(c => c[0]),
-      datasets: [{ data: chans.map(c => c[1].negative_pct), backgroundColor: "#22d3ee", borderRadius: 4, borderWidth: 0 }] },
+      datasets: [{ data: chans.map(c => c[1].negative_pct), backgroundColor: "#c9803f", borderRadius: 4, borderWidth: 0 }] },
     options: barOpts(100) });
 
   const segs = Object.entries(s.by_segment).sort((a, b) => b[1].negative_pct - a[1].negative_pct);
   charts.seg = new Chart(document.getElementById("segChart"), {
     type: "bar",
     data: { labels: segs.map(c => c[0]),
-      datasets: [{ data: segs.map(c => c[1].negative_pct), backgroundColor: "#a78bfa", borderRadius: 4, borderWidth: 0 }] },
+      datasets: [{ data: segs.map(c => c[1].negative_pct), backgroundColor: "#a8894f", borderRadius: 4, borderWidth: 0 }] },
     options: barOpts(100) });
 
   const order = ["march", "june", "november"];
@@ -212,21 +231,21 @@ function renderCharts() {
     type: "line",
     data: { labels: order.map(k => DATA.sets[k].label.replace(" baseline", "").replace(" improved", "").replace(" incident", "")),
       datasets: [
-        { label: "Negative %", data: order.map(k => DATA.sets[k].summary.negative_pct), borderColor: "#f87171",
-          backgroundColor: "rgba(248,113,113,.15)", fill: true, tension: .35, borderWidth: 2, pointRadius: 4, pointBackgroundColor: "#f87171" },
-        { label: "Avg polarity", data: order.map(k => DATA.sets[k].summary.avg_polarity * 100), borderColor: "#22d3ee",
-          backgroundColor: "transparent", tension: .35, borderWidth: 2, pointRadius: 4, pointBackgroundColor: "#22d3ee", yAxisID: "y2" } ] },
+        { label: "Negative %", data: order.map(k => DATA.sets[k].summary.negative_pct), borderColor: "#c4633f",
+          backgroundColor: "rgba(248,113,113,.15)", fill: true, tension: .35, borderWidth: 2, pointRadius: 4, pointBackgroundColor: "#c4633f" },
+        { label: "Avg polarity", data: order.map(k => DATA.sets[k].summary.avg_polarity * 100), borderColor: "#c9803f",
+          backgroundColor: "transparent", tension: .35, borderWidth: 2, pointRadius: 4, pointBackgroundColor: "#c9803f", yAxisID: "y2" } ] },
     options: { responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { position: "bottom", labels: { color: "#cbd5e1", font: { size: 11 }, boxWidth: 10 } } },
-      scales: { y: { beginAtZero: true, max: 100, ticks: { color: "#94a3b8", callback: v => v + "%" }, grid: { color: "rgba(30,58,95,.6)" } },
-        y2: { position: "right", min: -30, max: 30, ticks: { color: "#22d3ee", callback: v => (v/100).toFixed(1) }, grid: { display: false } },
-        x: { ticks: { color: "#cbd5e1" }, grid: { display: false } } } } });
+      plugins: { legend: { position: "bottom", labels: { color: "#ecdfcd", font: { size: 11 }, boxWidth: 10 } } },
+      scales: { y: { beginAtZero: true, max: 100, ticks: { color: "#b9a488", callback: v => v + "%" }, grid: { color: "rgba(30,58,95,.6)" } },
+        y2: { position: "right", min: -30, max: 30, ticks: { color: "#c9803f", callback: v => (v/100).toFixed(1) }, grid: { display: false } },
+        x: { ticks: { color: "#ecdfcd" }, grid: { display: false } } } } });
 }
 
 function renderTerms() {
   const terms = DATA.sets[current].summary.negative_terms.slice(0, 18);
   document.getElementById("terms").innerHTML = terms.map(([w, c]) =>
-    `<span class="chip" style="color:#fca5a5">${w} <b style="color:#f87171">${c}</b></span>`).join("");
+    `<span class="chip" style="color:#d98a63">${w} <b style="color:#c4633f">${c}</b></span>`).join("");
 }
 
 function renderTable() {
@@ -255,7 +274,7 @@ function loadSet(key) {
   const chans = [...new Set(rows.map(r => r.channel))].sort();
   const sel = document.getElementById("fChan");
   sel.innerHTML = '<option value="">All channels</option>' + chans.map(c => `<option>${c}</option>`).join("");
-  renderKpis(); renderCharts(); renderTerms(); renderTable();
+  renderKpis(); renderCharts(); renderTerms(); renderTable(); publishForAdvisor();
 }
 
 function downloadCsv() {
@@ -304,6 +323,8 @@ fetch("data.json").then(r => r.json()).then(d => {
 });
 </script>
 <script src="scorer.js"></script>
+<script src="advisor.js"></script>
+<script src="advisor-ui.js"></script>
 <script src="lab.js"></script>
 </body>
 </html>
