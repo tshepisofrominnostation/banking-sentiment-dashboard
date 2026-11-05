@@ -56,10 +56,21 @@
     });
   }
 
-  function findCol(header, names) {
-    for (var i = 0; i < header.length; i++) {
-      var h = header[i].toLowerCase().replace(/[^a-z]/g, "");
-      for (var j = 0; j < names.length; j++) if (h.indexOf(names[j]) >= 0) return i;
+  function findCol(header, names, exclude) {
+    var norm = header.map(function (h) { return h.toLowerCase().replace(/[^a-z]/g, ""); });
+    var i, j, blocked;
+    // pass 1: exact name match (handles Channel vs Customer_Segment cleanly)
+    for (j = 0; j < names.length; j++) {
+      i = norm.indexOf(names[j]);
+      if (i >= 0) return i;
+    }
+    // pass 2: substring match, skipping obvious id/date columns
+    for (j = 0; j < names.length; j++) {
+      for (i = 0; i < norm.length; i++) {
+        blocked = false;
+        for (var k = 0; k < (exclude || []).length; k++) if (norm[i].indexOf(exclude[k]) >= 0) blocked = true;
+        if (!blocked && norm[i].indexOf(names[j]) >= 0) return i;
+      }
     }
     return -1;
   }
@@ -68,11 +79,11 @@
     var table = parseCSV(text);
     if (!table.length) return [];
     var header = table[0], body = table.slice(1);
-    var tIdx = findCol(header, ["reviewtext", "text", "review", "comment", "message", "feedback"]);
+    var tIdx = findCol(header, ["reviewtext", "text", "comment", "message", "feedback", "review"], ["id"]);
     if (tIdx < 0) { tIdx = header.length - 1; body = table; }
-    var cIdx = findCol(header, ["channel", "source", "platform"]);
-    var sIdx = findCol(header, ["segment", "customertype", "type"]);
-    var dIdx = findCol(header, ["date", "time"]);
+    var cIdx = findCol(header, ["channel", "source", "platform"], ["id"]);
+    var sIdx = findCol(header, ["customersegment", "segment", "customertype", "type"], ["id"]);
+    var dIdx = findCol(header, ["date", "time"], ["id"]);
     var iIdx = findCol(header, ["reviewid", "id"]);
     return body.map(function (r) {
       return {
